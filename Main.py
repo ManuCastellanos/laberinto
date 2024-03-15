@@ -1,9 +1,14 @@
-from EM.Contenedor.Laberinto import Laberinto
 
-# Crear una instancia de Laberinto
-laberinto = Laberinto()
+from EM.Cont.Laberinto import Laberinto
+from Game.Juego import Juego
 
-# Ahora puedes usar los métodos de la instancia laberinto
-# Por ejemplo, para agregar una habitación (asumiendo que tienes una clase Habitacion):
-# habitacion = Habitacion()
-# laberinto.agregarHabitacion(habitacion)
+
+laberinto= Juego(Laberinto).fabricarLaberinto2Habitaciones()
+
+laberinto1= Juego(Laberinto).fabricarLaberinto2HabitacionesFM()
+
+laberinto2 = Juego(Laberinto).fabricarLaberinto2Habitaciones2BombasFM()
+
+laberinto3= Juego(Laberinto).fabricarLaberinto2HabitacionesFMD()
+
+laberinto4= Juego(Laberinto).fabricarLaberinto4Habitaciones4BichosFM()

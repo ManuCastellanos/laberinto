@@ -5,8 +5,8 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
     def __init__(self): # Constructor de la clase (initialization)
         
         super().__init__() # Llamamos al constructor de la clase padre
-        self.hijos = None
-        self.orientaciones = None
+        self.hijos = []
+        self.orientaciones = []
 
     # Metodos de la clase
     def agregarHijo(self, unEM): #unEM es un ElementoMapa

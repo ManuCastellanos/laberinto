@@ -1,4 +1,4 @@
-from EM.Hoja.Decorator.Decorator import Decorator
+from EM.Hoj.Deco.Decorator import Decorator
 
 class Bomba(Decorator):
     def __init__(self):

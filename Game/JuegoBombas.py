@@ -1,5 +1,5 @@
-from EM.Pared.ParedBomba import ParedBomba
-from Juego import Juego
+from EM.Pare.ParedBomba import ParedBomba
+from Game.Juego import Juego
 
 
 class JuegoBombas(Juego):

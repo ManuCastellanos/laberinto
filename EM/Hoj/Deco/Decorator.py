@@ -1,4 +1,4 @@
-import EM.Hoja.Hoja as Hoja
+from EM.Hoj.Hoja import Hoja
 
 class Decorator(Hoja):
     def __init__(self, em):

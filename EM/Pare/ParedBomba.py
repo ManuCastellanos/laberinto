@@ -1,4 +1,4 @@
-import Pared
+from EM.Pare.Pared import Pared
 
 class ParedBomba(Pared):
     def __init__(self):

@@ -1,11 +1,17 @@
 import threading
 from Bicho import Bicho
-from EM.Contenedor import Habitacion, Laberinto
-from EM.Hoja.Decorator import Bomba
-from EM.Pared import Pared, ParedBomba
+from EM.Cont.Habitacion import Habitacion
+from EM.Cont.Laberinto import Laberinto
+from EM.Hoj.Deco.Bomba import Bomba
+from EM.Pare.Pared import Pared
+from EM.Pare.ParedBomba import ParedBomba
 from EM.Puerta import Puerta
-from Modo import Agresivo, Perezoso
-from Orientacion import Orientacion, Norte, Este, Sur, Oeste
+from Mode.Agresivo import Agresivo
+from Mode.Perezoso import Perezoso
+from Orientation.Norte import Norte
+from Orientation.Sur import Sur
+from Orientation.Este import Este
+from Orientation.Oeste import Oeste
 
 
 class Juego:
@@ -15,6 +21,26 @@ class Juego:
         self.hilos = {}
     
     # Factory Method
+    
+    
+    def fabricarNorte(self):
+        return Norte()
+    
+    def fabricarSur(self):
+        return Sur()
+    
+    def fabricarOeste(self):
+        return Oeste()
+    
+    def fabricarEste(self):
+        return Este()
+    
+    def fabricarPared(self):
+        return Pared()
+    
+    def fabricarPuerta(self):
+        return Puerta()
+    
     def fabricarBichoAgresivo(self, unaHab):
         bicho = Bicho()
         bicho.modo = Agresivo()
@@ -34,19 +60,18 @@ class Juego:
     def fabricarBomba(self):
         return Bomba()
     
-    def fabricarEste(self):
-        return Este.default()
-    
+
     def fabricarHabitacion(self, unNum):
-        hab = Habitacion()
-        hab.num = unNum
+        hab = Habitacion(unNum)
         hab.agregarOrientacion(self.fabricarNorte())
-        hab.agregarOrientacion(Este.default())
-        hab.agregarOrientacion(Sur.default())
-        hab.agregarOrientacion(Oeste.default())
+        hab.agregarOrientacion(self.fabricarEste())
+        hab.agregarOrientacion(self.fabricarSur())
+        hab.agregarOrientacion(self.fabricarOeste())
         
-        for each in hab.orientaciones:
-            hab.ponerEn(each, self.fabricarPared())
+        hab.ponerEn(Norte(), self.fabricarPared())
+        hab.ponerEn(Este(), self.fabricarPared())
+        hab.ponerEn(Sur(), self.fabricarPared())    
+        hab.ponerEn(Oeste(), self.fabricarPared())
         
         return hab
     
@@ -56,7 +81,6 @@ class Juego:
     def fabricarLaberinto2Habitaciones(self):
         hab1 = self.fabricarHabitacion(1)
         hab2 = self.fabricarHabitacion(2)
-        puerta = Puerta()
         
         hab1.norte = Pared()
         hab1.este = Pared()
@@ -66,8 +90,7 @@ class Juego:
         hab2.este = Pared()
         hab2.oeste = Pared()
         
-        puerta.lado1 = hab1
-        puerta.lado2 = hab2
+        puerta = Puerta(hab1, hab2)
         
         hab1.sur = puerta
         hab2.norte = puerta
@@ -80,7 +103,7 @@ class Juego:
     def fabricarLaberinto2Habitaciones2BombasFM(self):
         hab1 = self.fabricarHabitacion(1)
         hab2 = self.fabricarHabitacion(2)
-        puerta = self.fabricarPuerta()
+        puerta = Puerta(hab1, hab2)
         
         hab1.norte = self.fabricarPared()
         hab1.este = self.fabricarPared()
@@ -112,8 +135,8 @@ class Juego:
         hab2 = self.fabricarHabitacion(2)
         puerta = self.fabricarPuertaLado1(hab1, hab2)
         
-        hab1.ponerEn(Sur.default(), puerta)
-        hab2.ponerEn(Norte.default(), puerta)
+        hab1.ponerEn(Sur(), puerta)
+        hab2.ponerEn(Norte(), puerta)
         
         self.laberinto = self.fabricarLaberinto()
         
@@ -161,17 +184,17 @@ class Juego:
         p34 = self.fabricarPuertaLado1(hab3, hab4)
         p24 = self.fabricarPuertaLado1(hab2, hab4)
         
-        hab1.ponerEn(Sur.default(), p12)
-        hab2.ponerEn(Norte.default(), p12)
+        hab1.ponerEn(self.fabricarSur(), p12)
+        hab2.ponerEn(self.fabricarNorte(), p12)
         
-        hab1.ponerEn(Este.default(), p13)
-        hab3.ponerEn(Oeste.default(), p13)
+        hab1.ponerEn(self.fabricarEste(), p13)
+        hab3.ponerEn(self.fabricarOeste(), p13)
         
-        hab2.ponerEn(Este.default(), p24)
-        hab4.ponerEn(Oeste.default(), p24)
+        hab2.ponerEn(self.fabricarEste(), p24)
+        hab4.ponerEn(self.fabricarOeste(), p24)
         
-        hab3.ponerEn(Sur.default(), p34)
-        hab4.ponerEn(Norte.default(), p34)
+        hab3.ponerEn(self.fabricarSur(), p34)
+        hab4.ponerEn(self.fabricarNorte(), p34)
         
         self.laberinto = self.fabricarLaberinto()
         
@@ -184,27 +207,11 @@ class Juego:
         self.agregarBicho(self.fabricarBichoAgresivo(hab3))
         self.agregarBicho(self.fabricarBichoPerezoso(hab2))
         self.agregarBicho(self.fabricarBichoPerezoso(hab4))
-    
-    def fabricarNorte(self):
-        return Norte.default()
-    
-    def fabricarOeste(self):
-        return Oeste.default()
-    
-    def fabricarPared(self):
-        return Pared()
-    
-    def fabricarPuerta(self):
-        return Puerta()
+
     
     def fabricarPuertaLado1(self, unaHab, otraHab):
-        puerta = Puerta()
-        puerta.lado1 = unaHab
-        puerta.lado2 = otraHab
+        puerta = Puerta(unaHab, otraHab)
         return puerta
-    
-    def fabricarSur(self):
-        return Sur.default()
     
     #Gestion de Bichos
     

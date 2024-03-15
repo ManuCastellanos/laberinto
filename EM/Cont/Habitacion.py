@@ -1,12 +1,13 @@
 import random
 
-from EM.Contenedor import Contenedor
+from EM.Cont.Contenedor import Contenedor
 
 
 class Habitacion(Contenedor):
     
     #Constructor
     def __init__(self, num, este=None, oeste=None, sur=None, norte=None):
+        super().__init__()
         self.num = num
         self.este = este
         self.oeste = oeste
@@ -78,6 +79,9 @@ class Habitacion(Contenedor):
     def irAlNorte(self, alguien):
         self.norte.entrar(alguien)
     
+    def ponerEn(self,unaOrientacion,EM):
+        unaOrientacion.ponerElemento(EM, self)
+        
     # To String
     def __str__(self):
         return "Hab" + str(self.num)

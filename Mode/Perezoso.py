@@ -1,12 +1,12 @@
-from Modo import Modo
+from Mode.Modo import Modo
 
-class Agresivo(Modo):
+class Perezoso(Modo):
 
     def actua(self, unBicho):
         super().actua(unBicho)
     
     def __str__(self):
-        return 'Agresivo'
-
+        return 'Perezoso'
+    
     def __repr__(self, aStream):
-        aStream.nextPutAll('Agresivo')
+        aStream.nextPutAll('Perezoso')

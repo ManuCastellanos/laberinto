@@ -1,4 +1,4 @@
-import EM.Contenedor.Contenedor as Contenedor
+from EM.Cont.Contenedor import Contenedor
 
 class Laberinto(Contenedor):
     def __init__(self):
