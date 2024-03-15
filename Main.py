@@ -11,7 +11,7 @@ j2=Juego(laberinto).fabricarLaberinto2HabitacionesFM()
 
 j3= Juego(laberinto).fabricarLaberinto2HabitacionesFMD()
 
-j2 = Juego(laberinto).fabricarLaberinto2Habitaciones2BombasFM()
+j4 = Juego(laberinto).fabricarLaberinto2Habitaciones2BombasFM()
 
-j4= Juego(laberinto).fabricarLaberinto4Habitaciones4BichosFM()
+j5= Juego(laberinto).fabricarLaberinto4Habitaciones4BichosFM()
 
