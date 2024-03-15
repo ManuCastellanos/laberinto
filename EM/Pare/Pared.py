@@ -17,3 +17,6 @@ class Pared(ElementoMapa):
     
     def recorrer(self, unBloque):
         pass    
+    
+    def __str__(self):
+        return "Pared"

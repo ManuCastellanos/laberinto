@@ -3,11 +3,9 @@ from EM.Cont.Contenedor import Contenedor
 class Laberinto(Contenedor):
     def __init__(self):
         super().__init__()
-        self.habitaciones = []
 
     def agregarHabitacion(self, unaHabitacion):
         self.agregarHijo(unaHabitacion)
-        self.habitaciones.append(unaHabitacion)
 
     def entrar(self):
         pass
@@ -19,11 +17,17 @@ class Laberinto(Contenedor):
     def recorrer(self, unBloque):
         unBloque(self)
 
-        for habitacion in self.habitaciones:
-            habitacion.recorrer(unBloque)
+        for hijo in self.hijos:
+            hijo.recorrer(unBloque)
 
     def numeroHabitaciones(self):
-        return len(self.habitaciones)
+        return len(self.hijos)
 
     def obtenerHabitacion(self, unNum):
         return self.hijos[unNum - 1]
+
+    def __str__(self):
+        cad= f"\nLaberinto con {len(self.hijos)} habitaciones\n\n"
+        for hab in self.hijos:
+             cad += hab.__str__() + "\n"
+        return cad

@@ -53,6 +53,9 @@ class Bicho:
         self.posicion.irAlSur(self)
     
     # Como el toString de Java
+    def __str__(self):
+        return "Bicho es " + str(self.modo)
+    
     def printOn(self, aStream):
         aStream.nextPutAll('Bicho-')
         aStream.nextPutAll(str(self.modo))

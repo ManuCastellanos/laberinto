@@ -22,6 +22,9 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
     def agregarOrientacion(self, unaOrientacion):
         self.orientaciones.append(unaOrientacion) #.append al final de la lista, al principio .insert(0, unaOrientacion)
     
+    def ponerEn(self,unaOrientacion,EM):
+        unaOrientacion.ponerElemento(EM, self)
+   
     #Patrón: Iterator
     def recorrer(self, unBloque):
         unBloque(self)

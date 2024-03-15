@@ -79,12 +79,17 @@ class Habitacion(Contenedor):
     def irAlNorte(self, alguien):
         self.norte.entrar(alguien)
     
-    def ponerEn(self,unaOrientacion,EM):
-        unaOrientacion.ponerElemento(EM, self)
         
     # To String
     def __str__(self):
-        return "Hab" + str(self.num)
+        salida= f"*Habitacion {self.num}\n"
+        
+        salida += f"Este: {self.este}\n"
+        salida += f"Oeste: {self.oeste}\n"
+        salida += f"Sur: {self.sur}\n"
+        salida += f"Norte: {self.norte}\n"
+         
+        return salida
 
     # Representación
     def __repr__(self, aStream):

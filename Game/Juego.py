@@ -15,8 +15,8 @@ from Orientation.Oeste import Oeste
 
 
 class Juego:
-    def __init__(self, laberinto):
-        self.laberinto = laberinto
+    def __init__(self):
+        self.laberinto = None
         self.bichos = []
         self.hilos = {}
     
@@ -79,6 +79,7 @@ class Juego:
         return Laberinto()
     
     def fabricarLaberinto2Habitaciones(self):
+        print("\n Laberinto de 2 habitaciones ")
         hab1 = self.fabricarHabitacion(1)
         hab2 = self.fabricarHabitacion(2)
         
@@ -237,3 +238,10 @@ class Juego:
         proceso = self.hilos.get(unBicho)
         if proceso:
             proceso.terminate()
+
+    def __str__ (self):
+        bichetes=""
+        for bicho in self.bichos:
+            bichetes+=str(bicho)+"\n"
+            
+        return f"\n Juego:\n {self.laberinto} \nBichos: \n{bichetes} \n" 

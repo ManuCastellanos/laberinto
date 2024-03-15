@@ -29,7 +29,7 @@ class Puerta(ElementoMapa):
         self.abierta = anObject
     
     def __str__(self):
-        return "Pt-" + str(self.lado1.num) + "-" + str(self.lado2.num)
+        return "Puerta de hab" + str(self.lado1.num) + " a hab" + str(self.lado2.num)
 
     def __repr__(self, aStream):
         aStream.nextPutAll('Pt-')
