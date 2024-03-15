@@ -33,7 +33,7 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
             hijo.recorrer(unBloque)
         
         for orientacion in self.orientaciones:
-            orientacion.recorrer(unBloque)
+            orientacion.recorrerEn(unBloque, self)
         
     def entrar(self):
         pass

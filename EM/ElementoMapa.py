@@ -1,6 +1,4 @@
-from abc import ABC, abstractmethod
-
-class ElementoMapa(ABC):
+class ElementoMapa():
     def __init__(self):
         self.padre = None
         
@@ -24,17 +22,11 @@ class ElementoMapa(ABC):
         return False
 
     #Patrón: Iterator
-    @abstractmethod
     def recorrer(self, unBloque):
-        raise NotImplementedError("La subclase debe implementar el metodo recorrer()")
-    
+       unBloque(self)
 
-    @abstractmethod
     def entrar(self):
-        raise NotImplementedError("La subclase debe implementar el metodo entrar()")
-
-    @abstractmethod
+        pass
     def entrar_alguien(self, alguien):
-        raise NotImplementedError("La subclase debe implementar el metodo entrar_alguien()")
-
+        pass
 

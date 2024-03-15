@@ -22,15 +22,10 @@ class Bomba(Decorator):
     def esBomba(self):
         return True
     
-    #No hacer caso a este metodo
-    def entrar(self):
-        pass
-    
-    def entrar_alguien(self, alguien):
-        pass  
-    
-    def recorrer(self):
-        pass
-
     def __str__(self):
-        return "Bomba"
+        if self.activa == False:
+            return f"Bomba-" + "(Desactivada)"
+        else:
+            return f"Bomba-" + "(Activada)"
+        
+        

@@ -15,8 +15,7 @@ class Laberinto(Contenedor):
         hab.entrar(alguien)
 
     def recorrer(self, unBloque):
-        unBloque(self)
-
+        print("Recorriendo laberinto:")
         for hijo in self.hijos:
             hijo.recorrer(unBloque)
 

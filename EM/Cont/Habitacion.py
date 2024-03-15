@@ -45,13 +45,6 @@ class Habitacion(Contenedor):
     def set_norte(self, norte):
         self.norte = norte
 
-    #Metodos de la clase
-    def recorrer(self, unBloque):
-        unBloque(self)
-        self.este.recorrer(unBloque)
-        self.oeste.recorrer(unBloque)
-        self.sur.recorrer(unBloque)
-        self.norte.recorrer(unBloque)
     
     def entrar(self):
         print("Estas en la habitacion-", self.num)

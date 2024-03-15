@@ -14,3 +14,7 @@ class Sur(Orientacion):
 
     def ponerElemento(self, unEM, unContenedor):
         unContenedor.sur=unEM
+    
+    def recorrerEn(self, unBloque, unContenedor):
+        if unContenedor.sur is not None:
+            unContenedor.sur.recorrer(unBloque)

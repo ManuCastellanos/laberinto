@@ -14,3 +14,7 @@ class Este(Orientacion):
 
     def ponerElemento(self, unEM, unContenedor):
         unContenedor.este=unEM
+    
+    def recorrerEn(self, unBloque, unContenedor):
+        if unContenedor.este is not None:
+            unContenedor.este.recorrer(unBloque)

@@ -14,3 +14,8 @@ class Norte(Orientacion):
 
     def ponerElemento(self, unEM, unContenedor):
         unContenedor.norte=unEM
+    
+    def recorrerEn(self, unBloque, unContenedor):
+        if unContenedor.norte is not None:
+            unContenedor.norte.recorrer(unBloque)
+        

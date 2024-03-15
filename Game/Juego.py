@@ -219,6 +219,21 @@ class Juego:
     def agregarBicho(self, unBicho):
         self.bichos.append(unBicho)
 
+    def activarBomba(self, unEM):
+        if unEM.esBomba():
+            unEM.activar()
+    
+    def desactivarBomba(self, unEM):
+        if unEM.esBomba():
+            unEM.desactivar()
+    
+    def activarBombas(self):
+        self.laberinto.recorrer(self.activarBomba)
+    
+    def desactivarBombas(self):
+        self.laberinto.recorrer(self.desactivarBomba)
+    
+                
     def eliminarBicho(self, unBicho):
         if unBicho in self.bichos:
             self.bichos.remove(unBicho)

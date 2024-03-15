@@ -41,13 +41,3 @@ class Puerta(ElementoMapa):
     def esPuerta (self):
         return True
     
-    
-    #No hacer caso a este metodo
-    def entrar(self):
-        pass
-    
-    def entrar_alguien(self, alguien):
-        pass  
-    
-    def recorrer(self):
-        pass

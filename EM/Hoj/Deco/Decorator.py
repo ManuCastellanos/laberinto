@@ -12,13 +12,3 @@ class Decorator(Hoja):
     def set_em(self, em):
         self.em = em
     
-    
-    #No hacer caso a este metodo
-    def entrar(self):
-        pass
-    
-    def entrar_alguien(self, alguien):
-        pass
-    
-    def recorrer(self):
-        pass

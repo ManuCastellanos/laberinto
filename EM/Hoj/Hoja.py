@@ -4,17 +4,7 @@ from EM.ElementoMapa import ElementoMapa
 
 class Hoja(ElementoMapa):
     def __init__(self, em):
+        super().__init__()
         self.em = em
     
-    def recorrer(self, unBloque):
-        unBloque.value(self)
 
-    #No hacer caso a este metodo
-    def entrar(self):
-        pass
-    
-    def entrar_alguien(self, alguien):
-        pass  
-    
-    def recorrer(self):
-        pass
