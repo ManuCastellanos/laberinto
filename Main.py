@@ -3,12 +3,15 @@ from EM.Cont.Laberinto import Laberinto
 from Game.Juego import Juego
 
 
-laberinto= Juego(Laberinto).fabricarLaberinto2Habitaciones()
+laberinto= Laberinto()
 
-laberinto1= Juego(Laberinto).fabricarLaberinto2HabitacionesFM()
+j1=Juego(laberinto).fabricarLaberinto2Habitaciones()
 
-laberinto2 = Juego(Laberinto).fabricarLaberinto2Habitaciones2BombasFM()
+j2=Juego(laberinto).fabricarLaberinto2HabitacionesFM()
 
-laberinto3= Juego(Laberinto).fabricarLaberinto2HabitacionesFMD()
+j3= Juego(laberinto).fabricarLaberinto2HabitacionesFMD()
 
-laberinto4= Juego(Laberinto).fabricarLaberinto4Habitaciones4BichosFM()
+j2 = Juego(laberinto).fabricarLaberinto2Habitaciones2BombasFM()
+
+j4= Juego(laberinto).fabricarLaberinto4Habitaciones4BichosFM()
+
