@@ -11,5 +11,5 @@ class Modo:
 
 
     def dormir(self, unBicho):
-        print(unBicho.printString(), 'duerme')
+        print(str(unBicho)+'duerme')
         time.sleep(2)

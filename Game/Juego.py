@@ -219,6 +219,12 @@ class Juego:
     def agregarBicho(self, unBicho):
         self.bichos.append(unBicho)
 
+    def eliminarBicho(self, unBicho):
+        if unBicho in self.bichos:
+            self.bichos.remove(unBicho)
+        else:
+            print("No existe ese bicho")
+
     def activarBomba(self, unEM):
         if unEM.esBomba():
             unEM.activar()
@@ -233,13 +239,20 @@ class Juego:
     def desactivarBombas(self):
         self.laberinto.recorrer(self.desactivarBomba)
     
-                
-    def eliminarBicho(self, unBicho):
-        if unBicho in self.bichos:
-            self.bichos.remove(unBicho)
-        else:
-            print("No existe ese bicho")
-
+    def abrirPuerta(self, unaPuerta):
+        if unaPuerta.esPuerta():
+            unaPuerta.abrir()
+    
+    def cerrarPuerta(self, unaPuerta):
+        if unaPuerta.esPuerta():
+            unaPuerta.cerrar() 
+    
+    def abrirPuertas(self):
+        self.laberinto.recorrer(self.abrirPuerta)
+    
+    def cerrarPuertas(self):
+        self.laberinto.recorrer(self.cerrarPuerta)
+    
     def lanzarHilo(self, unBicho):
         def proceso_target():
             while True:

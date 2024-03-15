@@ -6,12 +6,10 @@ from Game.Juego import Juego
 
 juego= Juego()
 
-juego.fabricarLaberinto2HabitacionesFMD()
-juego.activarBombas()
+juego.fabricarLaberinto4Habitaciones4BichosFM()
 
-
+juego.abrirPuertas()
 print(juego)
 
-juego.desactivarBombas()
+juego.lanzarHilo(juego.bichos[0])
 
-print(juego)

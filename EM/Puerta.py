@@ -31,12 +31,20 @@ class Puerta(ElementoMapa):
     def __str__(self):
         return "Puerta de hab" + str(self.lado1.num) + " a hab" + str(self.lado2.num)
 
-    def __repr__(self, aStream):
-        aStream.nextPutAll('Pt-')
-        aStream.nextPutAll(str(self.lado1.num))
-        aStream.nextPutAll('-')
-        aStream.nextPutAll(str(self.lado2.num))
-        
+    def entrar(self,alguien):
+        if self.abierta:
+            print(str(alguien)+" ESTÁ ABIERTO")
+        else:
+            print(str(alguien)+" HA PEGADO UN PORTAZO")
+    
+    def abrir(self):
+        self.abierta = True
+        print("Puerta abierta")
+    
+    def cerrar(self):
+        self.abierta = False
+        print("Puerta cerrada")
+    
     #testing
     def esPuerta (self):
         return True
