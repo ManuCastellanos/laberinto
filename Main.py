@@ -15,7 +15,9 @@ juego= Juego()
 #juego.fabricarLaberinto2HabitacionesFMD()
 #print(juego)
 
-#juego.fabricarLaberinto2Habitaciones2BombasFM() ???
+juego.fabricarLaberinto2Habitaciones2BombasFM()
+juego.activarBombas()
+print(juego)
 
 #juego.fabricarLaberinto4Habitaciones4BichosFM()
 #print(juego)

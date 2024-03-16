@@ -164,12 +164,10 @@ class Juego:
         puerta = Puerta(hab1, hab2)
         
         hab1.norte = self.fabricarPared()
-        hab1.este = self.fabricarPared()
         hab1.oeste = self.fabricarPared()
         
         hab2.sur = self.fabricarPared()
         hab2.este = self.fabricarPared()
-        hab2.oeste = self.fabricarPared()
         
         puerta.lado1 = hab1
         puerta.lado2 = hab2
@@ -179,6 +177,9 @@ class Juego:
         
         bm1 = self.fabricarBomba()
         bm2 = self.fabricarBomba()
+        
+        hab1.este = bm1
+        hab2.oeste = bm2
         
         hab1.agregarHijo(bm1)
         hab2.agregarHijo(bm2)
