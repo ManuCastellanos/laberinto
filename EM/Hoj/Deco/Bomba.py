@@ -12,12 +12,6 @@ class Bomba(Decorator):
         self.activa = True
         print('Bomba activada')
 
-    def get_activa(self):
-        return self.activa
-
-    def set_activa(self, value):
-        self.activa = value
-
     #Testings
     def esBomba(self):
         return True

@@ -11,7 +11,7 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
     # Metodos de la clase
     def agregarHijo(self, unEM): #unEM es un ElementoMapa
         self.hijos.append(unEM)
-        unEM.set_padre(self)
+        unEM.es_padre(self)
 
     def eliminarHijo(self, unEM ):     
         if unEM in self.hijos:
@@ -41,18 +41,7 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
     def entrar_alguien(self, alguien):
         pass
     
-    # Getters y Setters de la clase
-    def get_hijos(self):
-        return self.hijos
 
-    def set_hijos(self, anObject):
-        self.hijos = anObject
-
-    def get_orientaciones(self):
-        return self.orientaciones
-
-    def set_orientaciones(self, anObject):
-        self.orientaciones = anObject
     
     
     

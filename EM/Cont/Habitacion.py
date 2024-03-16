@@ -14,37 +14,6 @@ class Habitacion(Contenedor):
         self.sur = sur
         self.norte = norte
 
-    #Getters y Setters
-    def get_num(self):
-        return self.num
-
-    def set_num(self, num):
-        self.num = num
-
-    def get_este(self):
-        return self.este
-
-    def set_este(self, este):
-        self.este = este
-
-    def get_oeste(self):
-        return self.oeste
-
-    def set_oeste(self, oeste):
-        self.oeste = oeste
-
-    def get_sur(self):
-        return self.sur
-
-    def set_sur(self, sur):
-        self.sur = sur
-
-    def get_norte(self):
-        return self.norte
-
-    def set_norte(self, norte):
-        self.norte = norte
-
     
     def entrar(self):
         print("Estas en la habitacion-", self.num)

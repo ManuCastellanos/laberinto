@@ -2,11 +2,7 @@ class ElementoMapa():
     def __init__(self):
         self.padre = None
         
-    #Getters y Setters de la clase
-    def get_padre(self):
-        return self.padre
-
-    def set_padre(self, anObject):
+    def es_padre(self, anObject):
         self.padre = anObject
 
     def esBomba(self):

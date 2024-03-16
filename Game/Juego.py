@@ -22,7 +22,6 @@ class Juego:
     
     # Factory Method
     
-    
     def fabricarNorte(self):
         return Norte()
     
@@ -37,10 +36,7 @@ class Juego:
     
     def fabricarPared(self):
         return Pared()
-    
-    def fabricarPuerta(self):
-        return Puerta()
-    
+
     def fabricarBichoAgresivo(self, unaHab):
         bicho = Bicho()
         bicho.modo = Agresivo()
@@ -75,142 +71,7 @@ class Juego:
         
         return hab
     
-    def fabricarLaberinto(self):
-        return Laberinto()
-    
-    def fabricarLaberinto2Habitaciones(self):
-        print("\n Laberinto de 2 habitaciones ")
-        hab1 = self.fabricarHabitacion(1)
-        hab2 = self.fabricarHabitacion(2)
-        
-        hab1.norte = Pared()
-        hab1.este = Pared()
-        hab1.oeste = Pared()
-        
-        hab2.sur = Pared()
-        hab2.este = Pared()
-        hab2.oeste = Pared()
-        
-        puerta = Puerta(hab1, hab2)
-        
-        hab1.sur = puerta
-        hab2.norte = puerta
-        
-        self.laberinto = self.fabricarLaberinto()
-        
-        self.laberinto.agregarHabitacion(hab1)
-        self.laberinto.agregarHabitacion(hab2)
-    
-    def fabricarLaberinto2Habitaciones2BombasFM(self):
-        hab1 = self.fabricarHabitacion(1)
-        hab2 = self.fabricarHabitacion(2)
-        puerta = Puerta(hab1, hab2)
-        
-        hab1.norte = self.fabricarPared()
-        hab1.este = self.fabricarPared()
-        hab1.oeste = self.fabricarPared()
-        
-        hab2.sur = self.fabricarPared()
-        hab2.este = self.fabricarPared()
-        hab2.oeste = self.fabricarPared()
-        
-        puerta.lado1 = hab1
-        puerta.lado2 = hab2
-        
-        hab1.sur = puerta
-        hab2.norte = puerta
-        
-        bm1 = self.fabricarBomba()
-        bm2 = self.fabricarBomba()
-        
-        hab1.agregarHijo(bm1)
-        hab2.agregarHijo(bm2)
-        
-        self.laberinto = self.fabricarLaberinto()
-        
-        self.laberinto.agregarHabitacion(hab1)
-        self.laberinto.agregarHabitacion(hab2)
-    
-    def fabricarLaberinto2HabitacionesFM(self):
-        hab1 = self.fabricarHabitacion(1)
-        hab2 = self.fabricarHabitacion(2)
-        puerta = self.fabricarPuertaLado1(hab1, hab2)
-        
-        hab1.ponerEn(Sur(), puerta)
-        hab2.ponerEn(Norte(), puerta)
-        
-        self.laberinto = self.fabricarLaberinto()
-        
-        self.laberinto.agregarHabitacion(hab1)
-        self.laberinto.agregarHabitacion(hab2)
-    
-    def fabricarLaberinto2HabitacionesFMD(self):
-        hab1 = self.fabricarHabitacion(1)
-        hab2 = self.fabricarHabitacion(2)
-        puerta = self.fabricarPuertaLado1(hab1, hab2)
-        
-        bm1 = self.fabricarBomba()
-        bm1.em = self.fabricarPared()
-        
-        hab1.norte = self.fabricarPared()
-        hab1.este = bm1
-        hab1.oeste = self.fabricarPared()
-        
-        bm2 = self.fabricarBomba()
-        bm2.em = self.fabricarPared()
-        
-        hab2.sur = self.fabricarPared()
-        hab2.este = bm2
-        hab2.oeste = self.fabricarPared()
-        
-        puerta.lado1 = hab1
-        puerta.lado2 = hab2
-        
-        hab1.sur = puerta
-        hab2.norte = puerta
-        
-        self.laberinto = self.fabricarLaberinto()
-        
-        self.laberinto.agregarHabitacion(hab1)
-        self.laberinto.agregarHabitacion(hab2)
-    
-    def fabricarLaberinto4Habitaciones4BichosFM(self):
-        hab1 = self.fabricarHabitacion(1)
-        hab2 = self.fabricarHabitacion(2)
-        hab3 = self.fabricarHabitacion(3)
-        hab4 = self.fabricarHabitacion(4)
-        
-        p12 = self.fabricarPuertaLado1(hab1, hab2)
-        p13 = self.fabricarPuertaLado1(hab1, hab3)
-        p34 = self.fabricarPuertaLado1(hab3, hab4)
-        p24 = self.fabricarPuertaLado1(hab2, hab4)
-        
-        hab1.ponerEn(self.fabricarSur(), p12)
-        hab2.ponerEn(self.fabricarNorte(), p12)
-        
-        hab1.ponerEn(self.fabricarEste(), p13)
-        hab3.ponerEn(self.fabricarOeste(), p13)
-        
-        hab2.ponerEn(self.fabricarEste(), p24)
-        hab4.ponerEn(self.fabricarOeste(), p24)
-        
-        hab3.ponerEn(self.fabricarSur(), p34)
-        hab4.ponerEn(self.fabricarNorte(), p34)
-        
-        self.laberinto = self.fabricarLaberinto()
-        
-        self.laberinto.agregarHabitacion(hab1)
-        self.laberinto.agregarHabitacion(hab2)
-        self.laberinto.agregarHabitacion(hab3)
-        self.laberinto.agregarHabitacion(hab4)
-        
-        self.agregarBicho(self.fabricarBichoAgresivo(hab1))
-        self.agregarBicho(self.fabricarBichoAgresivo(hab3))
-        self.agregarBicho(self.fabricarBichoPerezoso(hab2))
-        self.agregarBicho(self.fabricarBichoPerezoso(hab4))
-
-    
-    def fabricarPuertaLado1(self, unaHab, otraHab):
+    def fabricarPuerta(self, unaHab, otraHab):
         puerta = Puerta(unaHab, otraHab)
         return puerta
     
@@ -266,7 +127,190 @@ class Juego:
         proceso = self.hilos.get(unBicho)
         if proceso:
             proceso.terminate()
+            
+    #-------------LABERINTOS----------------
+            
+    def fabricarLaberinto(self):
+        return Laberinto()
+    
+    #-------------Laberinto con 2 habitaciones----------------
+    def fabricarLaberinto2Habitaciones(self):
+        print("\n Laberinto de 2 habitaciones ")
+        hab1 = self.fabricarHabitacion(1)
+        hab2 = self.fabricarHabitacion(2)
+        
+        hab1.norte = Pared()
+        hab1.este = Pared()
+        hab1.oeste = Pared()
+        
+        hab2.sur = Pared()
+        hab2.este = Pared()
+        hab2.oeste = Pared()
+        
+        puerta = Puerta(hab1, hab2)
+        
+        hab1.sur = puerta
+        hab2.norte = puerta
+        
+        self.laberinto = self.fabricarLaberinto()
+        
+        self.laberinto.agregarHabitacion(hab1)
+        self.laberinto.agregarHabitacion(hab2)
+    
+    #-------------Laberinto con 2 habitaciones y 2 bombas Factory Method----------------
+    def fabricarLaberinto2Habitaciones2BombasFM(self):
+        hab1 = self.fabricarHabitacion(1)
+        hab2 = self.fabricarHabitacion(2)
+        puerta = Puerta(hab1, hab2)
+        
+        hab1.norte = self.fabricarPared()
+        hab1.este = self.fabricarPared()
+        hab1.oeste = self.fabricarPared()
+        
+        hab2.sur = self.fabricarPared()
+        hab2.este = self.fabricarPared()
+        hab2.oeste = self.fabricarPared()
+        
+        puerta.lado1 = hab1
+        puerta.lado2 = hab2
+        
+        hab1.sur = puerta
+        hab2.norte = puerta
+        
+        bm1 = self.fabricarBomba()
+        bm2 = self.fabricarBomba()
+        
+        hab1.agregarHijo(bm1)
+        hab2.agregarHijo(bm2)
+        
+        self.laberinto = self.fabricarLaberinto()
+        
+        self.laberinto.agregarHabitacion(hab1)
+        self.laberinto.agregarHabitacion(hab2)
+    
+    #-------------Laberinto con 2 habitaciones Factory Method----------------
+    def fabricarLaberinto2HabitacionesFM(self):
+        hab1 = self.fabricarHabitacion(1)
+        hab2 = self.fabricarHabitacion(2)
+        puerta = self.fabricarPuerta(hab1, hab2)
+        
+        hab1.ponerEn(Sur(), puerta)
+        hab2.ponerEn(Norte(), puerta)
+        
+        self.laberinto = self.fabricarLaberinto()
+        
+        self.laberinto.agregarHabitacion(hab1)
+        self.laberinto.agregarHabitacion(hab2)
+    
+    #-------------Laberinto con 2 habitaciones y 2 bombas Factory Method Decorator----------------
+    def fabricarLaberinto2HabitacionesFMD(self):
+        hab1 = self.fabricarHabitacion(1)
+        hab2 = self.fabricarHabitacion(2)
+        puerta = self.fabricarPuerta(hab1, hab2)
+        
+        bm1 = self.fabricarBomba()
+        bm1.em = self.fabricarPared()
+        
+        hab1.norte = self.fabricarPared()
+        hab1.este = bm1
+        hab1.oeste = self.fabricarPared()
+        
+        bm2 = self.fabricarBomba()
+        bm2.em = self.fabricarPared()
+        
+        hab2.sur = self.fabricarPared()
+        hab2.este = bm2
+        hab2.oeste = self.fabricarPared()
+        
+        puerta.lado1 = hab1
+        puerta.lado2 = hab2
+        
+        hab1.sur = puerta
+        hab2.norte = puerta
+        
+        self.laberinto = self.fabricarLaberinto()
+        
+        self.laberinto.agregarHabitacion(hab1)
+        self.laberinto.agregarHabitacion(hab2)
+    
+    #-------------Laberinto con 4 habitaciones y 4 bichos----------------
+    def fabricarLaberinto4Habitaciones4BichosFM(self):
+        hab1 = self.fabricarHabitacion(1)
+        hab2 = self.fabricarHabitacion(2)
+        hab3 = self.fabricarHabitacion(3)
+        hab4 = self.fabricarHabitacion(4)
+        
+        p12 = self.fabricarPuerta(hab1, hab2)
+        p13 = self.fabricarPuerta(hab1, hab3)
+        p34 = self.fabricarPuerta(hab3, hab4)
+        p24 = self.fabricarPuerta(hab2, hab4)
+        
+        hab1.ponerEn(self.fabricarSur(), p12)
+        hab2.ponerEn(self.fabricarNorte(), p12)
+        
+        hab1.ponerEn(self.fabricarEste(), p13)
+        hab3.ponerEn(self.fabricarOeste(), p13)
+        
+        hab2.ponerEn(self.fabricarEste(), p24)
+        hab4.ponerEn(self.fabricarOeste(), p24)
+        
+        hab3.ponerEn(self.fabricarSur(), p34)
+        hab4.ponerEn(self.fabricarNorte(), p34)
+        
+        self.laberinto = self.fabricarLaberinto()
+        
+        self.laberinto.agregarHabitacion(hab1)
+        self.laberinto.agregarHabitacion(hab2)
+        self.laberinto.agregarHabitacion(hab3)
+        self.laberinto.agregarHabitacion(hab4)
+        
+        self.agregarBicho(self.fabricarBichoAgresivo(hab1))
+        self.agregarBicho(self.fabricarBichoAgresivo(hab3))
+        self.agregarBicho(self.fabricarBichoPerezoso(hab2))
+        self.agregarBicho(self.fabricarBichoPerezoso(hab4))
 
+    # -------------Laberinto con 4 habitaciones, 4 Bombas y 4 bichos Abstract Factory----------------
+    def fabricarLaberinto4Hab4Bomb4BichosAF(self,unAF):
+        print("\n Laberinto de 4 habitaciones, 4 Bombas y 4 bichos ")
+        self.laberinto=unAF.fabricarLaberinto()
+        hab1 = unAF.fabricarHabitacion(1)
+        hab2 = unAF.fabricarHabitacion(2)
+        hab3 = unAF.fabricarHabitacion(3)
+        hab4 = unAF.fabricarHabitacion(4)
+        
+        p12 = unAF.fabricarPuerta(hab1, hab2)
+        p13 = unAF.fabricarPuerta(hab1, hab3)
+        p34 = unAF.fabricarPuerta(hab3, hab4)
+        p24 = unAF.fabricarPuerta(hab2, hab4)
+        
+        hab1.ponerEn(unAF.fabricarSur(), p12)
+        hab2.ponerEn(unAF.fabricarNorte(), p12)
+        
+        hab1.ponerEn(unAF.fabricarEste(), p13)
+        hab3.ponerEn(unAF.fabricarOeste(), p13)
+        
+        hab2.ponerEn(unAF.fabricarEste(), p24)
+        hab4.ponerEn(unAF.fabricarOeste(), p24)
+        
+        hab3.ponerEn(unAF.fabricarSur(), p34)
+        hab4.ponerEn(unAF.fabricarNorte(), p34)
+        
+        
+        self.agregarBicho(unAF.fabricarBichoAgresivo(hab1))
+        self.agregarBicho(unAF.fabricarBichoAgresivo(hab3))
+        self.agregarBicho(unAF.fabricarBichoPerezoso(hab2))
+        self.agregarBicho(unAF.fabricarBichoPerezoso(hab4))
+        
+        hab1.agregarHijo(unAF.fabricarBomba())
+        hab2.agregarHijo(unAF.fabricarBomba())
+        hab3.agregarHijo(unAF.fabricarBomba())
+        hab4.agregarHijo(unAF.fabricarBomba())
+        
+        self.laberinto.agregarHabitacion(hab1)
+        self.laberinto.agregarHabitacion(hab2)
+        self.laberinto.agregarHabitacion(hab3)
+        self.laberinto.agregarHabitacion(hab4)
+        
     def __str__ (self):
         bichetes=""
         for bicho in self.bichos:
