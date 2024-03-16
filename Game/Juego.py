@@ -295,16 +295,16 @@ class Juego:
         hab3.ponerEn(unAF.fabricarSur(), p34)
         hab4.ponerEn(unAF.fabricarNorte(), p34)
         
+        hab1.ponerEn(unAF.fabricarNorte(), unAF.fabricarParedBomba())
+        hab2.ponerEn(unAF.fabricarSur(), unAF.fabricarParedBomba())
+        hab3.ponerEn(unAF.fabricarEste(), unAF.fabricarParedBomba())
+        hab4.ponerEn(unAF.fabricarOeste(), unAF.fabricarParedBomba())
         
         self.agregarBicho(unAF.fabricarBichoAgresivo(hab1))
         self.agregarBicho(unAF.fabricarBichoAgresivo(hab3))
         self.agregarBicho(unAF.fabricarBichoPerezoso(hab2))
         self.agregarBicho(unAF.fabricarBichoPerezoso(hab4))
         
-        hab1.agregarHijo(unAF.fabricarBomba())
-        hab2.agregarHijo(unAF.fabricarBomba())
-        hab3.agregarHijo(unAF.fabricarBomba())
-        hab4.agregarHijo(unAF.fabricarBomba())
         
         self.laberinto.agregarHabitacion(hab1)
         self.laberinto.agregarHabitacion(hab2)

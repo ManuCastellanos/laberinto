@@ -15,4 +15,5 @@ class ParedBomba(Pared):
     def recorrer(self, unBloque):
         pass
     
-    
+    def __str__ (self):
+        return super().__str__() + " Bomba"

@@ -33,7 +33,10 @@ class LaberintoFactory():
     
     def fabricarPared(self):
         return Pared()
-
+    
+    def fabricarParedBomba(self):
+        return ParedBomba()
+    
     def fabricarPuerta(self, habitacion1, habitacion2):
         return Puerta(habitacion1, habitacion2)
     
