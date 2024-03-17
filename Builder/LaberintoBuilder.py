@@ -58,6 +58,9 @@ class LaberintoBuilder():
         hab2.ponerEn(cad2, self.fabricarPuerta(hab2, hab1))
         
     
+    def fabricarBombaHab(self,unCont):
+        unCont.agregarHijo(self.fabricarBomba())
+    
     def fabricarLaberinto(self):
         self.laberinto = Laberinto()
         return self.laberinto

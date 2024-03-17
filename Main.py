@@ -17,9 +17,9 @@ juego= Juego()
 #juego.abrirPuertas()
 #print(juego)
 
-juego.fabricarLaberinto2Habitaciones2BombasFM()
-juego.activarBombas()
-print(juego)
+#juego.fabricarLaberinto2Habitaciones2BombasFM()
+#juego.activarBombas()
+#print(juego)
 
 #juego.fabricarLaberinto4Habitaciones4BichosFM()
 #juego.lanzarHilo(juego.bichos[0])
@@ -34,9 +34,11 @@ print(juego)
 #BUILDER
 #archivo='JSON/lab2hab2bichos.json'
 #archivo='JSON/laberinto2hab.json'
-#director= Director()
+archivo= 'JSON/lab2hab2bichos2bombas.json'
+director= Director()
 
-#director.procesar(archivo)
-#juego= director.getJuego()
-#print(juego)
+director.procesar(archivo)
+juego= director.getJuego()
+juego.activarBombas()
+print(juego)
 

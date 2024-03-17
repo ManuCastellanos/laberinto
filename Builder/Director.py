@@ -24,10 +24,12 @@ class Director():
     def crearLaberintoRecursivo(self, laberinto, root): #
         if laberinto['tipo'] == 'habitacion':
             obj=self.builder.fabricarHabitacion(laberinto['num'])
+        elif laberinto['tipo'] == 'bomba':
+            obj=self.builder.fabricarBombaHab(root)  
             
-        #hijos = laberinto.get('hijos', [])
-        #for hijo in hijos:
-        #    self.crearLaberintoRecursivo(hijo, obj)
+        hijos = laberinto.get('hijos', [])
+        for hijo in hijos:
+            self.crearLaberintoRecursivo(hijo, obj)
         
     def crearLaberinto(self):
         self.builder.fabricarLaberinto()
