@@ -43,7 +43,7 @@ class Director():
         self.director = json.load(open(ruta,'r'))
         
     def procesar(self, ruta):
-        self.verConfig(ruta)
-        self.iniBuilder()
-        self.crearLaberinto()
-        self.crearJuego()
+        self.verConfig(ruta) #Cargo el JSON
+        self.iniBuilder() #Inicializo el builder
+        self.crearLaberinto() #Creo el laberinto
+        self.crearJuego() #Creo el juego
