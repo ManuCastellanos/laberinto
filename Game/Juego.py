@@ -64,10 +64,10 @@ class Juego:
         hab.agregarOrientacion(self.fabricarSur())
         hab.agregarOrientacion(self.fabricarOeste())
         
-        hab.ponerEn(Norte(), self.fabricarPared())
-        hab.ponerEn(Este(), self.fabricarPared())
-        hab.ponerEn(Sur(), self.fabricarPared())    
-        hab.ponerEn(Oeste(), self.fabricarPared())
+        hab.ponerEn(self.fabricarNorte(), self.fabricarPared())
+        hab.ponerEn(self.fabricarEste(), self.fabricarPared())
+        hab.ponerEn(self.fabricarSur(), self.fabricarPared())    
+        hab.ponerEn(self.fabricarOeste(), self.fabricarPared())
         
         return hab
     
@@ -136,8 +136,8 @@ class Juego:
     #-------------Laberinto con 2 habitaciones----------------
     def fabricarLaberinto2Habitaciones(self):
         print("\n Laberinto de 2 habitaciones ")
-        hab1 = self.fabricarHabitacion(1)
-        hab2 = self.fabricarHabitacion(2)
+        hab1 = Habitacion(1)
+        hab2 = Habitacion(2)
         
         hab1.norte = Pared()
         hab1.este = Pared()
@@ -152,7 +152,7 @@ class Juego:
         hab1.sur = puerta
         hab2.norte = puerta
         
-        self.laberinto = self.fabricarLaberinto()
+        self.laberinto = Laberinto()
         
         self.laberinto.agregarHabitacion(hab1)
         self.laberinto.agregarHabitacion(hab2)
@@ -161,13 +161,15 @@ class Juego:
     def fabricarLaberinto2Habitaciones2BombasFM(self): #????????
         hab1 = self.fabricarHabitacion(1)
         hab2 = self.fabricarHabitacion(2)
-        puerta = Puerta(hab1, hab2)
+        puerta = self.fabricarPuerta(hab1, hab2)
         
         hab1.norte = self.fabricarPared()
         hab1.oeste = self.fabricarPared()
+        hab1.este = self.fabricarPared()
         
         hab2.sur = self.fabricarPared()
         hab2.este = self.fabricarPared()
+        hab2.oeste = self.fabricarPared()
         
         puerta.lado1 = hab1
         puerta.lado2 = hab2
@@ -177,9 +179,6 @@ class Juego:
         
         bm1 = self.fabricarBomba()
         bm2 = self.fabricarBomba()
-        
-        hab1.este = bm1
-        hab2.oeste = bm2
         
         hab1.agregarHijo(bm1)
         hab2.agregarHijo(bm2)
@@ -195,8 +194,8 @@ class Juego:
         hab2 = self.fabricarHabitacion(2)
         puerta = self.fabricarPuerta(hab1, hab2)
         
-        hab1.ponerEn(Sur(), puerta)
-        hab2.ponerEn(Norte(), puerta)
+        hab1.ponerEn(self.fabricarSur(), puerta)
+        hab2.ponerEn(self.fabricarNorte(), puerta)
         
         self.laberinto = self.fabricarLaberinto()
         

@@ -50,13 +50,11 @@ class Habitacion(Contenedor):
         salida += f"Oeste: {self.oeste}\n"
         salida += f"Sur: {self.sur}\n"
         salida += f"Norte: {self.norte}\n"
-         
+        
+        for hijo in self.hijos:
+            salida += hijo.__str__() + "\n"
         return salida
 
-    # Representación
-    def __repr__(self, aStream):
-        aStream.write('Hab')
-        aStream.write(str(self.num))
 
     # Testers
     def esHabitacion(self):

@@ -71,20 +71,20 @@ class LaberintoBuilder():
     def fabricarModoPerezoso(self):
         return Perezoso()
     
-    def fabricarBichoAgresivo(self, unaHab):
+    def fabricarBicho(self, modo, vidas, poder, posicion):
         bicho = Bicho()
-        bicho.modo = self.fabricarModoAgresivo()
-        bicho.vidas = 5
-        bicho.poder = 2
-        bicho.posicion = self.juego.laberinto.obtenerHabitacion(unaHab)
+        bicho.modo = modo
+        bicho.vidas = vidas
+        bicho.poder = poder
+        bicho.posicion = posicion
+        return bicho
+    
+    def fabricarBichoAgresivo(self, unaHab):
+        bicho = self.fabricarBicho(self.fabricarModoAgresivo(), 5, 2, self.laberinto.obtenerHabitacion(unaHab))
         return bicho
     
     def fabricarBichoPerezoso(self, unaHab):
-        bicho = Bicho()
-        bicho.modo = self.fabricarModoPerezoso()
-        bicho.vidas = 2
-        bicho.poder = 0
-        bicho.posicion = self.juego.laberinto.obtenerHabitacion(unaHab)
+        bicho = self.fabricarBicho(self.fabricarModoPerezoso(), 2, 0, self.laberinto.obtenerHabitacion(unaHab))
         return bicho
      
     def fabricarHabitacion(self, num):
@@ -94,20 +94,12 @@ class LaberintoBuilder():
         hab.agregarOrientacion(self.fabricarSur())
         hab.agregarOrientacion(self.fabricarOeste())
         
-        hab.ponerEn(Norte(), self.fabricarPared())
-        hab.ponerEn(Este(), self.fabricarPared())
-        hab.ponerEn(Sur(), self.fabricarPared())
-        hab.ponerEn(Oeste(), self.fabricarPared())
+        hab.ponerEn(self.fabricarNorte(), self.fabricarPared())
+        hab.ponerEn(self.fabricarEste(), self.fabricarPared())
+        hab.ponerEn(self.fabricarSur(), self.fabricarPared())
+        hab.ponerEn(self.fabricarOeste(), self.fabricarPared())
         
         self.laberinto.agregarHabitacion(hab)
         
         return hab
-    
-    def fabricarBicho(self, modo, vidas, poder, posicion):
-        bicho = Bicho()
-        bicho.modo = modo
-        bicho.vidas = vidas
-        bicho.poder = poder
-        bicho.posicion = posicion
-        return bicho
     

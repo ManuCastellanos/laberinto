@@ -2,26 +2,26 @@ from Builder.LaberintoBuilder import LaberintoBuilder
 import json
 
 class Director():
-    def __init__(self):
-        self.builder = None
-        self.director = None
+    def __init__(self): 
+        self.builder = None #LaberintoBuilder()
+        self.director = None #Aquí cargo la información del JSON 
     
-    def iniBuilder(self):
+    def iniBuilder(self): #Inicializa el builder
         self.builder = LaberintoBuilder()
     
-    def getJuego(self):
+    def getJuego(self): #Devuelve el juego
         return self.builder.juego
     
-    def crearJuego(self):
+    def crearJuego(self): #Crea el juego
         self.builder.fabricarJuego()
         
-        for bicho in self.director['bichos']:
+        for bicho in self.director['bichos']: #Agrega los bichos al juego
             if bicho['modo'] == 'agresivo':
                 self.builder.juego.agregarBicho(self.builder.fabricarBichoAgresivo(bicho['hab']))
             else:
                 self.builder.juego.agregarBicho(self.builder.fabricarBichoPerezoso(bicho['hab']))
     
-    def crearLaberintoRecursivo(self, laberinto, root):
+    def crearLaberintoRecursivo(self, laberinto, root): #
         if laberinto['tipo'] == 'habitacion':
             obj=self.builder.fabricarHabitacion(laberinto['num'])
             
@@ -33,6 +33,7 @@ class Director():
         self.builder.fabricarLaberinto()
         for laberinto in self.director['laberinto']:
             self.crearLaberintoRecursivo(laberinto, 'root')
+            
         for puerta in self.director['puertas']:
             self.builder.fabricarPuertaBuilder(puerta[0], puerta[1], puerta[2], puerta[3])
     

@@ -3,8 +3,8 @@
     { "tipo": "habitacion", "num": 1 },
     { "tipo": "habitacion", "num": 2 }
   ],
-  "puertas": [[1, "Sur", 2, "Norte"]]
-
+  "puertas": [[1, "Sur", 2, "Norte"]],
+  "bichos":[]
   
 
 }

@@ -1,7 +1,7 @@
 
 from EM.Cont.Laberinto import Laberinto
 from Game.Juego import Juego
-#from LaberintoAFactory import LaberintoAFactory
+from LaberintoAFactory import LaberintoAFactory 
 from Builder.Director import Director
 
 
@@ -17,26 +17,26 @@ juego= Juego()
 #juego.abrirPuertas()
 #print(juego)
 
-#juego.fabricarLaberinto2Habitaciones2BombasFM()
-#juego.activarBombas()
-#print(juego)
+juego.fabricarLaberinto2Habitaciones2BombasFM()
+juego.activarBombas()
+print(juego)
 
 #juego.fabricarLaberinto4Habitaciones4BichosFM()
 #juego.lanzarHilo(juego.bichos[0])
 #print(juego)
 
-#af= LaberintoFactory()
+#af= LaberintoAFactory()
 
 #juego.fabricarLaberinto4Hab4Bomb4BichosAF(af)
 
 #print(juego)
 
 #BUILDER
-archivo='JSON/lab2hab2bichos.json'
+#archivo='JSON/lab2hab2bichos.json'
+#archivo='JSON/laberinto2hab.json'
+#director= Director()
 
-director= Director()
-
-director.procesar(archivo)
-juego= director.getJuego()
-print(juego)
+#director.procesar(archivo)
+#juego= director.getJuego()
+#print(juego)
 
