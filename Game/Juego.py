@@ -158,7 +158,7 @@ class Juego:
         self.laberinto.agregarHabitacion(hab2)
     
     #-------------Laberinto con 2 habitaciones y 2 bombas Factory Method----------------
-    def fabricarLaberinto2Habitaciones2BombasFM(self):
+    def fabricarLaberinto2Habitaciones2BombasFM(self): #????????
         hab1 = self.fabricarHabitacion(1)
         hab2 = self.fabricarHabitacion(2)
         puerta = Puerta(hab1, hab2)
