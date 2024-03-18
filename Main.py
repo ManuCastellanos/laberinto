@@ -1,5 +1,5 @@
 
-from EM.Cont.Laberinto import Laberinto
+from EM.Container.Laberinto import Laberinto
 from Game.Juego import Juego
 from LaberintoAFactory import LaberintoAFactory 
 from Builder.Director import Director
@@ -35,6 +35,7 @@ juego= Juego()
 #archivo='JSON/lab2hab2bichos.json'
 #archivo='JSON/laberinto2hab.json'
 archivo= 'JSON/lab2hab2bichos2bombas.json'
+archivo= 'JSON/lab4hab4bichos2bom.json'
 director= Director()
 
 director.procesar(archivo)

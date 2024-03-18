@@ -1,6 +1,6 @@
 import random
 
-from EM.Cont.Contenedor import Contenedor
+from EM.Container.Contenedor import Contenedor
 
 
 class Habitacion(Contenedor):
