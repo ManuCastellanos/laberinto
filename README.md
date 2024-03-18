@@ -2,8 +2,9 @@
 ## Información del proyecto
 - **Autor:** Manuel Iniesta Castellanos
 - **Versión**: Python 3.11.8
+- **Asistente IA**: [GitHub Copilot](https://copilot.github.com/)
 
-## Patrones de diseño utilizados
+## Patrones de diseño utilizados (9 patrones usados)
 
 ### Factory Method
 El patrón Factory Method proporciona una interfaz para crear objetos, pero permite a las subclases decidir qué clase instanciar. Implementado en el archivo [`Juego.py`](./Game/Juego.py)
@@ -30,4 +31,4 @@ El patrón Abstract Factory proporciona una interfaz para crear familias de obje
 El patrón Singleton asegura que una clase solo tenga una instancia y proporciona un punto de acceso global a ella. Implementado en los archivos [`Norte.py`](./Orientation/Norte.py), [`Sur.py`](./Orientation/Sur.py), [`Oeste.py`](./Orientation/Este.py) y [`Este.py`](./Orientation/Oeste.py).
 
 ### Builder
-El patrón Builder separa la construcción de un objeto complejo de su representación para que el mismo proceso de construcción pueda crear diferentes representaciones. Implementado en los archivos [`Director.py`](./Builder/Director.py) y [`LaberintoBuilder.py`](./Builder/LaberintoBuilder.py). Se pueden ver los archivos para crear laberintos en la carpeta [JSON](./JSON/)
+El patrón Builder separa la construcción de un objeto complejo de su representación para que el mismo proceso de construcción pueda crear diferentes representaciones. Implementado en los archivos [`Director.py`](./Builder/Director.py) y [`LaberintoBuilder.py`](./Builder/LaberintoBuilder.py). Se pueden ver los archivos para crear laberintos en la carpeta [JSON](./JSON/).
