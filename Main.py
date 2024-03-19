@@ -1,4 +1,3 @@
-
 from EM.Container.Laberinto import Laberinto
 from Game.Juego import Juego
 from LaberintoAFactory import LaberintoAFactory 
@@ -48,12 +47,14 @@ juego= Juego()
 #print(juego)
 
 juego.fabricarLaberintoPersonaje()
-print(juego)
-print(juego.prota.posicion)
 juego.prota.irA(Norte())
+print("\n")
 juego.prota.irA(Este())
+print("\n")
 juego.abrirPuertas()
+print("\n")
 juego.prota.irA(Este())
-print(juego.prota.posicion)
+print("\n")
 juego.prota.irA(Oeste())
-print(juego.prota.posicion)
+print("\n")
+juego.laberinto.hijos[0].hijos[0].entrar(juego.prota)

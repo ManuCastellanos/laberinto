@@ -14,6 +14,7 @@ from Orientation.Este import Este
 from Orientation.Oeste import Oeste
 from Entes.Personaje import Personaje
 from Mode.PersonajeM.Normal import Normal
+from EM.Container.Armario import Armario
 
 class Juego:
     def __init__(self):
@@ -58,7 +59,20 @@ class Juego:
     def fabricarBomba(self):
         return Bomba()
     
-
+    def fabricarArmario(self, unNum):
+        arm= Armario(unNum)
+        arm.agregarOrientacion(self.fabricarNorte())
+        arm.agregarOrientacion(self.fabricarEste())
+        arm.agregarOrientacion(self.fabricarSur())
+        arm.agregarOrientacion(self.fabricarOeste())
+        
+        arm.ponerEn(self.fabricarNorte(), self.fabricarPared())
+        arm.ponerEn(self.fabricarEste(), self.fabricarPared())
+        arm.ponerEn(self.fabricarSur(), self.fabricarPared())
+        arm.ponerEn(self.fabricarOeste(), self.fabricarPared())
+        
+        return arm
+    
     def fabricarHabitacion(self, unNum):
         hab = Habitacion(unNum)
         hab.agregarOrientacion(self.fabricarNorte())
@@ -354,6 +368,13 @@ class Juego:
         self.laberinto.agregarHabitacion(hab2)
         self.laberinto.agregarHabitacion(hab3)
         self.laberinto.agregarHabitacion(hab4)
+        
+        arm1= self.fabricarArmario(1)
+        
+        parm= self.fabricarPuerta(hab1, arm1)
+        arm1.ponerEn(self.fabricarSur(), parm)
+        
+        hab1.agregarHijo(arm1)
         
         self.agregarProta(self.fabricarPersonajeNormal())
         self.agregarBicho(self.fabricarBichoAgresivo(hab1))

@@ -24,18 +24,6 @@ class Habitacion(Contenedor):
         numAl = random.randint(1, numOr)
         orAl = self.orientaciones[numAl - 1]
         orAl.caminar(unEnte)
-
-    def irAlEste(self, alguien):
-        self.este.entrar(alguien)
-
-    def irAlOeste(self, alguien):
-        self.oeste.entrar(alguien)
-    
-    def irAlSur(self, alguien):
-        self.sur.entrar(alguien)
-    
-    def irAlNorte(self, alguien):
-        self.norte.entrar(alguien)
     
         
     # To String
@@ -48,7 +36,7 @@ class Habitacion(Contenedor):
         salida += f"Norte: {self.norte}\n"
         
         for hijo in self.hijos:
-            salida += hijo.__str__() + "\n"
+            salida += "\n"+ hijo.__str__() + "\n"
         return salida
 
 

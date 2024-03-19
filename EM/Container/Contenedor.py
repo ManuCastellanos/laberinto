@@ -24,7 +24,19 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
     
     def ponerEn(self,unaOrientacion,EM):
         unaOrientacion.ponerElemento(EM, self)
-   
+    
+    def irAlEste(self, alguien):
+        self.este.entrar(alguien)
+
+    def irAlOeste(self, alguien):
+        self.oeste.entrar(alguien)
+    
+    def irAlSur(self, alguien):
+        self.sur.entrar(alguien)
+    
+    def irAlNorte(self, alguien):
+        self.norte.entrar(alguien)
+        
     #Patrón: Iterator
     def recorrer(self, unBloque):
         unBloque(self)

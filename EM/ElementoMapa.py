@@ -17,6 +17,9 @@ class ElementoMapa():
     def esPuerta(self):
         return False
 
+    def esArmario(self):
+        return False
+    
     #Patrón: Iterator
     def recorrer(self, unBloque):
        unBloque(self)
