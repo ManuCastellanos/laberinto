@@ -13,7 +13,7 @@ El patrón Factory Method proporciona una interfaz para crear objetos, pero perm
 El patrón Decorator adjunta responsabilidades adicionales a un objeto de manera dinámica. Implementado en los archivos [`Decorator.py`](./EM/Hoj/Decorator/DecoratorC.py) y [`Bomba.py`](./EM/Hoj/Decorator/Bomba.py)
 
 ### Strategy
-El patrón Strategy define una familia de algoritmos, encapsula cada uno y los hace intercambiables. Implementado en el archivo [`Bicho.py`](./Bicho.py).
+El patrón Strategy define una familia de algoritmos, encapsula cada uno y los hace intercambiables. Implementado en la carpeta [Mode](./Mode/).
 
 ### Composite
 El patrón Composite compone objetos en estructuras de árbol para representar jerarquías de parte-todo. Implementado en el archivo [`Contenedor.py`](./EM/Container/Contenedor.py).
