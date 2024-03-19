@@ -16,7 +16,7 @@ class Armario(Contenedor):
 
 
     def entrar(self, alguien):
-        print(alguien, "tiene pluma (en el armario)", self.num)
+        print(alguien, "está en el armario", self.num)
         alguien.posicion = self
  
         

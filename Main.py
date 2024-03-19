@@ -38,13 +38,13 @@ juego= Juego()
 #archivo='JSON/lab2hab2bichos.json'
 #archivo='JSON/laberinto2hab.json'
 #archivo= 'JSON/lab2hab2bichos2bombas.json'
-#archivo= 'JSON/lab4hab4bichos2bom.json'
-#director= Director()
+archivo= 'JSON/lab4hab4bichos2bom.json'
+director= Director()
 
-#director.procesar(archivo)
-#juego= director.getJuego(
-#juego.activarBombas()
-#print(juego)
+director.procesar(archivo)
+juego= director.getJuego()
+juego.activarBombas()
+print(juego)
 
 juego.fabricarLaberintoPersonaje()
 juego.prota.irA(Norte())
