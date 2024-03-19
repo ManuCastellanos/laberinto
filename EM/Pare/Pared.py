@@ -6,7 +6,7 @@ class Pared(ElementoMapa):
         super().__init__()
 
     def entrar(self,alguien):
-        print(str(alguien)+"Te has chocado con una pared")
+        print(str(alguien)+" se ha chocado con una pared")
         
     #Testing
     def esPared(self):

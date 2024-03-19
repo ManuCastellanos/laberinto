@@ -1,13 +1,13 @@
 import threading
-from Bicho import Bicho
+from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
 from EM.Container.Laberinto import Laberinto
 from EM.Hoj.Decorator.Bomba import Bomba
 from EM.Pare.Pared import Pared
 from EM.Pare.ParedBomba import ParedBomba
 from EM.Puerta import Puerta
-from Mode.Agresivo import Agresivo
-from Mode.Perezoso import Perezoso
+from Mode.BichosM.Agresivo import Agresivo
+from Mode.BichosM.Perezoso import Perezoso
 from Orientation.Norte import Norte
 from Orientation.Sur import Sur
 from Orientation.Este import Este

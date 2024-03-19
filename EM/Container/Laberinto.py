@@ -6,11 +6,8 @@ class Laberinto(Contenedor):
 
     def agregarHabitacion(self, unaHabitacion):
         self.agregarHijo(unaHabitacion)
-
-    def entrar(self):
-        pass
     
-    def entrar_alguien(self, alguien):
+    def entrar(self, alguien):
         hab = self.obtenerHabitacion(1)
         hab.entrar(alguien)
 

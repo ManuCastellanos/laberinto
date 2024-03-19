@@ -21,8 +21,6 @@ class ElementoMapa():
     def recorrer(self, unBloque):
        unBloque(self)
 
-    def entrar(self):
-        pass
-    def entrar_alguien(self, alguien):
+    def entrar(self,alguien):
         pass
 

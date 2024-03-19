@@ -1,24 +1,26 @@
-class Bicho:
+from abc import ABC, abstractmethod
+
+class Ente(ABC):
     
-    # Constructor
     def __init__(self):
-        self.modo = None
+        self.modo = None    
         self.vidas = 0
         self.poder = 0
         self.posicion = None
-
-    # Accion
+        self.juego= None
+    
+    def esPersonaje(self):
+        return False
+    
+    def esBicho(self): 
+        return False
+    
     def actua(self):
         self.modo.actua(self)
-
-    # Metodos Caminar
-    def caminarAleatorio(self):
-        self.posicion.caminarAleatorio(self)
-    
-    # Como el toString de Java
-    def __str__(self):
-        return "Bicho es " + str(self.modo)
-    
+        
+    def irA(self, unaOr):
+        unaOr.caminar(self)
+        
     def irAlNorte(self):
         self.posicion.irAlNorte(self)
     

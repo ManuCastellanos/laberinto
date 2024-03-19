@@ -1,6 +1,6 @@
 import time
 
-class Modo:
+class ModoBicho:
     def actua(self, unBicho):
         self.dormir(unBicho)
         self.caminar(unBicho)
@@ -11,5 +11,5 @@ class Modo:
 
 
     def dormir(self, unBicho):
-        print(str(unBicho)+'duerme')
+        print(str(unBicho)+' duerme')
         time.sleep(2)

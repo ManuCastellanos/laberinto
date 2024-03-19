@@ -4,7 +4,7 @@
 - **Versión**: Python 3.11.8
 - **Asistente IA**: [GitHub Copilot](https://copilot.github.com/)
 
-## Patrones de diseño utilizados (9 patrones usados)
+## Patrones de diseño utilizados (11 patrones usados)
 
 ### Factory Method
 El patrón Factory Method proporciona una interfaz para crear objetos, pero permite a las subclases decidir qué clase instanciar. Implementado en el archivo [`Juego.py`](./Game/Juego.py)

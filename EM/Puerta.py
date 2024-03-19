@@ -15,7 +15,12 @@ class Puerta(ElementoMapa):
 
     def entrar(self,alguien):
         if self.abierta:
-            print(str(alguien)+" ESTÁ ABIERTO")
+            if self.lado1 == alguien.posicion:
+                self.lado2.entrar(alguien)
+                alguien.posicion = self.lado2
+            else:
+                self.lado1.entrar(alguien)
+                alguien.posicion = self.lado1    
         else:
             print(str(alguien)+" HA PEGADO UN PORTAZO")
     

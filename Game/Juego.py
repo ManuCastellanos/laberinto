@@ -1,25 +1,27 @@
 import threading
-from Bicho import Bicho
+from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
 from EM.Container.Laberinto import Laberinto
 from EM.Hoj.Decorator.Bomba import Bomba
 from EM.Pare.Pared import Pared
 from EM.Pare.ParedBomba import ParedBomba
 from EM.Puerta import Puerta
-from Mode.Agresivo import Agresivo
-from Mode.Perezoso import Perezoso
+from Mode.BichosM.Agresivo import Agresivo
+from Mode.BichosM.Perezoso import Perezoso
 from Orientation.Norte import Norte
 from Orientation.Sur import Sur
 from Orientation.Este import Este
 from Orientation.Oeste import Oeste
-
+from Entes.Personaje import Personaje
+from Mode.PersonajeM.Normal import Normal
 
 class Juego:
     def __init__(self):
         self.laberinto = None
         self.bichos = []
         self.hilos = {}
-    
+        self.prota= None
+        
     # Factory Method
     
     def fabricarNorte(self):
@@ -76,7 +78,18 @@ class Juego:
         return puerta
     
     #Gestion de Bichos
-    
+    def agregarProta(self,unProta):
+       self.prota= unProta
+        
+    def fabricarPersonajeNormal(self):
+        self.prota= Personaje()
+        self.prota.modo = Normal()
+        self.prota.vidas = 5
+        self.prota.poder = 2
+        self.prota.nombre = "Imbécil" #input("Introduce el nombre del personaje: ")
+        self.laberinto.entrar(self.prota)
+        return self.prota
+        
     def agregarBicho(self, unBicho):
         self.bichos.append(unBicho)
 
@@ -310,10 +323,47 @@ class Juego:
         self.laberinto.agregarHabitacion(hab2)
         self.laberinto.agregarHabitacion(hab3)
         self.laberinto.agregarHabitacion(hab4)
+    
+    def fabricarLaberintoPersonaje(self):
         
+        hab1 = self.fabricarHabitacion(1)
+        hab2 = self.fabricarHabitacion(2)
+        hab3 = self.fabricarHabitacion(3)
+        hab4 = self.fabricarHabitacion(4)
+        
+        p12 = self.fabricarPuerta(hab1, hab2)
+        p13 = self.fabricarPuerta(hab1, hab3)
+        p34 = self.fabricarPuerta(hab3, hab4)
+        p24 = self.fabricarPuerta(hab2, hab4)
+        
+        hab1.ponerEn(self.fabricarSur(), p12)
+        hab2.ponerEn(self.fabricarNorte(), p12)
+        
+        hab1.ponerEn(self.fabricarEste(), p13)
+        hab3.ponerEn(self.fabricarOeste(), p13)
+        
+        hab2.ponerEn(self.fabricarEste(), p24)
+        hab4.ponerEn(self.fabricarOeste(), p24)
+        
+        hab3.ponerEn(self.fabricarSur(), p34)
+        hab4.ponerEn(self.fabricarNorte(), p34)
+        
+        self.laberinto = self.fabricarLaberinto()
+        
+        self.laberinto.agregarHabitacion(hab1)
+        self.laberinto.agregarHabitacion(hab2)
+        self.laberinto.agregarHabitacion(hab3)
+        self.laberinto.agregarHabitacion(hab4)
+        
+        self.agregarProta(self.fabricarPersonajeNormal())
+        self.agregarBicho(self.fabricarBichoAgresivo(hab1))
+        self.agregarBicho(self.fabricarBichoAgresivo(hab3))
+        self.agregarBicho(self.fabricarBichoPerezoso(hab2))
+        self.agregarBicho(self.fabricarBichoPerezoso(hab4))
+          
     def __str__ (self):
         bichetes=""
         for bicho in self.bichos:
             bichetes+=str(bicho)+"\n"
             
-        return f"\n Juego:\n {self.laberinto} \nBichos: \n{bichetes} \n" 
+        return f"\n Juego:\n {self.laberinto} \nBichos: \n{bichetes} \n Protagonista: {self.prota} \n" 

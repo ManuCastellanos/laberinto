@@ -14,20 +14,16 @@ class Habitacion(Contenedor):
         self.sur = sur
         self.norte = norte
 
-    
-    def entrar(self):
-        print("Estas en la habitacion-", self.num)
 
-
-    def entrar_alguien(self, alguien):
+    def entrar(self, alguien):
         print(alguien, "ha entrado en la habitacion-", self.num)
         alguien.posicion = self
 
-    def caminarAleatorio(self, unBicho):
+    def caminarAleatorio(self, unEnte):
         numOr = len(self.orientaciones)
         numAl = random.randint(1, numOr)
         orAl = self.orientaciones[numAl - 1]
-        orAl.caminar(unBicho)
+        orAl.caminar(unEnte)
 
     def irAlEste(self, alguien):
         self.este.entrar(alguien)
