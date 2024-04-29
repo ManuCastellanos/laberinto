@@ -38,23 +38,16 @@ juego= Juego()
 #archivo='JSON/lab2hab2bichos.json'
 #archivo='JSON/laberinto2hab.json'
 #archivo= 'JSON/lab2hab2bichos2bombas.json'
-archivo= 'JSON/lab4hab4bichos2bom.json'
+#archivo= 'JSON/lab4hab4bichos2bom.json'
+archivo = 'JSON/lab4habTunelArm.json'
 director= Director()
 
 director.procesar(archivo)
 juego= director.getJuego()
 juego.activarBombas()
+juego.iniProta(input("Nombre del prota: "))
+
 print(juego)
 
-juego.fabricarLaberintoPersonaje()
-juego.prota.irA(Norte())
-print("\n")
-juego.prota.irA(Este())
-print("\n")
-juego.abrirPuertas()
-print("\n")
-juego.prota.irA(Este())
-print("\n")
-juego.prota.irA(Oeste())
-print("\n")
 juego.laberinto.hijos[0].hijos[0].entrar(juego.prota)
+print(juego)

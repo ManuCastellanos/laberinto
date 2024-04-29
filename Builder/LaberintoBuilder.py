@@ -12,6 +12,7 @@ from Orientation.Norte import Norte
 from Orientation.Sur import Sur
 from Orientation.Este import Este
 from Orientation.Oeste import Oeste
+from EM.Hoj.Tunel import Tunel
 
 class LaberintoBuilder():
     def __init__(self):
@@ -106,3 +107,9 @@ class LaberintoBuilder():
         
         return hab
     
+    def fabricarTunel (self):
+        tunel= Tunel()
+        return tunel
+    
+    def fabricarTunelCont(self, unContenedor):
+        unContenedor.agregarHijo(self.fabricarTunel())

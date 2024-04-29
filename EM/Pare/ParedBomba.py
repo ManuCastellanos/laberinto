@@ -8,8 +8,9 @@ class ParedBomba(Pared):
         print(f"{alguien} ha chocado con una pared-bomba")
         print("¡¡¡BOOOOOM!!!")
     
-    def recorrer(self, unBloque):
-        pass
+
+    def esParedBomba(self):
+        return True
     
     def __str__ (self):
         return super().__str__() + " Bomba"

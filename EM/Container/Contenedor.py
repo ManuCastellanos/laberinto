@@ -3,11 +3,16 @@ from EM.ElementoMapa import ElementoMapa # Importamos la clase ElementoMapa para
 class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de ElementoMapa
     
     def __init__(self): # Constructor de la clase (initialization)
-        
         super().__init__() # Llamamos al constructor de la clase padre
         self.hijos = []
         self.orientaciones = []
-
+    
+    def __init__(self, num):
+        super().__init__()
+        self.num= num
+        self.hijos = []
+        self.orientaciones = []
+        
     # Metodos de la clase
     def agregarHijo(self, unEM): #unEM es un ElementoMapa
         self.hijos.append(unEM)

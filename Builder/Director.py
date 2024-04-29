@@ -26,7 +26,9 @@ class Director():
             obj=self.builder.fabricarHabitacion(laberinto['num'])
         elif laberinto['tipo'] == 'bomba':
             obj=self.builder.fabricarBombaHab(root)  
-            
+        elif laberinto['tipo'] == 'tunel':
+            obj=self.builder.fabricarTunelCont(root)
+                
         hijos = laberinto.get('hijos', [])
         for hijo in hijos:
             self.crearLaberintoRecursivo(hijo, obj)

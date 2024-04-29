@@ -38,3 +38,7 @@ El patrón Proxy proporciona un sustituto o representante de otro objeto para co
 
 ### Adapter
 El patrón Adapter convierte la interfaz de una clase en otra interfaz que los clientes esperan. Permite que las clases trabajen juntas que de otra manera no podrían debido a interfaces incompatibles. Implementado en el archivo [`Adapter.py`](./path/to/Adapter.py).
+
+### Mediator
+
+### State

@@ -7,8 +7,7 @@ class Habitacion(Contenedor):
     
     #Constructor
     def __init__(self, num, este=None, oeste=None, sur=None, norte=None):
-        super().__init__()
-        self.num = num
+        super().__init__(num)
         self.este = este
         self.oeste = oeste
         self.sur = sur
@@ -30,10 +29,10 @@ class Habitacion(Contenedor):
     def __str__(self):
         salida= f"*Habitacion {self.num}\n"
         
+        salida += f"Norte: {self.norte}\n"
+        salida += f"Sur: {self.sur}\n"
         salida += f"Este: {self.este}\n"
         salida += f"Oeste: {self.oeste}\n"
-        salida += f"Sur: {self.sur}\n"
-        salida += f"Norte: {self.norte}\n"
         
         for hijo in self.hijos:
             salida += "\n"+ hijo.__str__() + "\n"

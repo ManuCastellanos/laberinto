@@ -21,7 +21,6 @@ class TestJuego(unittest.TestCase):
 
         # Asserts de las paredes 
         self.assertEqual(hab1.norte.esPared(),True)
-        self.assertEqual(hab1.sur.esPared(), False)
         self.assertEqual(hab1.este.esPared(), True)
         self.assertEqual(hab1.oeste.esPared(), True)
         

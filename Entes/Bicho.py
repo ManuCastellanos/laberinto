@@ -10,7 +10,13 @@ class Bicho(Ente):
     
     def actua(self):
         self.modo.actua(self)
-        
+    
+    def buscarPersonaje(self, unOr):
+        self.juego.buscarPersonajeEn(unOr)
+    
+    def atacar(self):
+        self.juego.buscarPersonajeEn(self.posicion)
+    
     # Metodos Caminar
     def caminarAleatorio(self):
         self.posicion.caminarAleatorio(self)

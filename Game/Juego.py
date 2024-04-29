@@ -1,3 +1,4 @@
+import copy
 import threading
 from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
@@ -21,6 +22,7 @@ class Juego:
         self.laberinto = None
         self.bichos = []
         self.hilos = {}
+        self.prototype = None
         self.prota= None
         
     # Factory Method
@@ -153,8 +155,34 @@ class Juego:
     def terminarHilo(self, unBicho):
         proceso = self.hilos.get(unBicho)
         if proceso:
-            proceso.terminate()
+            proceso.join()
+    
+    def lanzasTodosHilos(self):
+        for bicho in self.bichos:
+            self.lanzarHilo(bicho)
+
+    def terminarTodosHilos(self):
+        for bicho in self.bichos:
+            self.terminarHilo(bicho)  
+    
+    def buscarPersonaje(self,unBicho):
+        if self.prota is not None:
+            pos = self.prota.posicion
             
+            if unBicho.posicion == pos:
+                return self.prota
+        
+        return None
+    
+    def clonarLaberinto(self):
+        self.prototype = copy.deepcopy(self.laberinto)
+        self.prototype.num = self.laberinto.num + 1
+        return self.prototype
+    
+    def iniProta(self, nombre):
+        self.prota= Personaje(nombre)
+        self.prota.juego = self
+    
     #-------------LABERINTOS----------------
             
     def fabricarLaberinto(self):
@@ -325,7 +353,7 @@ class Juego:
         hab1.ponerEn(unAF.fabricarNorte(), unAF.fabricarParedBomba())
         hab2.ponerEn(unAF.fabricarSur(), unAF.fabricarParedBomba())
         hab3.ponerEn(unAF.fabricarEste(), unAF.fabricarParedBomba())
-        hab4.ponerEn(unAF.fabricarOeste(), unAF.fabricarParedBomba())
+        hab4.ponerEn(unAF.fabricarSur(), unAF.fabricarParedBomba())
         
         self.agregarBicho(unAF.fabricarBichoAgresivo(hab1))
         self.agregarBicho(unAF.fabricarBichoAgresivo(hab3))
@@ -338,6 +366,7 @@ class Juego:
         self.laberinto.agregarHabitacion(hab3)
         self.laberinto.agregarHabitacion(hab4)
     
+    #************** Laberinto con 4 habitaciones, 4 bichos, 2 bombas y un personaje **************
     def fabricarLaberintoPersonaje(self):
         
         hab1 = self.fabricarHabitacion(1)

@@ -20,7 +20,8 @@ class Ente(ABC):
         
     def irA(self, unaOr):
         unaOr.caminar(self)
-        
+    
+    
     def irAlNorte(self):
         self.posicion.irAlNorte(self)
     

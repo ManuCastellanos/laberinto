@@ -20,6 +20,12 @@ class ElementoMapa():
     def esArmario(self):
         return False
     
+    def esParedBomba(self):
+        return False
+    
+    def esTunel(self):
+        return False
+    
     #Patrón: Iterator
     def recorrer(self, unBloque):
        unBloque(self)

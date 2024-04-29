@@ -13,3 +13,6 @@ class ModoBicho:
     def dormir(self, unBicho):
         print(str(unBicho)+' duerme')
         time.sleep(2)
+    
+    def atacar(self, unBicho):
+        unBicho.atacar()

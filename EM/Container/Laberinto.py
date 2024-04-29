@@ -2,7 +2,7 @@ from EM.Container.Contenedor import Contenedor
 
 class Laberinto(Contenedor):
     def __init__(self):
-        super().__init__()
+        super().__init__(1)
 
     def agregarHabitacion(self, unaHabitacion):
         self.agregarHijo(unaHabitacion)
