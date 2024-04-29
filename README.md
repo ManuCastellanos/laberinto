@@ -42,3 +42,4 @@ El patrón Adapter convierte la interfaz de una clase en otra interfaz que los c
 ### Mediator
 
 ### State
+

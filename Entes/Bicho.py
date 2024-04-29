@@ -1,4 +1,5 @@
 from Entes.Ente import Ente 
+import State.Muerto as Muerto
 
 class Bicho(Ente):
     # Constructor
@@ -11,11 +12,25 @@ class Bicho(Ente):
     def actua(self):
         self.modo.actua(self)
     
-    def buscarPersonaje(self, unOr):
-        self.juego.buscarPersonajeEn(unOr)
+    def buscarEnemigo(self):
+        self.juego.buscarPersonaje(self)
     
+    def estaVivo(self):
+        return self.estado.estaVivo()
+    
+    def saMorio(self):
+        self.estado = Muerto()
+        print (self, "la ha roscao.")
+        self.juego.bichoMuerto(self)
+    
+    def puedeActuar(self):
+        self.modo.actua(self)
+    
+    def restarVida(self):
+        self.vidas -= 1
+        
     def atacar(self):
-        self.juego.buscarPersonajeEn(self.posicion)
+        self.juego.buscarPersonaje(self.posicion)
     
     # Metodos Caminar
     def caminarAleatorio(self):

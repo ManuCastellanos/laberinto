@@ -21,9 +21,9 @@ class Juego:
     def __init__(self):
         self.laberinto = None
         self.bichos = []
-        self.hilos = {}
+        self.hilos = dict()
         self.prototype = None
-        self.prota= None
+        self.personaje= None
         
     # Factory Method
     
@@ -95,16 +95,16 @@ class Juego:
     
     #Gestion de Bichos
     def agregarProta(self,unProta):
-       self.prota= unProta
+       self.personaje= unProta
         
     def fabricarPersonajeNormal(self):
-        self.prota= Personaje()
-        self.prota.modo = Normal()
-        self.prota.vidas = 5
-        self.prota.poder = 2
-        self.prota.nombre = "Imbécil" #input("Introduce el nombre del personaje: ")
-        self.laberinto.entrar(self.prota)
-        return self.prota
+        self.personaje= Personaje()
+        self.personaje.modo = Normal()
+        self.personaje.vidas = 5
+        self.personaje.poder = 2
+        self.personaje.nombre = "Imbécil" #input("Introduce el nombre del personaje: ")
+        self.laberinto.entrar(self.personaje)
+        return self.personaje
         
     def agregarBicho(self, unBicho):
         self.bichos.append(unBicho)
@@ -143,45 +143,70 @@ class Juego:
     def cerrarPuertas(self):
         self.laberinto.recorrer(self.cerrarPuerta)
     
-    def lanzarHilo(self, unBicho):
-        def proceso_target():
-            while True:
-                unBicho.actua()
-
-        proceso = threading.Thread(target=proceso_target)
-        proceso.start()
-        self.hilos[unBicho] = proceso
-
-    def terminarHilo(self, unBicho):
-        proceso = self.hilos.get(unBicho)
-        if proceso:
-            proceso.join()
+    ## *********** HILOS ***********
+    def agregarHilo(self,unHilo,unEnte):
+        self.hilos[unEnte] = unHilo
     
-    def lanzasTodosHilos(self):
+    def lanzoBichos(self):
         for bicho in self.bichos:
-            self.lanzarHilo(bicho)
+            if bicho in self.hilos:
+                print ("Hilo de ", bicho, "en ejecución")
+            else:
+                self.lanzarHilo(bicho)
+                
+    def lanzarHilo(self, unEnte):
+        if isinstance(unEnte,Bicho):
+            hilo = threading.Thread(target=lambda: self.hiloBicho(unEnte))
+            self.agregarHilo(hilo, unEnte)
+        hilo.start()
 
-    def terminarTodosHilos(self):
+    def hiloBicho(self, unBicho):
+        while unBicho.estaVivo():
+            unBicho.actua()
+    
+    def allBichosMoridos(self):
+        result = None
         for bicho in self.bichos:
-            self.terminarHilo(bicho)  
+            if bicho.estaVivo():
+                result = bicho
+        if result is None:
+            return True
+        result = None
+        return False
+    
+    def terminarHiloBicho(self, unBicho):
+        for bicho in self.bicho [:]:
+           self.terminarHilo(bicho)
+           
+    def terminarHilo(self, unEnte):
+        unEnte.saMorio()
+  
+    
+    ## ********* BUSCAR *********
     
     def buscarPersonaje(self,unBicho):
-        if self.prota is not None:
-            pos = self.prota.posicion
+        if self.personaje is not None:
+            pos = self.personaje.posicion
             
             if unBicho.posicion == pos:
-                return self.prota
+                return self.personaje
         
         return None
     
+    def buscarBicho(self):
+        pos= self.personaje.posicion
+        for bicho in self.bichos:
+            if bicho.posicion == pos:
+                return bicho
+            
     def clonarLaberinto(self):
         self.prototype = copy.deepcopy(self.laberinto)
         self.prototype.num = self.laberinto.num + 1
         return self.prototype
     
     def iniProta(self, nombre):
-        self.prota= Personaje(nombre)
-        self.prota.juego = self
+        self.personaje= Personaje(nombre)
+        self.personaje.juego = self
     
     #-------------LABERINTOS----------------
             
@@ -416,4 +441,4 @@ class Juego:
         for bicho in self.bichos:
             bichetes+=str(bicho)+"\n"
             
-        return f"\n Juego:\n {self.laberinto} \nBichos: \n{bichetes} \n Protagonista: {self.prota} \n" 
+        return f"\n Juego:\n {self.laberinto} \nBichos: \n{bichetes} \n Protagonista: {self.personaje} \n" 

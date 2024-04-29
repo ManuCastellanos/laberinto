@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from State.Vivo import Vivo
 
 class Ente(ABC):
     
@@ -8,19 +9,11 @@ class Ente(ABC):
         self.poder = 0
         self.posicion = None
         self.juego= None
-    
-    def esPersonaje(self):
-        return False
-    
-    def esBicho(self): 
-        return False
-    
-    def actua(self):
-        self.modo.actua(self)
+        self.estado= Vivo()
+
         
     def irA(self, unaOr):
         unaOr.caminar(self)
-    
     
     def irAlNorte(self):
         self.posicion.irAlNorte(self)
@@ -34,3 +27,36 @@ class Ente(ABC):
     def irAlOeste(self):
         self.posicion.irAlOeste(self)
     
+    def esPersonaje(self):
+        return False
+    
+    def esBicho(self): 
+        return False
+
+    def actua(self):
+        self.modo.actua(self)
+        
+    def atacar(self):
+        ente = self.buscarEnemigo()
+        if ente is not None:
+            ente.loAtacan(self)
+        
+
+    def buscarEnemigo(self):
+        pass
+    
+    def esAtacadoPor(self,alguien):
+        self.estado.enteLoAtacan(self,alguien)
+    
+    def saMorio (self):
+        pass
+    
+    def loPuedenAtacar(self,alguien):
+        print (alguien, "se quiere cargar a", self)
+        self.vidas -= int(alguien.poder)
+        print (self, "tiene", self.vidas, "vidas")
+        
+        if self.vidas <= 0:
+            self.vidas= 0
+            self.muerto()
+            print (self, "ha muerto")
