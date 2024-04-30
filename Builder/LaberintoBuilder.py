@@ -51,7 +51,6 @@ class LaberintoBuilder():
         return Puerta(habitacion1, habitacion2)
     
     def fabricarPuertaBuilder(self, hab1, unaOr, hab2, otraOr):
-        print(self.laberinto.hijos)
         hab1= self.laberinto.obtenerHabitacion(hab1)
         hab2= self.laberinto.obtenerHabitacion(hab2)
         
