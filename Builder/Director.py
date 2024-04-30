@@ -28,7 +28,8 @@ class Director():
             obj=self.builder.fabricarBombaHab(root)  
         elif laberinto['tipo'] == 'tunel':
             obj=self.builder.fabricarTunelCont(root)
-                
+        elif laberinto['tipo'] == 'armario':
+            obj=self.builder.fabricarArmarioEn(root)        
         hijos = laberinto.get('hijos', [])
         for hijo in hijos:
             self.crearLaberintoRecursivo(hijo, obj)
@@ -40,7 +41,7 @@ class Director():
             
         for puerta in self.director['puertas']:
             self.builder.fabricarPuertaBuilder(puerta[0], puerta[1], puerta[2], puerta[3])
-    
+            
     def verConfig(self, ruta):
         self.director = json.load(open(ruta,'r'))
         

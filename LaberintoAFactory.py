@@ -1,4 +1,5 @@
 import threading
+from Bridge.Cuadrado import Cuadrado
 from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
 from EM.Container.Laberinto import Laberinto
@@ -68,16 +69,37 @@ class LaberintoAFactory():
         bicho = self.fabricarBicho(self.fabricarModoPerezoso(), 2, 0, unaHab)
         return bicho
      
-    def fabricarHabitacion(self, num):
-        hab= Habitacion(num)
-        hab.agregarOrientacion(self.fabricarNorte())
-        hab.agregarOrientacion(self.fabricarEste())
-        hab.agregarOrientacion(self.fabricarSur())
-        hab.agregarOrientacion(self.fabricarOeste())
+    def fabricarHabitacion(self, unNum):
+        hab = Habitacion(unNum)
+        hab.forma= self.fabricarForma()
+        hab.forma.unNum= unNum
         
-        hab.ponerEn(self.fabricarNorte(), self.fabricarPared())
-        hab.ponerEn(self.fabricarEste(), self.fabricarPared())
-        hab.ponerEn(self.fabricarSur(), self.fabricarPared())
-        hab.ponerEn(self.fabricarOeste(), self.fabricarPared())
+        hab.forma.agregarOrientacion(self.fabricarNorte())
+        hab.forma.agregarOrientacion(self.fabricarEste())
+        hab.forma.agregarOrientacion(self.fabricarSur())
+        hab.forma.agregarOrientacion(self.fabricarOeste())
+        
+        hab.forma.ponerElemento(self.fabricarNorte(), self.fabricarPared())
+        hab.forma.ponerElemento(self.fabricarEste(), self.fabricarPared())
+        hab.forma.ponerElemento(self.fabricarSur(), self.fabricarPared())    
+        hab.forma.ponerElemento(self.fabricarOeste(), self.fabricarPared())
+    
         return hab
     
+    def fabricarArmario(self, unNum):
+        arm= Armario(unNum)
+        arm.forma= self.fabricarForma()
+        
+        arm.agregarOrientacion(self.fabricarNorte())
+        arm.agregarOrientacion(self.fabricarEste())
+        arm.agregarOrientacion(self.fabricarSur())
+        arm.agregarOrientacion(self.fabricarOeste())
+        
+        arm.forma.ponerElemento(self.fabricarNorte(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarEste(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarSur(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarOeste(), self.fabricarPared())
+        
+        return arm
+    def fabricarForma(self):
+        return Cuadrado()

@@ -1,3 +1,5 @@
+from Bridge.Cuadrado import Cuadrado
+from EM.Container.Armario import Armario
 from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
 from EM.Container.Laberinto import Laberinto
@@ -49,14 +51,15 @@ class LaberintoBuilder():
         return Puerta(habitacion1, habitacion2)
     
     def fabricarPuertaBuilder(self, hab1, unaOr, hab2, otraOr):
+        print(self.laberinto.hijos)
         hab1= self.laberinto.obtenerHabitacion(hab1)
         hab2= self.laberinto.obtenerHabitacion(hab2)
         
         cad1= getattr(self,'fabricar'+unaOr)()
         cad2= getattr(self,'fabricar'+otraOr)()
         
-        hab1.ponerEn(cad1, self.fabricarPuerta(hab1, hab2))
-        hab2.ponerEn(cad2, self.fabricarPuerta(hab2, hab1))
+        hab1.forma.ponerElemento(cad1, self.fabricarPuerta(hab1, hab2))
+        hab2.forma.ponerElemento(cad2, self.fabricarPuerta(hab2, hab1))
         
     
     def fabricarBombaHab(self,unCont):
@@ -90,22 +93,46 @@ class LaberintoBuilder():
     def fabricarBichoPerezoso(self, unaHab):
         bicho = self.fabricarBicho(self.fabricarModoPerezoso(), 2, 0, self.laberinto.obtenerHabitacion(unaHab))
         return bicho
-     
-    def fabricarHabitacion(self, num):
-        hab= Habitacion(num)
-        hab.agregarOrientacion(self.fabricarNorte())
-        hab.agregarOrientacion(self.fabricarEste())
-        hab.agregarOrientacion(self.fabricarSur())
-        hab.agregarOrientacion(self.fabricarOeste())
+    
+    def fabricarForma(self):
+        return Cuadrado() 
+    
+    def fabricarHabitacion(self, unNum):
+        hab = Habitacion(unNum)
+        hab.forma= self.fabricarForma()
+        hab.forma.unNum= unNum
         
-        hab.ponerEn(self.fabricarNorte(), self.fabricarPared())
-        hab.ponerEn(self.fabricarEste(), self.fabricarPared())
-        hab.ponerEn(self.fabricarSur(), self.fabricarPared())
-        hab.ponerEn(self.fabricarOeste(), self.fabricarPared())
+        hab.forma.agregarOrientacion(self.fabricarNorte())
+        hab.forma.agregarOrientacion(self.fabricarEste())
+        hab.forma.agregarOrientacion(self.fabricarSur())
+        hab.forma.agregarOrientacion(self.fabricarOeste())
+        
+        hab.forma.ponerElemento(self.fabricarNorte(), self.fabricarPared())
+        hab.forma.ponerElemento(self.fabricarEste(), self.fabricarPared())
+        hab.forma.ponerElemento(self.fabricarSur(), self.fabricarPared())    
+        hab.forma.ponerElemento(self.fabricarOeste(), self.fabricarPared())
         
         self.laberinto.agregarHabitacion(hab)
         
         return hab
+    
+    def fabricarArmarioEn(self, unCont):
+        arm= Armario(unCont.num)
+        arm.forma= self.fabricarForma()
+        
+        arm.agregarOrientacion(self.fabricarNorte())
+        arm.agregarOrientacion(self.fabricarEste())
+        arm.agregarOrientacion(self.fabricarSur())
+        arm.agregarOrientacion(self.fabricarOeste())
+        
+        arm.forma.ponerElemento(self.fabricarNorte(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarEste(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarSur(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarOeste(), self.fabricarPared())
+        
+        unCont.agregarHijo(arm)
+        
+        return arm
     
     def fabricarTunel (self):
         tunel= Tunel()

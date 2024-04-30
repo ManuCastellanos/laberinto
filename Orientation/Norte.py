@@ -17,6 +17,6 @@ class Norte(Orientacion):
         unContenedor.norte=unEM
     
     def recorrerEn(self, unBloque, unContenedor):
-        if unContenedor.norte is not None:
-            unContenedor.norte.recorrer(unBloque)
+        if unContenedor.forma.norte is not None:
+            unContenedor.forma.norte.recorrer(unBloque)
         

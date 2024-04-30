@@ -2,7 +2,7 @@
     "laberinto": [
       { "tipo": "habitacion", "num": 1, "hijos": [{ "tipo": "tunel" }] },
       { "tipo": "habitacion", "num": 2, "hijos": [{ "tipo": "bomba" }] },
-      { "tipo": "habitacion", "num": 3, "hijos": [{ "tipo": "tunel"}]},
+      { "tipo": "habitacion", "num": 3, "hijos": [{ "tipo": "armario"}]},
       { "tipo": "habitacion", "num": 4, "hijos": [] }
       
     ],

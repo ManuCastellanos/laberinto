@@ -17,5 +17,5 @@ class Este(Orientacion):
         unContenedor.este=unEM
     
     def recorrerEn(self, unBloque, unContenedor):
-        if unContenedor.este is not None:
-            unContenedor.este.recorrer(unBloque)
+        if unContenedor.forma.este is not None:
+            unContenedor.forma.este.recorrer(unBloque)

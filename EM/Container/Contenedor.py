@@ -6,21 +6,12 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
         super().__init__() # Llamamos al constructor de la clase padre
         self.hijos = []
         self.forma= None
-        self.norte= None
-        self.sur= None
-        self.este= None
-        self.oeste= None
         
     
     def __init__(self, num):
         super().__init__()
         self.num= num
         self.hijos = []
-        self.orientaciones = []
-        self.norte= None
-        self.sur= None
-        self.este= None
-        self.oeste= None
         self.forma= None
         
     # Metodos de la clase
@@ -45,16 +36,16 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
 
     
     def irAlEste(self, alguien):
-        self.este.entrar(alguien)
+        self.forma.este.entrar(alguien)
 
     def irAlOeste(self, alguien):
-        self.oeste.entrar(alguien)
+        self.forma.oeste.entrar(alguien)
     
     def irAlSur(self, alguien):
-        self.sur.entrar(alguien)
+        self.forma.sur.entrar(alguien)
     
     def irAlNorte(self, alguien):
-        self.norte.entrar(alguien)
+        self.forma.norte.entrar(alguien)
         
     #Patrón: Iterator
     def recorrer(self, unBloque):
@@ -63,7 +54,7 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
         for hijo in self.hijos:
             hijo.recorrer(unBloque)
         
-        for orientacion in self.orientaciones:
+        for orientacion in self.forma.orientaciones:
             orientacion.recorrerEn(unBloque, self)
         
     def entrar(self,alguien):

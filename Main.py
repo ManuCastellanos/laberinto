@@ -24,26 +24,29 @@ juego= Juego()
 #juego.activarBombas()
 #print(juego)
 
-juego.fabricarLaberinto4Habitaciones4BichosFM()
-juego.lanzoBichos()
-print(juego)
+# juego.fabricarLaberinto4Habitaciones4BichosFM()
+# juego.lanzoBichos()
+# print(juego)
 
 #af= LaberintoAFactory()
 
 #juego.fabricarLaberinto4Hab4Bomb4BichosAF(af)
 
 #print(juego)
+# juego.fabricarLaberintoPersonajes()
+# print(juego)
 
 #BUILDER
 #archivo='JSON/lab2hab2bichos.json'
 #archivo='JSON/laberinto2hab.json'
 #archivo= 'JSON/lab2hab2bichos2bombas.json'
 # archivo= 'JSON/lab4hab4bichos2bom.json'
-# director= Director()
+archivo='JSON/lab4habTunelArm.json'
+director= Director()
 
-# director.procesar(archivo)
-# juego= director.getJuego()
-# juego.abrirPuertas()
-# juego.iniProta("Imbécil")
-# print(juego)
+director.procesar(archivo)
+juego= director.getJuego()
+juego.abrirPuertas()
+juego.iniProta("Imbécil")
+print(juego)
 

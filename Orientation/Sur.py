@@ -17,5 +17,5 @@ class Sur(Orientacion):
         unContenedor.sur=unEM
     
     def recorrerEn(self, unBloque, unContenedor):
-        if unContenedor.sur is not None:
-            unContenedor.sur.recorrer(unBloque)
+        if unContenedor.forma.sur is not None:
+            unContenedor.forma.sur.recorrer(unBloque)

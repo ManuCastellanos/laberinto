@@ -64,15 +64,17 @@ class Juego:
     
     def fabricarArmario(self, unNum):
         arm= Armario(unNum)
+        arm.forma= self.fabricarForma()
+        
         arm.agregarOrientacion(self.fabricarNorte())
         arm.agregarOrientacion(self.fabricarEste())
         arm.agregarOrientacion(self.fabricarSur())
         arm.agregarOrientacion(self.fabricarOeste())
         
-        arm.ponerEn(self.fabricarNorte(), self.fabricarPared())
-        arm.ponerEn(self.fabricarEste(), self.fabricarPared())
-        arm.ponerEn(self.fabricarSur(), self.fabricarPared())
-        arm.ponerEn(self.fabricarOeste(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarNorte(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarEste(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarSur(), self.fabricarPared())
+        arm.forma.ponerElemento(self.fabricarOeste(), self.fabricarPared())
         
         return arm
     
@@ -101,17 +103,7 @@ class Juego:
         return Cuadrado()
     
     #Gestion de Bichos
-    def agregarProta(self,unProta):
-       self.personaje= unProta
         
-    def fabricarPersonajeNormal(self):
-        self.personaje= Personaje()
-        self.personaje.modo = Normal()
-        self.personaje.vidas = 5
-        self.personaje.poder = 2
-        self.personaje.nombre = "Imbécil" #input("Introduce el nombre del personaje: ")
-        self.laberinto.entrar(self.personaje)
-        return self.personaje
         
     def agregarBicho(self, unBicho):
         self.bichos.append(unBicho)
@@ -215,8 +207,7 @@ class Juego:
     def iniProta(self, nombre):
         self.personaje= Personaje(nombre)
         self.personaje.juego = self
-        self.juego= self.personaje.juego
-        
+
     #-------------LABERINTOS----------------
             
     def fabricarLaberinto(self):
@@ -365,22 +356,22 @@ class Juego:
         p34 = unAF.fabricarPuerta(hab3, hab4)
         p24 = unAF.fabricarPuerta(hab2, hab4)
         
-        hab1.ponerEn(unAF.fabricarSur(), p12)
-        hab2.ponerEn(unAF.fabricarNorte(), p12)
+        hab1.forma.ponerElemento(unAF.fabricarSur(), p12)
+        hab2.forma.ponerElemento(unAF.fabricarNorte(), p12)
         
-        hab1.ponerEn(unAF.fabricarEste(), p13)
-        hab3.ponerEn(unAF.fabricarOeste(), p13)
+        hab1.forma.ponerElemento(unAF.fabricarEste(), p13)
+        hab3.forma.ponerElemento(unAF.fabricarOeste(), p13)
         
-        hab2.ponerEn(unAF.fabricarEste(), p24)
-        hab4.ponerEn(unAF.fabricarOeste(), p24)
+        hab2.forma.ponerElemento(unAF.fabricarEste(), p24)
+        hab4.forma.ponerElemento(unAF.fabricarOeste(), p24)
         
-        hab3.ponerEn(unAF.fabricarSur(), p34)
-        hab4.ponerEn(unAF.fabricarNorte(), p34)
+        hab3.forma.ponerElemento(unAF.fabricarSur(), p34)
+        hab4.forma.ponerElemento(unAF.fabricarNorte(), p34)
         
-        hab1.ponerEn(unAF.fabricarNorte(), unAF.fabricarParedBomba())
-        hab2.ponerEn(unAF.fabricarSur(), unAF.fabricarParedBomba())
-        hab3.ponerEn(unAF.fabricarEste(), unAF.fabricarParedBomba())
-        hab4.ponerEn(unAF.fabricarSur(), unAF.fabricarParedBomba())
+        hab1.forma.ponerElemento(unAF.fabricarNorte(), unAF.fabricarParedBomba())
+        hab2.forma.ponerElemento(unAF.fabricarSur(), unAF.fabricarParedBomba())
+        hab3.forma.ponerElemento(unAF.fabricarEste(), unAF.fabricarParedBomba())
+        hab4.forma.ponerElemento(unAF.fabricarSur(), unAF.fabricarParedBomba())
         
         self.agregarBicho(unAF.fabricarBichoAgresivo(hab1))
         self.agregarBicho(unAF.fabricarBichoAgresivo(hab3))
@@ -406,17 +397,17 @@ class Juego:
         p34 = self.fabricarPuerta(hab3, hab4)
         p24 = self.fabricarPuerta(hab2, hab4)
         
-        hab1.ponerEn(self.fabricarSur(), p12)
-        hab2.ponerEn(self.fabricarNorte(), p12)
+        hab1.forma.ponerElemento(self.fabricarSur(), p12)
+        hab2.forma.ponerElemento(self.fabricarNorte(), p12)
         
-        hab1.ponerEn(self.fabricarEste(), p13)
-        hab3.ponerEn(self.fabricarOeste(), p13)
+        hab1.forma.ponerElemento(self.fabricarEste(), p13)
+        hab3.forma.ponerElemento(self.fabricarOeste(), p13)
         
-        hab2.ponerEn(self.fabricarEste(), p24)
-        hab4.ponerEn(self.fabricarOeste(), p24)
+        hab2.forma.ponerElemento(self.fabricarEste(), p24)
+        hab4.forma.ponerElemento(self.fabricarOeste(), p24)
         
-        hab3.ponerEn(self.fabricarSur(), p34)
-        hab4.ponerEn(self.fabricarNorte(), p34)
+        hab3.forma.ponerElemento(self.fabricarSur(), p34)
+        hab4.forma.ponerElemento(self.fabricarNorte(), p34)
         
         self.laberinto = self.fabricarLaberinto()
         
@@ -428,11 +419,11 @@ class Juego:
         arm1= self.fabricarArmario(1)
         
         parm= self.fabricarPuerta(hab1, arm1)
-        arm1.ponerEn(self.fabricarSur(), parm)
+        arm1.forma.ponerElemento(self.fabricarSur(), parm)
         
         hab1.agregarHijo(arm1)
         
-        self.agregarProta(self.fabricarPersonajeNormal())
+        self.iniProta("Imbécil")
         self.agregarBicho(self.fabricarBichoAgresivo(hab1))
         self.agregarBicho(self.fabricarBichoAgresivo(hab3))
         self.agregarBicho(self.fabricarBichoPerezoso(hab2))

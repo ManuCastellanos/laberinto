@@ -8,10 +8,7 @@ class Habitacion(Contenedor):
     #Constructor
     def __init__(self, num, este=None, oeste=None, sur=None, norte=None):
         super().__init__(num)
-        self.este = este
-        self.oeste = oeste
-        self.sur = sur
-        self.norte = norte
+
 
 
     def entrar(self, alguien):
