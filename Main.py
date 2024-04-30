@@ -9,7 +9,6 @@ from Orientation.Sur import Sur
 
 
 juego= Juego()
-
 #juego.fabricarLaberinto2Habitaciones()
 #print(juego)
 
@@ -46,7 +45,9 @@ director= Director()
 
 director.procesar(archivo)
 juego= director.getJuego()
-juego.abrirPuertas()
 juego.iniProta("Imbécil")
+juego.laberinto.hijos[0].forma.sur.comandos[0].ejecutar(juego.personaje)
+print(juego)
+juego.laberinto.hijos[0].forma.sur.comandos[1].ejecutar(juego.personaje)
 print(juego)
 

@@ -34,7 +34,6 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
     def agregarOrientacion(self, unaOrientacion):
        self.forma.agregarOrientacion(unaOrientacion)
 
-    
     def irAlEste(self, alguien):
         self.forma.este.entrar(alguien)
 
@@ -56,10 +55,13 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
         
         for orientacion in self.forma.orientaciones:
             orientacion.recorrerEn(unBloque, self)
-        
+    
+    #Patrón: Command
     def entrar(self,alguien):
         pass
     
+    def cerrar(self,alguien):
+        pass
 
 
     

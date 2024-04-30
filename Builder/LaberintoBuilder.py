@@ -58,8 +58,10 @@ class LaberintoBuilder():
         cad1= getattr(self,'fabricar'+unaOr)()
         cad2= getattr(self,'fabricar'+otraOr)()
         
-        hab1.forma.ponerElemento(cad1, self.fabricarPuerta(hab1, hab2))
-        hab2.forma.ponerElemento(cad2, self.fabricarPuerta(hab2, hab1))
+        puerta= self.fabricarPuerta(hab1, hab2)
+        
+        hab1.forma.ponerElemento(cad1, puerta)
+        hab2.forma.ponerElemento(cad2, puerta)
         
     
     def fabricarBombaHab(self,unCont):
