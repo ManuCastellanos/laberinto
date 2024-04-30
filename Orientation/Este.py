@@ -10,9 +10,10 @@ class Este(Orientacion):
         return cls.UnicaInstancia
     
     def caminar(self, alguien):
-        alguien.irAlEste()
+        contenedor= alguien.posicion.forma
+        contenedor.este.entrar(alguien)
 
-    def ponerElemento(self, unEM, unContenedor):
+    def ponerElementoEn(self, unEM, unContenedor):
         unContenedor.este=unEM
     
     def recorrerEn(self, unBloque, unContenedor):

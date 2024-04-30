@@ -19,9 +19,9 @@ class Habitacion(Contenedor):
         alguien.posicion = self
 
     def caminarAleatorio(self, unEnte):
-        numOr = len(self.orientaciones)
+        numOr = len(self.forma.orientaciones)
         numAl = random.randint(1, numOr)
-        orAl = self.orientaciones[numAl - 1]
+        orAl = self.forma.orientaciones[numAl - 1]
         orAl.caminar(unEnte)
     
         
@@ -29,10 +29,10 @@ class Habitacion(Contenedor):
     def __str__(self):
         salida= f"*Habitacion {self.num}\n"
         
-        salida += f"Norte: {self.norte}\n"
-        salida += f"Sur: {self.sur}\n"
-        salida += f"Este: {self.este}\n"
-        salida += f"Oeste: {self.oeste}\n"
+        salida += f"Norte: {self.forma.norte}\n"
+        salida += f"Sur: {self.forma.sur}\n"
+        salida += f"Este: {self.forma.este}\n"
+        salida += f"Oeste: {self.forma.oeste}\n"
         
         for hijo in self.hijos:
             salida += "\n"+ hijo.__str__() + "\n"

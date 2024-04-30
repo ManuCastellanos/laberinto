@@ -1,12 +1,14 @@
 from abc import ABC, abstractmethod
 
 class Orientacion(ABC):
-    @abstractmethod
     def caminar(self, unEnte):
-        raise NotImplementedError("Subclass must implement this method")
+       pass
 
-    @abstractmethod
-    def ponerElemento(self, unEM, unContenedor):
-        raise NotImplementedError("Subclass must implement this method")
+    def ponerElementoEn(self, unEM, unContenedor):
+       pass
 
-        
+    def recorrerEn(self, unBloque, unContenedor):
+        pass
+    
+    def obtenerElementoEn(self, unContenedor):
+        pass

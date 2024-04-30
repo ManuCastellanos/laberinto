@@ -16,16 +16,16 @@ class Ente(ABC):
         unaOr.caminar(self)
     
     def irAlNorte(self):
-        self.posicion.irAlNorte(self)
+        self.irA(self.juego.fabricarNorte()) #Como tengo el Singleton, si existe el norte, me lo devuelve
     
     def irAlSur(self):
-        self.posicion.irAlSur(self)
+        self.irA(self.juego.fabricarSur())
     
     def irAlEste(self):
-        self.posicion.irAlEste(self)
+        self.irA(self.juego.fabricarEste())
     
     def irAlOeste(self):
-        self.posicion.irAlOeste(self)
+        self.irA(self.juego.fabricarOeste())
     
     def esPersonaje(self):
         return False

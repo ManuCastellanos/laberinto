@@ -10,9 +10,10 @@ class Sur(Orientacion):
         return cls.UnicaInstancia
     
     def caminar(self, alguien):
-        alguien.irAlSur()
+        contenedor= alguien.posicion.forma
+        contenedor.sur.entrar(alguien)
 
-    def ponerElemento(self, unEM, unContenedor):
+    def ponerElementoEn(self, unEM, unContenedor):
         unContenedor.sur=unEM
     
     def recorrerEn(self, unBloque, unContenedor):

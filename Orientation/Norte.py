@@ -10,9 +10,10 @@ class Norte(Orientacion):
         return cls.UnicaInstancia
     
     def caminar(self, alguien):
-        alguien.irAlNorte()
+        contenedor= alguien.posicion.forma
+        contenedor.norte.entrar(alguien)
 
-    def ponerElemento(self, unEM, unContenedor):
+    def ponerElementoEn(self, unEM, unContenedor):
         unContenedor.norte=unEM
     
     def recorrerEn(self, unBloque, unContenedor):

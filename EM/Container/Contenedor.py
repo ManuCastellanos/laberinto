@@ -5,15 +5,31 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
     def __init__(self): # Constructor de la clase (initialization)
         super().__init__() # Llamamos al constructor de la clase padre
         self.hijos = []
-        self.orientaciones = []
+        self.forma= None
+        self.norte= None
+        self.sur= None
+        self.este= None
+        self.oeste= None
+        
     
     def __init__(self, num):
         super().__init__()
         self.num= num
         self.hijos = []
         self.orientaciones = []
+        self.norte= None
+        self.sur= None
+        self.este= None
+        self.oeste= None
+        self.forma= None
         
     # Metodos de la clase
+    def ponerElementoEn(self, unaOr, unEM): 
+        self.forma.ponerElemento(unaOr, unEM)
+        
+    def obtenerElementoEn(self, unaOr):
+        return self.forma.obtenerElemento(unaOr)
+    
     def agregarHijo(self, unEM): #unEM es un ElementoMapa
         self.hijos.append(unEM)
         unEM.es_padre(self)
@@ -25,10 +41,8 @@ class Contenedor(ElementoMapa): # Creamos la clase Contenedor que hereda de Elem
             print("No se puede eliminar EM")
     
     def agregarOrientacion(self, unaOrientacion):
-        self.orientaciones.append(unaOrientacion) #.append al final de la lista, al principio .insert(0, unaOrientacion)
-    
-    def ponerEn(self,unaOrientacion,EM):
-        unaOrientacion.ponerElemento(EM, self)
+       self.forma.agregarOrientacion(unaOrientacion)
+
     
     def irAlEste(self, alguien):
         self.este.entrar(alguien)

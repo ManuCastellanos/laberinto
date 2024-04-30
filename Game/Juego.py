@@ -16,6 +16,7 @@ from Orientation.Oeste import Oeste
 from Entes.Personaje import Personaje
 from Mode.PersonajeM.Normal import Normal
 from EM.Container.Armario import Armario
+from Bridge.Cuadrado import Cuadrado
 
 class Juego:
     def __init__(self):
@@ -77,21 +78,27 @@ class Juego:
     
     def fabricarHabitacion(self, unNum):
         hab = Habitacion(unNum)
-        hab.agregarOrientacion(self.fabricarNorte())
-        hab.agregarOrientacion(self.fabricarEste())
-        hab.agregarOrientacion(self.fabricarSur())
-        hab.agregarOrientacion(self.fabricarOeste())
+        hab.forma= self.fabricarForma()
+        hab.forma.unNum= unNum
         
-        hab.ponerEn(self.fabricarNorte(), self.fabricarPared())
-        hab.ponerEn(self.fabricarEste(), self.fabricarPared())
-        hab.ponerEn(self.fabricarSur(), self.fabricarPared())    
-        hab.ponerEn(self.fabricarOeste(), self.fabricarPared())
+        hab.forma.agregarOrientacion(self.fabricarNorte())
+        hab.forma.agregarOrientacion(self.fabricarEste())
+        hab.forma.agregarOrientacion(self.fabricarSur())
+        hab.forma.agregarOrientacion(self.fabricarOeste())
+        
+        hab.forma.ponerElemento(self.fabricarNorte(), self.fabricarPared())
+        hab.forma.ponerElemento(self.fabricarEste(), self.fabricarPared())
+        hab.forma.ponerElemento(self.fabricarSur(), self.fabricarPared())    
+        hab.forma.ponerElemento(self.fabricarOeste(), self.fabricarPared())
         
         return hab
     
     def fabricarPuerta(self, unaHab, otraHab):
         puerta = Puerta(unaHab, otraHab)
         return puerta
+    
+    def fabricarForma(self):
+        return Cuadrado()
     
     #Gestion de Bichos
     def agregarProta(self,unProta):
@@ -108,7 +115,8 @@ class Juego:
         
     def agregarBicho(self, unBicho):
         self.bichos.append(unBicho)
-
+        unBicho.juego = self
+        
     def eliminarBicho(self, unBicho):
         if unBicho in self.bichos:
             self.bichos.remove(unBicho)
@@ -207,7 +215,8 @@ class Juego:
     def iniProta(self, nombre):
         self.personaje= Personaje(nombre)
         self.personaje.juego = self
-    
+        self.juego= self.personaje.juego
+        
     #-------------LABERINTOS----------------
             
     def fabricarLaberinto(self):
@@ -243,19 +252,19 @@ class Juego:
         hab2 = self.fabricarHabitacion(2)
         puerta = self.fabricarPuerta(hab1, hab2)
         
-        hab1.norte = self.fabricarPared()
-        hab1.oeste = self.fabricarPared()
-        hab1.este = self.fabricarPared()
+        hab1.forma.norte = self.fabricarPared()
+        hab1.forma.oeste = self.fabricarPared()
+        hab1.forma.este = self.fabricarPared()
         
-        hab2.sur = self.fabricarPared()
-        hab2.este = self.fabricarPared()
-        hab2.oeste = self.fabricarPared()
+        hab2.forma.sur = self.fabricarPared()
+        hab2.forma.este = self.fabricarPared()
+        hab2.forma.oeste = self.fabricarPared()
         
         puerta.lado1 = hab1
         puerta.lado2 = hab2
         
-        hab1.sur = puerta
-        hab2.norte = puerta
+        hab1.forma.sur = puerta
+        hab2.forma.norte = puerta
         
         bm1 = self.fabricarBomba()
         bm2 = self.fabricarBomba()
@@ -272,10 +281,11 @@ class Juego:
     def fabricarLaberinto2HabitacionesFM(self):
         hab1 = self.fabricarHabitacion(1)
         hab2 = self.fabricarHabitacion(2)
+        
         puerta = self.fabricarPuerta(hab1, hab2)
         
-        hab1.ponerEn(self.fabricarSur(), puerta)
-        hab2.ponerEn(self.fabricarNorte(), puerta)
+        hab1.ponerElementoEn(self.fabricarNorte(), puerta)
+        hab2.ponerElementoEn(self.fabricarSur(), puerta)
         
         self.laberinto = self.fabricarLaberinto()
         
@@ -290,23 +300,13 @@ class Juego:
         
         bm1 = self.fabricarBomba()
         bm1.em = self.fabricarPared()
-        
-        hab1.norte = self.fabricarPared()
-        hab1.este = bm1
-        hab1.oeste = self.fabricarPared()
+        hab1.forma.este = bm1
         
         bm2 = self.fabricarBomba()
-        bm2.em = self.fabricarPared()
-        
-        hab2.sur = self.fabricarPared()
-        hab2.este = bm2
-        hab2.oeste = self.fabricarPared()
-        
-        puerta.lado1 = hab1
-        puerta.lado2 = hab2
-        
-        hab1.sur = puerta
-        hab2.norte = puerta
+        hab2.forma.este = bm2
+
+        hab1.ponerElementoEn(self.fabricarNorte(), puerta)
+        hab2.ponerElementoEn(self.fabricarSur(), puerta)
         
         self.laberinto = self.fabricarLaberinto()
         
@@ -325,17 +325,17 @@ class Juego:
         p34 = self.fabricarPuerta(hab3, hab4)
         p24 = self.fabricarPuerta(hab2, hab4)
         
-        hab1.ponerEn(self.fabricarSur(), p12)
-        hab2.ponerEn(self.fabricarNorte(), p12)
+        hab1.forma.ponerElemento(self.fabricarSur(), p12)
+        hab2.forma.ponerElemento(self.fabricarNorte(), p12)
         
-        hab1.ponerEn(self.fabricarEste(), p13)
-        hab3.ponerEn(self.fabricarOeste(), p13)
+        hab1.forma.ponerElemento(self.fabricarEste(), p13)
+        hab3.forma.ponerElemento(self.fabricarOeste(), p13)
         
-        hab2.ponerEn(self.fabricarEste(), p24)
-        hab4.ponerEn(self.fabricarOeste(), p24)
+        hab2.forma.ponerElemento(self.fabricarEste(), p24)
+        hab4.forma.ponerElemento(self.fabricarOeste(), p24)
         
-        hab3.ponerEn(self.fabricarSur(), p34)
-        hab4.ponerEn(self.fabricarNorte(), p34)
+        hab3.forma.ponerElemento(self.fabricarSur(), p34)
+        hab4.forma.ponerElemento(self.fabricarNorte(), p34)
         
         self.laberinto = self.fabricarLaberinto()
         
@@ -349,6 +349,8 @@ class Juego:
         self.agregarBicho(self.fabricarBichoPerezoso(hab2))
         self.agregarBicho(self.fabricarBichoPerezoso(hab4))
 
+        self.iniProta("Manuel")
+        
     # -------------Laberinto con 4 habitaciones, 4 Bombas y 4 bichos Abstract Factory----------------
     def fabricarLaberinto4Hab4Bomb4BichosAF(self,unAF):
         print("\n Laberinto de 4 habitaciones, 4 Bombas y 4 bichos ")

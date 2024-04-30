@@ -12,9 +12,10 @@ class Oeste(Orientacion):
     
     
     def caminar(self, alguien):
-        alguien.irAlOeste()
+        contenedor= alguien.posicion.forma
+        contenedor.oeste.entrar(alguien)
 
-    def ponerElemento(self, unEM, unContenedor):
+    def ponerElementoEn(self, unEM, unContenedor):
         unContenedor.oeste=unEM
     
     def recorrerEn(self, unBloque, unContenedor):

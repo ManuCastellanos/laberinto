@@ -7,6 +7,9 @@ class Pared(ElementoMapa):
 
     def entrar(self,alguien):
         print(str(alguien)+" se ha chocado con una pared")
+    
+    def ponerElementoEn(self, unaOr, unEM):
+        unaOr.ponerElementoEn(self, unEM)
         
     #Testing
     def esPared(self):
