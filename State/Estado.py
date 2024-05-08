@@ -8,4 +8,3 @@ class Estado():
     def estaVivo(self):
         return False
     
-    

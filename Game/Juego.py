@@ -22,6 +22,7 @@ class Juego:
     def __init__(self):
         self.laberinto = None
         self.bichos = []
+        self.compañeros = []
         self.hilos = dict()
         self.prototype = None
         self.personaje= None
@@ -102,8 +103,7 @@ class Juego:
     def fabricarForma(self):
         return Cuadrado()
     
-    #Gestion de Bichos
-        
+    #Gestion de Bichos    
         
     def agregarBicho(self, unBicho):
         self.bichos.append(unBicho)
@@ -115,6 +115,12 @@ class Juego:
         else:
             print("No existe ese bicho")
 
+    # Gestion de compis
+    
+    def agregarCompañero(self, unCompañero):
+        self.compañeros.append(unCompañero)
+        unCompañero.juego = self
+    
     def activarBomba(self, unEM):
         if unEM.esBomba():
             unEM.activar()
@@ -198,7 +204,13 @@ class Juego:
         for bicho in self.bichos:
             if bicho.posicion == pos:
                 return bicho
-            
+    
+    def buscarCompiEn(self, unaHab):
+        for compi in self.compañeros:
+            if compi.posicion == unaHab:
+                return compi
+        return None
+    
     def clonarLaberinto(self):
         self.prototype = copy.deepcopy(self.laberinto)
         self.prototype.num = self.laberinto.num + 1
@@ -207,7 +219,9 @@ class Juego:
     def iniProta(self, nombre):
         self.personaje= Personaje(nombre)
         self.personaje.juego = self
-
+        self.personaje.posicion = self.laberinto.obtenerHabitacion(1)
+        self.personaje.compi=self.buscarCompiEn(self.personaje.posicion)
+        
     #-------------LABERINTOS----------------
             
     def fabricarLaberinto(self):
@@ -431,7 +445,12 @@ class Juego:
           
     def __str__ (self):
         bichetes=""
+        compis=""
+        
         for bicho in self.bichos:
             bichetes+=str(bicho)+"\n"
+        
+        for compi in self.compañeros:
+            compis+=str(compi)+"\n"
             
-        return f"\n Juego:\n {self.laberinto} \nBichos: \n{bichetes} \n Protagonista: {self.personaje} \n" 
+        return f"\n Juego:\n {self.laberinto} \nBichos:\n{bichetes} \n Protagonista: {self.personaje} \nCompis: \n{compis}" 

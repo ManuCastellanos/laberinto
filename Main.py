@@ -26,7 +26,8 @@ while True:
                                     "1. Lab. 2 Habitaciones con 2 bichos \n" +
                                     "2. Lab. 2 Habitaciones con 2 bichos y 2 bombas\n" +
                                     "3. Lab. 4 Habitaciones con 4 bichos y 2 bombas\n" +
-                                    "4. Lab. 4 Habitaciones con 4 bichos, Tunel y Armario\n" + Style.RESET_ALL)
+                                    "4. Lab. 4 Habitaciones con 4 bichos, Tunel y Armario\n" +
+                                    "5. Lab. Compi \n" + Style.RESET_ALL)
                     
                     select1 = int(select1)
                     
@@ -34,13 +35,15 @@ while True:
                     1: 'JSON/lab2hab2bichos.json',
                     2: 'JSON/lab2hab2bichos2bombas.json',
                     3: 'JSON/lab4hab4bichos2bom.json',
-                    4: 'JSON/lab4habTunelArm.json'
+                    4: 'JSON/lab4habTunelArm.json',
+                    5: 'JSON/labCompi.json'
                     }
                     archivo=switch.get(select1, "\n\nSelecciona una opción válida\n\n")
                     director= Director()
 
                     director.procesar(archivo)
                     juego= director.getJuego()
+                    juego.iniProta("Imbécil")
                     print(juego)
                     
                 elif lab == 2:

@@ -5,10 +5,12 @@ class Personaje(Ente):
     def __init__(self, nombre):
         super().__init__()
         self.nombre = nombre
+        self.compi = None
         
     
     def esPersonaje(self):
         return True
+    
     def estaVivo(self):
         return self.estado.estaVivo()
     
@@ -19,5 +21,6 @@ class Personaje(Ente):
     
     def buscarEnemigo(self):
         return self.juego.buscarBicho()
+    
     def __str__(self):
-        return str(self.nombre)#+ str(self.modo)
+        return str(self.nombre) + " en " +  str(self.posicion.num) + " tiene " + str(self.compi)#+ str(self.modo)

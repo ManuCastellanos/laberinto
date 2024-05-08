@@ -22,7 +22,7 @@ El patrón Composite compone objetos en estructuras de árbol para representar j
 El patrón Iterator proporciona una forma de acceder a los elementos de un objeto agregado secuencialmente sin exponer su representación subyacente. Implementado en el archivo [`ElementoMapa.py`](./EM/ElementoMapa.py) y [`Orientación.py`](./Orientation/Orientacion.py).
 
 ### Template Method
-El patrón Template Method define el esqueleto de un algoritmo en una operación, aplazando algunos pasos a las subclases. Implementado en el archivo [`Modo.py`](./Mode/Modo.py).
+El patrón Template Method define el esqueleto de un algoritmo en una operación, aplazando algunos pasos a las subclases sin variar la estructura del algoritmo. Implementado en el archivo [`Modo.py`](./Mode/Modo.py).
 
 ### Abstract Factory
 El patrón Abstract Factory proporciona una interfaz para crear familias de objetos relacionados o dependientes sin especificar sus clases concretas. Implementado en el archivo [`LaberintoAFactory.py`](./LaberintoAFactory.py).

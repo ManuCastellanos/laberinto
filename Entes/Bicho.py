@@ -9,6 +9,12 @@ class Bicho(Ente):
     def esBicho(self):
         return True
     
+    def esPerezoso(self):
+        return False
+    
+    def esAgresivo(self):
+        return False
+    
     def actua(self):
         self.modo.actua(self)
     

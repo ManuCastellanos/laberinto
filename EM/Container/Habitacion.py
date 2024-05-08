@@ -14,7 +14,10 @@ class Habitacion(Contenedor):
     def entrar(self, alguien):
         print(alguien, "ha entrado en la habitacion-", self.num)
         alguien.posicion = self
-
+        
+        if alguien.compañero is not None:
+            alguien.compañero.posicion = self
+            
     def caminarAleatorio(self, unEnte):
         numOr = len(self.forma.orientaciones)
         numAl = random.randint(1, numOr)

@@ -7,9 +7,12 @@ from EM.Hoj.Decorator.Bomba import Bomba
 from EM.Pare.Pared import Pared
 from EM.Pare.ParedBomba import ParedBomba
 from EM.Puerta import Puerta
+from Entes.Compañero import Compañero
 from Game.Juego import Juego
 from Mode.BichosM.Agresivo import Agresivo
 from Mode.BichosM.Perezoso import Perezoso
+from Mode.CompañeroM.Aura import Aura
+from Mode.CompañeroM.Blitz import Blitz
 from Orientation.Norte import Norte
 from Orientation.Sur import Sur
 from Orientation.Este import Este
@@ -79,6 +82,28 @@ class LaberintoBuilder():
     def fabricarModoPerezoso(self):
         return Perezoso()
     
+    def fabricarAura(self):
+        return Aura()
+    
+    def fabricarBlitz(self):
+        return Blitz()
+    
+    def fabricarCompañero(self, modo, vidas, poder, posicion):
+        compi = Compañero()
+        compi.modoCompañero = modo
+        compi.vidas = vidas
+        compi.poder = poder
+        compi.posicion = posicion
+        return compi
+    
+    def fabricarCompiAura(self,hab):
+        compi= self.fabricarCompañero(self.fabricarAura(), 10, 0, self.laberinto.obtenerHabitacion(hab))
+        return compi
+    
+    def fabricarCompiBlitz(self,hab):
+        compi= self.fabricarCompañero(self.fabricarBlitz(), 5, 2, self.laberinto.obtenerHabitacion(hab))
+        return compi
+    
     def fabricarBicho(self, modo, vidas, poder, posicion):
         bicho = Bicho()
         bicho.modo = modo
@@ -141,3 +166,4 @@ class LaberintoBuilder():
     
     def fabricarTunelCont(self, unContenedor):
         unContenedor.agregarHijo(self.fabricarTunel())
+

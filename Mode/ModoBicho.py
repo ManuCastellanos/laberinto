@@ -1,6 +1,6 @@
 import time
 
-class ModoBicho:
+class ModoBicho():
     def actua(self, unBicho):
         self.dormir(unBicho)
         self.caminar(unBicho)

@@ -14,7 +14,12 @@ class Director():
     
     def crearJuego(self): #Crea el juego
         self.builder.fabricarJuego()
-        
+        for compi in self.director['compis']:
+            if compi ['modo'] == 'aura':
+                self.builder.juego.agregarCompañero(self.builder.fabricarCompiAura(compi['hab']))
+            else:
+                self.builder.juego.agregarCompañero(self.builder.fabricarCompiBlitz(compi['hab']))
+                
         for bicho in self.director['bichos']: #Agrega los bichos al juego
             if bicho['modo'] == 'agresivo':
                 self.builder.juego.agregarBicho(self.builder.fabricarBichoAgresivo(bicho['hab']))

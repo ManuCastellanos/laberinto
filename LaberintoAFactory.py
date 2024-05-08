@@ -1,5 +1,6 @@
 import threading
 from Bridge.Cuadrado import Cuadrado
+from EM.Container.Armario import Armario
 from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
 from EM.Container.Laberinto import Laberinto

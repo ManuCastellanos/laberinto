@@ -13,7 +13,8 @@ class Armario(Contenedor):
     def entrar(self, alguien):
         print(alguien, "está en el armario", self.num)
         alguien.posicion = self
- 
+        if alguien.compañero is not None:
+            alguien.compañero.posicion = self
         
     # To String
     def __str__(self):

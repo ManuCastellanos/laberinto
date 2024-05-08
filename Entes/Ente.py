@@ -33,6 +33,12 @@ class Ente(ABC):
     def esBicho(self): 
         return False
 
+    def esAura(self):
+        return False
+    
+    def esBlitz(self):
+        return False
+    
     def actua(self):
         self.modo.actua(self)
         
@@ -41,13 +47,18 @@ class Ente(ABC):
         if ente is not None:
             ente.loAtacan(self)
         
-
     def buscarEnemigo(self):
+        pass
+    
+    def buscarVigilante(self):
         pass
     
     def esAtacadoPor(self,alguien):
         self.estado.enteLoAtacan(self,alguien)
     
+    def esHeridoPor(self, alguien):
+        self.estado.enteEsHeridoPor(self, alguien)
+        
     def saMorio (self):
         pass
     
@@ -60,3 +71,4 @@ class Ente(ABC):
             self.vidas= 0
             self.muerto()
             print (self, "ha muerto")
+    
