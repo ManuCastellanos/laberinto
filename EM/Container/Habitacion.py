@@ -15,8 +15,8 @@ class Habitacion(Contenedor):
         print(alguien, "ha entrado en la habitacion-", self.num)
         alguien.posicion = self
         
-        if alguien.compañero is not None:
-            alguien.compañero.posicion = self
+        if alguien.compi is not None:
+            alguien.compi.posicion = self
             
     def caminarAleatorio(self, unEnte):
         numOr = len(self.forma.orientaciones)

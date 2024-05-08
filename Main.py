@@ -45,6 +45,11 @@ while True:
                     juego= director.getJuego()
                     juego.iniProta("Imbécil")
                     print(juego)
+                    juego.abrirPuertas()
+                    juego.personaje.irAlSur()
+                    print(juego)
+                    juego.personaje.irAlNorte()
+                    print(juego)
                     
                 elif lab == 2:
                     juego= Juego()

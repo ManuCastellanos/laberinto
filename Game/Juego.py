@@ -137,11 +137,11 @@ class Juego:
     
     def abrirPuerta(self, unaPuerta):
         if unaPuerta.esPuerta():
-            unaPuerta.abrir()
+            unaPuerta.abrir(None)
     
     def cerrarPuerta(self, unaPuerta):
         if unaPuerta.esPuerta():
-            unaPuerta.cerrar() 
+            unaPuerta.cerrar(None) 
     
     def abrirPuertas(self):
         self.laberinto.recorrer(self.abrirPuerta)
@@ -453,4 +453,4 @@ class Juego:
         for compi in self.compañeros:
             compis+=str(compi)+"\n"
             
-        return f"\n Juego:\n {self.laberinto} \nBichos:\n{bichetes} \n Protagonista: {self.personaje} \nCompis: \n{compis}" 
+        return f"\n Juego:\n {self.laberinto} \nBichos:\n{bichetes} \nProtagonista: {self.personaje} \nCompis: \n{compis}" 
