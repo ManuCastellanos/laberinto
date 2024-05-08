@@ -13,6 +13,7 @@ class Ente(ABC):
 
         
     def irA(self, unaOr):
+        print(str(unaOr))
         unaOr.caminar(self)
     
     def irAlNorte(self):
@@ -41,7 +42,10 @@ class Ente(ABC):
     
     def actua(self):
         self.modo.actua(self)
-        
+    
+    def maricon(self, personaje):
+        self.modo.maricon(self, personaje)   
+   
     def atacar(self):
         ente = self.buscarEnemigo()
         if ente is not None:

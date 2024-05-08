@@ -7,8 +7,10 @@ class Aura(ModoCompañero):
     def esAura(self):
         return True
 
-    def actuar(self, personaje):
-        personaje.vida += 2
+    def actuar(self, unCompi, personaje):
+        if personaje.compi == unCompi:
+            personaje.vidas += 2
+            print("Aura le da 2 de vida a "+str(personaje))
     
     def __str__(self) -> str:
         return "Aura"

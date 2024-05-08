@@ -7,6 +7,7 @@ from EM.Hoj.Decorator.Bomba import Bomba
 from EM.Pare.Pared import Pared
 from EM.Pare.ParedBomba import ParedBomba
 from EM.Puerta import Puerta
+from Entes.Compañero import Compañero
 from Mode.BichosM.Agresivo import Agresivo
 from Mode.BichosM.Perezoso import Perezoso
 from Orientation.Norte import Norte
@@ -164,6 +165,10 @@ class Juego:
         if isinstance(unEnte,Bicho):
             hilo = threading.Thread(target=lambda: self.hiloBicho(unEnte))
             self.agregarHilo(hilo, unEnte)
+            
+        elif isinstance(unEnte,Compañero):
+            hilo = threading.Thread(target=lambda: self.hiloCompi(unEnte))
+            self.agregarHilo(hilo, unEnte)
         hilo.start()
 
     def hiloBicho(self, unBicho):
@@ -183,7 +188,23 @@ class Juego:
     def terminarHiloBicho(self, unBicho):
         for bicho in self.bicho [:]:
            self.terminarHilo(bicho)
-           
+    
+    def hiloCompi(self, unCompi):
+        while unCompi.estaVivo():
+            unCompi.actuaC(unCompi,self.personaje) 
+    
+    def terminarHiloCompi(self, unCompi):
+        for compi in self.compañeros:
+            self.terminarHilo(compi)
+            
+    def lanzoCompis(self):
+        for compi in self.compañeros:
+            if compi in self.hilos:
+                print ("Hilo de ", compi, "en ejecución")
+            else:
+                self.lanzarHilo(compi)
+    
+    
     def terminarHilo(self, unEnte):
         unEnte.saMorio()
   

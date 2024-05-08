@@ -90,7 +90,7 @@ class LaberintoBuilder():
     
     def fabricarCompañero(self, modo, vidas, poder, posicion):
         compi = Compañero()
-        compi.modoCompañero = modo
+        compi.modo = modo
         compi.vidas = vidas
         compi.poder = poder
         compi.posicion = posicion
