@@ -1,0 +1,54 @@
+<root>
+
+  <laberinto>
+    
+    <habitacion>
+      <tipo>habitacion</tipo>
+      <num>1</num>
+      <hijos></hijos>
+    </habitacion>
+    
+    <habitacion>
+      <tipo>habitacion</tipo>
+      <num>2</num>
+      <hijos></hijos>
+    </habitacion>
+
+  </laberinto>
+  
+  <puertas>
+    
+    <puerta>
+      <num1>1</num1>
+      <direccion1>Sur</direccion1>
+      <num2>2</num2>
+      <direccion2>Norte</direccion2>
+    </puerta>
+  
+  </puertas>
+  
+  <bichos>
+    
+    <bicho>
+      <modo>agresivo</modo>
+      <hab>1</hab>
+    </bicho>
+    
+    <bicho>
+      <modo>perezoso</modo>
+      <hab>2</hab>
+    </bicho>
+  </bichos>
+  
+  <compis>
+    <compi>
+      <modo>aura</modo>
+      <hab>1</hab>
+    </compi>
+    
+    <compi>
+      <modo>blitz</modo>
+      <hab>2</hab>
+    </compi>
+  </compis>
+</root>

@@ -48,7 +48,10 @@ class Director():
             self.builder.fabricarPuertaBuilder(puerta[0], puerta[1], puerta[2], puerta[3])
             
     def verConfig(self, ruta):
-        self.director = json.load(open(ruta,'r'))
+        if ruta.endswith('.json'):
+            self.director = json.load(open(ruta,'r'))
+        else:
+            self.director = json.loads(ruta) 
         
     def procesar(self, ruta):
         self.verConfig(ruta) #Cargo el JSON

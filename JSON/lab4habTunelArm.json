@@ -16,7 +16,12 @@
     {"modo":"perezoso","hab":2},
     {"modo":"agresivo","hab":3},
     {"modo":"perezoso","hab":4}
-    ]
+    ],
+
+    "compis": [
+      { "modo": "aura", "hab": 3 },
+      { "modo": "blitz", "hab": 4}
+  ]
 
 }
   

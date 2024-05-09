@@ -1,5 +1,6 @@
 
 from colorama import Fore, Style, init
+from Adapter.Adapter import Adapter
 from EM.Container.Laberinto import Laberinto
 from Game.Juego import Juego
 from LaberintoAFactory import LaberintoAFactory 
@@ -27,7 +28,9 @@ while True:
                                     "2. Lab. 2 Habitaciones con 2 bichos y 2 bombas\n" +
                                     "3. Lab. 4 Habitaciones con 4 bichos y 2 bombas\n" +
                                     "4. Lab. 4 Habitaciones con 4 bichos, Tunel y Armario\n" +
-                                    "5. Lab. Compi \n" + Style.RESET_ALL)
+                                    "5. Lab. Compi\n" + 
+                                    "6. Lab. XML\n" + 
+                                    "7. Lab. Hijos.xml\n" + Style.RESET_ALL)
                     
                     select1 = int(select1)
                     
@@ -36,18 +39,30 @@ while True:
                     2: 'JSON/lab2hab2bichos2bombas.json',
                     3: 'JSON/lab4hab4bichos2bom.json',
                     4: 'JSON/lab4habTunelArm.json',
-                    5: 'JSON/labCompi.json'
+                    5: 'JSON/labCompi.json',
+                    6: 'XML/labCompi.xml',
+                    7: 'XML/labHijos.xml'
                     }
                     archivo=switch.get(select1, "\n\nSelecciona una opción válida\n\n")
-                    director= Director()
-
-                    director.procesar(archivo)
-                    juego= director.getJuego()
-                    juego.iniProta("Imbécil")
-                    juego.lanzoCompis()
-                    print(juego)
-                    
-                    
+   
+                    if archivo.endswith('.json'):
+                        director= Director()
+                        director.procesar(archivo)
+                        juego= director.getJuego()
+                        juego.iniProta("Imbécil")
+                        print(juego)
+                        
+                    elif archivo.endswith('.xml'):
+                        director= Director()
+                        adapter= Adapter(archivo)
+                        director.procesar(adapter.get_json())
+                        juego= director.getJuego()
+                        juego.iniProta("Imbécil")
+                        print(adapter.get_json())
+                        print(juego)
+                    else:
+                        print("Archivo no válido")
+                        
                 elif lab == 2:
                     juego= Juego()
                     af= LaberintoAFactory()
