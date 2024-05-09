@@ -1,5 +1,6 @@
 import copy
 import threading
+from EM.Container.Cornucopia import Cornucopia
 from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
 from EM.Container.Laberinto import Laberinto
@@ -8,6 +9,8 @@ from EM.Pare.Pared import Pared
 from EM.Pare.ParedBomba import ParedBomba
 from EM.Puerta import Puerta
 from Entes.Compañero import Compañero
+from Items.Agua import Agua
+from Items.Comida import Comida
 from Mode.BichosM.Agresivo import Agresivo
 from Mode.BichosM.Perezoso import Perezoso
 from Orientation.Norte import Norte
@@ -104,8 +107,33 @@ class Juego:
     def fabricarForma(self):
         return Cuadrado()
     
-    #Gestion de Bichos    
+    def fabricarComida(self):
+        return Comida()
+    
+    def fabricarAgua(self):
+        return Agua()
+    
+    def fabricarCornucopia(self, unCont):
+        corn= Cornucopia(unCont.num)
+        corn.forma= self.fabricarForma()
         
+        corn.agregarOrientacion(self.fabricarNorte())
+        corn.agregarOrientacion(self.fabricarEste())
+        corn.agregarOrientacion(self.fabricarSur())
+        corn.agregarOrientacion(self.fabricarOeste())
+        
+        corn.forma.ponerElemento(self.fabricarNorte(), self.fabricarPared())
+        corn.forma.ponerElemento(self.fabricarEste(), self.fabricarPared())
+        corn.forma.ponerElemento(self.fabricarSur(), self.fabricarPared())
+        corn.forma.ponerElemento(self.fabricarOeste(), self.fabricarPared())
+        
+        corn.items = [self.fabricarComida(), self.fabricarAgua()]
+        
+        unCont.agregarHijo(corn)
+        
+        return corn
+    
+    #Gestion de Bichos        
     def agregarBicho(self, unBicho):
         self.bichos.append(unBicho)
         unBicho.juego = self

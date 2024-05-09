@@ -1,5 +1,6 @@
 from Bridge.Cuadrado import Cuadrado
 from EM.Container.Armario import Armario
+from EM.Container.Cornucopia import Cornucopia
 from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
 from EM.Container.Laberinto import Laberinto
@@ -9,6 +10,8 @@ from EM.Pare.ParedBomba import ParedBomba
 from EM.Puerta import Puerta
 from Entes.Compañero import Compañero
 from Game.Juego import Juego
+from Items.Agua import Agua
+from Items.Comida import Comida
 from Mode.BichosM.Agresivo import Agresivo
 from Mode.BichosM.Perezoso import Perezoso
 from Mode.CompañeroM.Aura import Aura
@@ -167,3 +170,32 @@ class LaberintoBuilder():
     def fabricarTunelCont(self, unContenedor):
         unContenedor.agregarHijo(self.fabricarTunel())
 
+    def fabricarComida(self):
+        return Comida()
+    
+    def fabricarAgua(self):
+        return Agua()
+    
+    def fabricarCornucopiaEn(self, unCont):
+        corn= Cornucopia(unCont.num)
+        corn.forma= self.fabricarForma()
+        
+        corn.agregarOrientacion(self.fabricarNorte())
+        corn.agregarOrientacion(self.fabricarEste())
+        corn.agregarOrientacion(self.fabricarSur())
+        corn.agregarOrientacion(self.fabricarOeste())
+        
+        corn.forma.ponerElemento(self.fabricarNorte(), self.fabricarPared())
+        corn.forma.ponerElemento(self.fabricarEste(), self.fabricarPared())
+        corn.forma.ponerElemento(self.fabricarSur(), self.fabricarPared())
+        corn.forma.ponerElemento(self.fabricarOeste(), self.fabricarPared())
+        
+        puertaCorn = self.fabricarPuerta(corn, unCont)
+        corn.forma.ponerElemento(self.fabricarOeste(), puertaCorn)
+
+        corn.agregarItem(self.fabricarComida())
+        corn.agregarItem(self.fabricarAgua())
+        
+        unCont.agregarHijo(corn)
+        
+        return corn

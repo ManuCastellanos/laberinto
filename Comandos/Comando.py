@@ -10,3 +10,6 @@ class Comando():
     
     def esCerrar(self):
         return False
+    
+    def esUsar(self):
+        return False

@@ -11,11 +11,10 @@ class Puerta(ElementoMapa):
         self.lado2 = lado2
         self.abierta = False
         self.pasada= False
-        self.agregarComando(Abrir(),self)
-        self.agregarComando(Cerrar(),self)
+        self.agregarComando(Abrir(), self)
                 
     def __str__(self):
-        return "Puerta de hab" + str(self.lado1.num) + " a hab" + str(self.lado2.num) + " abierta: " + str(self.abierta)
+        return "Puerta de hab" + str(self.lado1.num) + " a hab" + str(self.lado2.num) + " acciones: " + str(self.strComandos())
 
     def entrar(self,alguien):
         if self.abierta:
@@ -35,10 +34,21 @@ class Puerta(ElementoMapa):
         self.abierta = True
         print("Puerta abierta por", alguien)
 
+        for comando in self.comandos:
+            if comando.esAbrir():
+                self.quitarComando(comando)
+                self.agregarComando(Cerrar(), self)
+
     def cerrar(self, alguien):
         self.abierta = False
         print("Puerta cerrada", alguien)
-    
+
+        for comando in self.comandos:
+            if comando.esCerrar():
+                self.quitarComando(comando)
+                self.agregarComando(Abrir(), self)
+                
+        
     #testing
     def esPuerta (self):
         return True

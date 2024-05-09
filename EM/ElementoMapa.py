@@ -47,3 +47,9 @@ class ElementoMapa():
     
     def cerrar(self,alguien):
         pass
+    
+    def strComandos(self):
+        salida = ""
+        for comando in self.comandos:
+            salida += comando.__str__() + "\n"
+        return salida

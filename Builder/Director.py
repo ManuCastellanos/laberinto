@@ -34,7 +34,9 @@ class Director():
         elif laberinto['tipo'] == 'tunel':
             obj=self.builder.fabricarTunelCont(root)
         elif laberinto['tipo'] == 'armario':
-            obj=self.builder.fabricarArmarioEn(root)        
+            obj=self.builder.fabricarArmarioEn(root)
+        elif laberinto['tipo'] == 'cornucopia':
+            obj=self.builder.fabricarCornucopiaEn(root)        
         hijos = laberinto.get('hijos', [])
         for hijo in hijos:
             self.crearLaberintoRecursivo(hijo, obj)
