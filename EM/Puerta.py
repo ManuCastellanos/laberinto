@@ -24,9 +24,10 @@ class Puerta(ElementoMapa):
             else:
                 self.lado1.entrar(alguien)
                 alguien.posicion = self.lado1    
-                
-            if alguien.compi is not None:
-                alguien.compi.posicion = alguien.posicion    
+            
+            if not alguien.esBicho():
+                if alguien.compi is not None:
+                    alguien.compi.posicion = alguien.posicion    
         else:
             print(str(alguien)+" HA PEGADO UN PORTAZO")
     

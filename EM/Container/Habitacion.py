@@ -1,6 +1,7 @@
 import random
 
 from EM.Container.Contenedor import Contenedor
+from Entes.Bicho import Bicho
 
 
 class Habitacion(Contenedor):
@@ -15,12 +16,13 @@ class Habitacion(Contenedor):
         print(alguien, "ha entrado en la habitacion-", self.num)
         alguien.posicion = self
         
-        if alguien.compi is not None:
-            alguien.compi.posicion = self
-        else:
-            alguien.compi=alguien.juego.buscarCompiEn(alguien.posicion)
+        if not alguien.esBicho():
             if alguien.compi is not None:
                 alguien.compi.posicion = self
+            else:
+                alguien.compi=alguien.juego.buscarCompiEn(alguien.posicion)
+                if alguien.compi is not None:
+                    alguien.compi.posicion = self
             
     def caminarAleatorio(self, unEnte):
         numOr = len(self.forma.orientaciones)

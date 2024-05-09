@@ -53,6 +53,9 @@ while True:
                         juego.abrirPuertas()
                         juego.laberinto.hijos[0].forma.sur.entrar(juego.personaje)
                         juego.laberinto.hijos[1].forma.sur.entrar(juego.personaje)
+                        juego.lanzoBichos()
+                        juego.lanzoCompis()
+                        
                         print(juego)
                         # juego.laberinto.hijos[2].forma.sur.entrar(juego.personaje)
                         # juego.laberinto.hijos[3].hijos[0].forma.oeste.entrar(juego.personaje)
