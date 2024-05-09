@@ -17,6 +17,10 @@ class Habitacion(Contenedor):
         
         if alguien.compi is not None:
             alguien.compi.posicion = self
+        else:
+            alguien.compi=alguien.juego.buscarCompiEn(alguien.posicion)
+            if alguien.compi is not None:
+                alguien.compi.posicion = self
             
     def caminarAleatorio(self, unEnte):
         numOr = len(self.forma.orientaciones)

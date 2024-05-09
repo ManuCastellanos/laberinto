@@ -53,18 +53,19 @@ while True:
                         juego.abrirPuertas()
                         juego.laberinto.hijos[0].forma.sur.entrar(juego.personaje)
                         juego.laberinto.hijos[1].forma.sur.entrar(juego.personaje)
-                        juego.laberinto.hijos[2].forma.sur.entrar(juego.personaje)
-                        juego.laberinto.hijos[3].hijos[0].forma.oeste.entrar(juego.personaje)
+                        print(juego)
+                        # juego.laberinto.hijos[2].forma.sur.entrar(juego.personaje)
+                        # juego.laberinto.hijos[3].hijos[0].forma.oeste.entrar(juego.personaje)
                         
-                        print(juego.laberinto.hijos[3].hijos[0].items[0])
-                        print(juego.laberinto.hijos[3].hijos[0].items[1])
+                        # print(juego.laberinto.hijos[3].hijos[0].items[0])
+                        # print(juego.laberinto.hijos[3].hijos[0].items[1])
                         
-                        juego.laberinto.hijos[3].hijos[0].items[0].comandos[0].ejecutar(juego.personaje)
-                        juego.laberinto.hijos[3].hijos[0].items[0].comandos[0].ejecutar(juego.personaje)
+                        # juego.laberinto.hijos[3].hijos[0].items[0].comandos[0].ejecutar(juego.personaje)
+                        # juego.laberinto.hijos[3].hijos[0].items[0].comandos[0].ejecutar(juego.personaje)
 
-                        juego.personaje.inventario.verInventario()
+                        # juego.personaje.inventario.verInventario()
                         
-                        juego.personaje.inventario.soltarItem(juego.personaje.inventario.items[0], juego.personaje)
+                        # juego.personaje.inventario.soltarItem(juego.personaje.inventario.items[0], juego.personaje)
                         
                     elif archivo.endswith('.xml'):
                         director= Director()
