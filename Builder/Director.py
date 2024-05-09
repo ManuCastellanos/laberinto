@@ -51,7 +51,9 @@ class Director():
             
     def verConfig(self, ruta):
         if ruta.endswith('.json'):
-            self.director = json.load(open(ruta,'r'))
+            with open(ruta,'r') as file:
+                self.director = json.load(file)
+
         else:
             self.director = json.loads(ruta) 
         

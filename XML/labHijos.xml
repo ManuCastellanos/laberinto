@@ -28,7 +28,7 @@
       <habitacion>
         <tipo>habitacion</tipo>
         <num>4</num>
-        <hijos></hijos>
+        <hijos>cornucopia</hijos>
       </habitacion>
     
     </laberinto>
@@ -36,9 +36,9 @@
     <puertas>
       <puerta>
         <num1>1</num1>
-        <direccion1>Sur</direccion1>
+        <direccion1>Oeste</direccion1>
         <num2>2</num2>
-        <direccion2>Norte</direccion2>
+        <direccion2>Este</direccion2>
       </puerta>
       
       <puerta>
@@ -50,10 +50,18 @@
       
       <puerta>
         <num1>3</num1>
-        <direccion1>Sur</direccion1>
+        <direccion1>Este</direccion1>
         <num2>4</num2>
-        <direccion2>Norte</direccion2>
+        <direccion2>Oeste</direccion2>
       </puerta>
+
+      <puerta>
+        <num1>4</num1>
+        <direccion1>Norte</direccion1>
+        <num2>1</num2>
+        <direccion2>Sur</direccion2>
+      </puerta>
+
     </puertas>
     
     <bichos>

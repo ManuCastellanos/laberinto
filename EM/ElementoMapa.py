@@ -51,5 +51,5 @@ class ElementoMapa():
     def strComandos(self):
         salida = ""
         for comando in self.comandos:
-            salida += comando.__str__() + "\n"
+            salida += comando.__str__()
         return salida

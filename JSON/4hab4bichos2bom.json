@@ -1,0 +1,26 @@
+{
+    "laberinto": [
+      { "tipo": "habitacion", "num": 1, "hijos": [{ "tipo": "bomba" }] },
+      { "tipo": "habitacion", "num": 2, "hijos": [{ "tipo": "Cornucopia" }] },
+      { "tipo": "habitacion", "num": 3, "hijos": [{ "tipo": "bomba"}]},
+      { "tipo": "habitacion", "num": 4, "hijos": [{ "tipo": "Cornucopia"}] }
+      
+    ],
+    "puertas": [[1, "Oeste", 2, "Este"],
+    [2, "Norte", 3, "Sur"],
+    [3, "Este", 4, "Oeste"],
+    [4, "Norte", 1, "Sur"]
+    ],
+    
+    "bichos": [
+    {"modo":"agresivo","hab":1},
+    {"modo":"perezoso","hab":2},
+    {"modo":"agresivo","hab":3},
+    {"modo":"perezoso","hab":4}
+    ]
+    ,
+  
+    "compis": []
+  
+}
+  

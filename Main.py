@@ -24,22 +24,22 @@ while True:
                 lab = int(lab)
                 if lab == 1: 
                     select1 = input(Fore.LIGHTGREEN_EX + "¿A qué Laberinto quieres jugar?\n" + Style.RESET_ALL +
-                                    "1. Lab. 2 Habitaciones con 2 bichos \n" +
-                                    "2. Lab. 2 Habitaciones con 2 bichos y 2 bombas\n" +
-                                    "3. Lab. 4 Habitaciones con 4 bichos y 2 bombas\n" +
-                                    "4. Lab. 4 Habitaciones con 4 bichos, Tunel y Armario\n" +
-                                    "5. Lab. Compi\n" + 
+                                    "1. 2 Habitaciones con 2 bichos \n" +
+                                    "2. 2 Habitaciones con 2 bichos y 2 bombas\n" +
+                                    "3. 4 Habitaciones con 4 bichos y 2 cornucopias\n" +
+                                    "4. 2 Habitaciones con 2 bichos y 2 compis\n" +
+                                    "5. Laberinto completo\n" + 
                                     "6. Lab. XML\n" + 
                                     "7. Lab. Hijos.xml\n" + Style.RESET_ALL)
                     
                     select1 = int(select1)
                     
-                    switch = {
-                    1: 'JSON/lab2hab2bichos.json',
-                    2: 'JSON/lab2hab2bichos2bombas.json',
-                    3: 'JSON/lab4hab4bichos2bom.json',
-                    4: 'JSON/lab4habTunelArm.json',
-                    5: 'JSON/labCompi.json',
+                    switch = { 
+                    1: 'JSON/2hab2bichos.json',
+                    2: 'JSON/2hab2bichos2bombas.json',
+                    3: 'JSON/4hab4bichos2bom.json',
+                    4: 'JSON/labCompi.json',
+                    5: 'JSON/labcompleto.json',
                     6: 'XML/labCompi.xml',
                     7: 'XML/labHijos.xml'
                     }
@@ -50,11 +50,9 @@ while True:
                         director.procesar(archivo)
                         juego= director.getJuego()
                         juego.iniProta("Imbécil")
-                        juego.abrirPuertas()
-                        juego.laberinto.hijos[0].forma.sur.entrar(juego.personaje)
-                        juego.laberinto.hijos[1].forma.sur.entrar(juego.personaje)
-                        juego.lanzoBichos()
-                        juego.lanzoCompis()
+                        print(juego.bichos[0].modo)
+                        #juego.laberinto.hijos[0].forma.sur.entrar(juego.personaje)
+                        #juego.laberinto.hijos[1].forma.sur.entrar(juego.personaje)
                         
                         print(juego)
                         # juego.laberinto.hijos[2].forma.sur.entrar(juego.personaje)
@@ -76,7 +74,6 @@ while True:
                         director.procesar(adapter.get_json())
                         juego= director.getJuego()
                         juego.iniProta("Imbécil")
-                        print(adapter.get_json())
                         print(juego)
                     else:
                         print("Archivo no válido")

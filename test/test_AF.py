@@ -25,29 +25,29 @@ class TestJuego(unittest.TestCase):
         hab4= laberinto.hijos[3]
         
         # Asserts de las paredes 
-        self.assertEqual(hab1.sur.esPuerta(),True)
-        self.assertEqual(hab1.este.esPuerta(), True)
+        self.assertEqual(hab1.forma.sur.esPuerta(),True)
+        self.assertEqual(hab1.forma.este.esPuerta(), True)
         
-        self.assertEqual(hab2.este.esPuerta(), True)
-        self.assertEqual(hab2.norte.esPuerta(), True)
+        self.assertEqual(hab2.forma.este.esPuerta(), True)
+        self.assertEqual(hab2.forma.norte.esPuerta(), True)
         
-        self.assertEqual(hab3.oeste.esPuerta(), True)
-        self.assertEqual(hab3.sur.esPuerta(), True)
+        self.assertEqual(hab3.forma.oeste.esPuerta(), True)
+        self.assertEqual(hab3.forma.sur.esPuerta(), True)
         
-        self.assertEqual(hab4.norte.esPuerta(), True)
-        self.assertEqual(hab4.oeste.esPuerta(), True)
+        self.assertEqual(hab4.forma.norte.esPuerta(), True)
+        self.assertEqual(hab4.forma.oeste.esPuerta(), True)
         
         # Asserts de las paredes
-        self.assertTrue(hab1.oeste.esPared())
-        self.assertTrue(hab2.oeste.esPared())
-        self.assertTrue(hab3.norte.esPared())
-        self.assertTrue(hab4.este.esPared())
+        self.assertTrue(hab1.forma.oeste.esPared())
+        self.assertTrue(hab2.forma.oeste.esPared())
+        self.assertTrue(hab3.forma.norte.esPared())
+        self.assertTrue(hab4.forma.este.esPared())
 
         # Asserts de las bombas
-        self.assertTrue(hab1.norte.esParedBomba())
-        self.assertTrue(hab2.sur.esParedBomba())
-        self.assertTrue(hab3.este.esParedBomba())
-        self.assertTrue(hab4.sur.esParedBomba())
+        self.assertTrue(hab1.forma.norte.esParedBomba())
+        self.assertTrue(hab2.forma.sur.esParedBomba())
+        self.assertTrue(hab3.forma.este.esParedBomba())
+        self.assertTrue(hab4.forma.sur.esParedBomba())
 
         # Asserts de los bichos
         self.assertEqual(len(juego.bichos), 4)
