@@ -37,7 +37,7 @@ El patrón Builder separa la construcción de un objeto complejo de su represent
 El patrón Proxy proporciona un sustituto o representante de otro objeto para controlar el acceso a él. Esto es útil cuando la creación de un objeto es costosa en términos de tiempo o recursos y quieres retrasar esta creación hasta que sea realmente necesario. Implementado en el archivo [`Proxy.py`](./path/to/Proxy.py).
 
 ### Adapter
-El patrón Adapter convierte la interfaz de una clase en otra interfaz que los clientes esperan. Permite que las clases trabajen juntas que de otra manera no podrían debido a interfaces incompatibles. Implementado en el archivo [`Adapter.py`](./path/to/Adapter.py).
+El patrón Adapter convierte la interfaz de una clase en otra interfaz que los clientes esperan. Permite que las clases trabajen juntas que de otra manera no podrían debido a interfaces incompatibles. Implementado en el archivo [`Adapter.py`](Adapter\Adapter.py).
 
 ### Mediator
 

@@ -67,6 +67,7 @@ while True:
                     juego= Juego()
                     af= LaberintoAFactory()
                     juego.fabricarLaberinto4Hab4Bomb4BichosAF(af)
+                    juego.iniProta("Imbécil")
                     print(juego)
                 
                 elif lab == 3:
