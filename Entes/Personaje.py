@@ -1,6 +1,7 @@
+from colorama import Fore, Style, init
 from Entes.Ente import Ente
 from Items.Inventario import Inventario
-import State.Muerto as Muerto
+from State.Muerto import Muerto
 
 class Personaje(Ente):
     def __init__(self, nombre):
@@ -31,15 +32,13 @@ class Personaje(Ente):
         return self.estado.estaVivo()
     
     def saMorio(self):
+        init()
         self.estado = Muerto()
-        print (self, "la ha roscao.")
+        print (Fore.RED + str(self), "la ha roscao." + Style.RESET_ALL)
         self.juego.personajeMuerto(self)
     
     def buscarEnemigo(self):
         return self.juego.buscarBicho()
     
     def __str__(self):
-        if self.compi is not None:
-            return str(self.nombre) + " en " +  str(self.posicion.num) + " tiene " + str(self.compi) + " y " + str(self.inventario)
-        else:
-            return str(self.nombre) + " en " +  str(self.posicion.num)
+        return str(self.nombre) + " en " +  str(self.posicion.num)

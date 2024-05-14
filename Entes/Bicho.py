@@ -1,3 +1,4 @@
+from colorama import Fore, Style, init
 from Entes.Ente import Ente 
 from State.Muerto import Muerto
 
@@ -7,6 +8,9 @@ class Bicho(Ente):
         super().__init__()
 
     def esBicho(self):
+        return True
+    
+    def esEnemigo(self):
         return True
     
     def esPerezoso(self):
@@ -19,14 +23,15 @@ class Bicho(Ente):
         self.modo.actua(self)
     
     def buscarEnemigo(self):
-        self.juego.buscarPersonaje(self)
+        return self.juego.buscarPersonaje(self)
     
     def estaVivo(self):
         return self.estado.estaVivo()
     
     def saMorio(self):
+        init()
         self.estado = Muerto()
-        print (self, "la ha roscao.")
+        print (Fore.RED+str(self), "la ha roscao."+ Style.RESET_ALL)
         self.juego.bichoMuerto(self)
     
     def puedeActuar(self):
@@ -35,8 +40,6 @@ class Bicho(Ente):
     def restarVida(self):
         self.vidas -= 1
         
-    def atacar(self):
-        self.juego.buscarPersonaje(self.posicion)
     
     # Metodos Caminar
     def caminarAleatorio(self):

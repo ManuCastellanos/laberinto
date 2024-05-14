@@ -81,8 +81,10 @@ while True:
                     break
                 
                 activada= False
-                abierta= False
-                
+                abierta1= False
+                abierta2= False
+                abierta3= False
+                abierta4= False
                 #Mi juego siempre va a tener un personaje
                 prota = Personaje(input("Introduce el nombre del personaje: ")) 
                 juego.iniProta(prota)
@@ -97,7 +99,7 @@ while True:
                                                   "3." +Fore.LIGHTWHITE_EX+"Lanzar Hilos\n" + Fore.LIGHTGREEN_EX+
                                                   "4." +Fore.LIGHTWHITE_EX+"Terminar Hilos\n"+Fore.LIGHTGREEN_EX+
                                                   "5." +Fore.LIGHTWHITE_EX+"Entrar en tunel\n"+Fore.LIGHTGREEN_EX+
-                                                  "6." +Fore.LIGHTWHITE_EX+"Abrir Puerta "+Fore.LIGHTGREEN_EX+ 
+                                                  "6." +Fore.LIGHTWHITE_EX+"Abrir Puerta "+Fore.LIGHTGREEN_EX+ str(juego.laberinto.hijos[0].obtenerComandos(juego.personaje)) + "\n" +
                                                   "7." +Fore.LIGHTWHITE_EX+"Cerrar Puerta\n"+Fore.LIGHTGREEN_EX+
                                                   "8." +Fore.LIGHTWHITE_EX+"Mover personaje\n"+Fore.LIGHTGREEN_EX+
                                                   "9." +Fore.LIGHTWHITE_EX+"Entrar a la cornucopia\n"+Fore.LIGHTGREEN_EX+
@@ -122,32 +124,134 @@ while True:
                             elif (num== 2):
                                 if abierta:
                                     juego.cerrarPuertas()
-                                    abierta= False
+                                    abierta1= False
+                                    abierta2= False
+                                    abierta3= False
+                                    abierta4= False
                                 else:
                                     juego.abrirPuertas()
-                                    abierta= True
-
+                                    abierta1= True
+                                    abierta2= True
+                                    abierta3= True
+                                    abierta4= True
+                                    
                             elif (num== 3):
-                                pass
+                                while True:
+                                    if len(juego.bichos) == 0:
+                                        print("No hay bichos")
+                                        if len(juego.compañeros) > 0:
+                                            juego.lanzoCompis()
+                                        break
+                                    elif len(juego.compañeros) == 0:
+                                        print("No hay compañeros")
+                                        if len(juego.bichos) > 0:
+                                            juego.lanzoBichos()
+                                        break
+                                    else:
+                                        juego.lanzoBichos()
+                                        juego.lanzoCompis()
+                                        print("HILOS DE BICHOS Y COMPIS OPERATIVOS")
+                                        break
+                            
                             elif (num==4):
-                                pass
-                            elif (num==8):
-                                print("¿A donde quieres mover a ",juego.personaje.nombre,'?')
-                                print("El personaje esta en la habitacion: ",juego.personaje.posicion)
+                                juego.finJuego()
+                                print("Se acabó la fiesta de los hilos")
                                 
-                                direccion = input("W. Norte\nS. Sur\nD. Este\nA. Oeste\n")
-                                if direccion == 'W' or direccion == 'w':
+                            elif(num==5):
+                                pass
+                            
+                            elif(num==6):
+                                if abierta1 == False or abierta2 == False or abierta3 == False or abierta4 == False:
+                                    print("¿Qué puerta vas a abrir",juego.personaje.nombre,'?')
+                                    print("Estan en la habitación: \n",juego.personaje.posicion)
+    
+                                    puerta = input("1. Puerta Norte\n2. Puerta Sur\n3. Puerta Este\n4. Puerta Oeste\n")
+                                    puerta = int(puerta)
+                                    if puerta == 1 and abierta1 == False:
+                                        if juego.personaje.posicion.forma.norte.esPuerta():
+                                            juego.personaje.posicion.forma.norte.comandos[0].ejecutar(juego.personaje)
+                                            abierta1= True
+                                        else:
+                                            print("No hay puerta en esa dirección")
+                                    elif puerta == 2 and abierta2 == False:
+                                        if juego.personaje.posicion.forma.sur.esPuerta():
+                                            juego.personaje.posicion.forma.sur.comandos[0].ejecutar(juego.personaje)
+                                            abierta2= True
+                                        else:
+                                            print("No hay puerta en esa dirección")
+
+                                    elif puerta == 3 and abierta3 == False:
+                                        if juego.personaje.posicion.forma.este.esPuerta():
+                                            juego.personaje.posicion.forma.este.comandos[0].ejecutar(juego.personaje)
+                                            abierta3= True
+                                        else:
+                                            print("No hay puerta en esa dirección")                        
+                                    elif puerta == 4 and abierta4 == False:
+                                        if juego.personaje.posicion.forma.oeste.esPuerta():
+                                            juego.personaje.posicion.forma.oeste.comandos[0].ejecutar(juego.personaje)
+                                            abierta4= True
+                                        else:
+                                            print("No hay puerta en esa dirección")
+                                    else:
+                                        print("\n\nOpción no válida.\n\n")
+                                else:
+                                    print("Están todas las puertas cerradas")
+                                    
+                            elif(num==7):
+                                if abierta1 == True or abierta2 == True or abierta3 == True or abierta4 == True:
+                                
+                                    print("¿Qué puerta vas a cerrar",juego.personaje.nombre,'?')
+                                    print("Estan en la habitación: \n",juego.personaje.posicion)
+ 
+                                    puerta = input("1. Puerta Norte\n2. Puerta Sur\n3. Puerta Este\n4. Puerta Oeste\n")
+                                    puerta = int(puerta)
+                                    if puerta == 1 and abierta1 == True:
+                                        if juego.personaje.posicion.forma.norte.esPuerta():
+                                            juego.personaje.posicion.forma.norte.comandos[0].ejecutar(juego.personaje)
+                                            abierta= False
+                                        else:
+                                            print("No hay puerta en esa dirección")
+                                    elif puerta == 2 and abierta2 == True:
+                                        if juego.personaje.posicion.forma.sur.esPuerta():
+                                            juego.personaje.posicion.forma.sur.comandos[0].ejecutar(juego.personaje)
+                                            abierta= False
+                                        else:
+                                            print("No hay puerta en esa dirección")
+                                
+                                    elif puerta == 3 and abierta3 == True:
+                                        if juego.personaje.posicion.forma.este.esPuerta():
+                                            juego.personaje.posicion.forma.este.comandos[0].ejecutar(juego.personaje)
+                                            abierta= False
+                                        else:
+                                            print("No hay puerta en esa dirección")                        
+                                    elif puerta == 4 and abierta4 == True:
+                                        if juego.personaje.posicion.forma.oeste.esPuerta():
+                                            juego.personaje.posicion.forma.oeste.comandos[0].ejecutar(juego.personaje)
+                                            abierta= False
+                                        else:
+                                            print("No hay puerta en esa dirección")
+                                    else:
+                                        print("\n\nOpción no válida.\n\n")        
+                                else:
+                                    print("Están todas las puertas abiertas")
+                                    
+                            elif (num==8):
+                                print("¿A donde quieres ir ",juego.personaje.nombre,'?')
+                                print("Estás en la habitación: ",juego.personaje.posicion)
+                                
+                                direccion = input("N. Norte\nS. Sur\nE. Este\nO. Oeste\n")
+                                if direccion == 'N' or direccion == 'n':
                                     juego.personaje.irAlNorte()
                                 elif direccion == 'S' or direccion == 's':
                                     juego.personaje.irAlSur()
-                                elif direccion == 'D' or direccion == 'd':
+                                elif direccion == 'E' or direccion == 'e':
                                     juego.personaje.irAlEste()
-                                elif direccion == 'A' or direccion == 'a':
+                                elif direccion == 'O' or direccion == 'o':
                                      juego.personaje.irAlOeste()
                                 else:
-                                    print("\n\nOpción no válida.\n\n")
+                                    print(Fore.RED +"\n\nOpción no válida.\n\n")
                         except ValueError:
-                            print(Fore.RED + "No es un número válido, intenta de nuevo\n")    
+                            print(Fore.RED + "No es un número válido, intenta de nuevo\n"+Style.RESET_ALL)    
         
         elif select == 2:
             print("Interfaz Gráfica por implementar")

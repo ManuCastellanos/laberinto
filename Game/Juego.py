@@ -2,6 +2,7 @@ import copy
 import threading
 
 from colorama import init
+from Comandos.Abrir import Abrir
 from EM.Container.Cornucopia import Cornucopia
 from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
@@ -108,6 +109,7 @@ class Juego:
     
     def fabricarPuerta(self, unaHab, otraHab):
         puerta = Puerta(unaHab, otraHab)
+        puerta.agregarComando(Abrir(),puerta)
         return puerta
     
     def fabricarForma(self):
@@ -249,8 +251,18 @@ class Juego:
             if self.personaje.estaVivo():
                 self.finJuego()
                 print("HA GANADO " + str(self.personaje.nombre))
-            self.finJuego()
+            else:   
+             self.finJuego()
     
+    def personajeMuerto(self,unProta):
+        print("TE ACABAN DE MATAR " + str(self.personaje.nombre))
+        cadena=""
+        for bicho in self.bichos:
+            cadena+=str(bicho)+"\n"
+        
+        print("HAN GANADO LOS BICHOS: \n"+cadena)
+        self.finJuego()
+        
     def finJuego(self):
         self.fase= Final()
         self.terminarHiloBicho()
@@ -260,11 +272,10 @@ class Juego:
     ## ********* BUSCAR *********
     
     def buscarPersonaje(self,unBicho):
-        if self.personaje is not None:
-            pos = self.personaje.posicion
+        pos = self.personaje.posicion
             
-            if unBicho.posicion == pos:
-                return self.personaje
+        if unBicho.posicion == pos:
+            return self.personaje
         
         return None
     
@@ -274,9 +285,16 @@ class Juego:
             if bicho.posicion == pos:
                 return bicho
     
+    def buscarCompi(self):
+        pos= self.personaje.posicion
+        for compi in self.compañeros:
+            if compi.posicion == pos:
+                return compi
+            
     def buscarCompiEn(self, unaHab):
         for compi in self.compañeros:
             if compi.posicion == unaHab:
+                print( self.personaje.nombre + " tiene a " + compi.__str__())
                 return compi
         return None
     

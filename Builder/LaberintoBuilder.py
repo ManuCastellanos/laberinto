@@ -1,4 +1,5 @@
 from Bridge.Cuadrado import Cuadrado
+from Comandos.Abrir import Abrir
 from EM.Container.Armario import Armario
 from EM.Container.Cornucopia import Cornucopia
 from Entes.Bicho import Bicho
@@ -54,7 +55,9 @@ class LaberintoBuilder():
         return ParedBomba()
     
     def fabricarPuerta(self, habitacion1, habitacion2):
-        return Puerta(habitacion1, habitacion2)
+        puerta= Puerta(habitacion1, habitacion2)
+        puerta.agregarComando(Abrir(),puerta)
+        return puerta
     
     def fabricarPuertaBuilder(self, hab1, unaOr, hab2, otraOr):
         hab1= self.laberinto.obtenerHabitacion(hab1)
@@ -104,7 +107,7 @@ class LaberintoBuilder():
         return compi
     
     def fabricarCompiBlitz(self,hab):
-        compi= self.fabricarCompañero(self.fabricarBlitz(), 5, 2, self.laberinto.obtenerHabitacion(hab))
+        compi= self.fabricarCompañero(self.fabricarBlitz(), 8, 2, self.laberinto.obtenerHabitacion(hab))
         return compi
     
     def fabricarBicho(self, modo, vidas, poder, posicion):
@@ -116,11 +119,11 @@ class LaberintoBuilder():
         return bicho
     
     def fabricarBichoAgresivo(self, unaHab):
-        bicho = self.fabricarBicho(self.fabricarModoAgresivo(), 5, 2, self.laberinto.obtenerHabitacion(unaHab))
+        bicho = self.fabricarBicho(self.fabricarModoAgresivo(), 10, 3, self.laberinto.obtenerHabitacion(unaHab))
         return bicho
     
     def fabricarBichoPerezoso(self, unaHab):
-        bicho = self.fabricarBicho(self.fabricarModoPerezoso(), 2, 0, self.laberinto.obtenerHabitacion(unaHab))
+        bicho = self.fabricarBicho(self.fabricarModoPerezoso(), 8, 2, self.laberinto.obtenerHabitacion(unaHab))
         return bicho
     
     def fabricarForma(self):

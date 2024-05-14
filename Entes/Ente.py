@@ -10,7 +10,7 @@ class Ente(ABC):
         self.posicion = None
         self.juego= None
         self.estado= Vivo()
-
+        self.compi= None
         
     def irA(self, unaOr):
         unaOr.caminar(self)
@@ -64,6 +64,17 @@ class Ente(ABC):
     
     def loPuedenAtacar(self,alguien):
         print (alguien, "se quiere cargar a", self)
+        
+        if self.compi is not None:
+            self.compi.vidas -= int(alguien.poder)
+            if self.compi.vidas <= 0:
+                self.compi.vidas= 0
+                self.compi.saMorio()
+                self.juego.compañeros.remove(self.compi)
+                self.compi= None
+            else:
+                print (self.compi, "tiene ", self.compi.vidas, " vidas")
+
         self.vidas -= int(alguien.poder)
         
         if self.vidas <= 0:

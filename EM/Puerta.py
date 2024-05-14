@@ -11,7 +11,6 @@ class Puerta(ElementoMapa):
         self.lado2 = lado2
         self.abierta = False
         self.pasada= False
-        self.agregarComando(Abrir(), self)
                 
     def __str__(self):
         return "Puerta de hab" + str(self.lado1.num) + " a hab" + str(self.lado2.num) + " acciones: " + str(self.strComandos())

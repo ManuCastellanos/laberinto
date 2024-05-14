@@ -1,4 +1,5 @@
 
+from colorama import Fore, Style, init
 from Entes.Ente import Ente
 from State.Muerto import Muerto
 
@@ -7,7 +8,7 @@ class Compañero(Ente):
     def __init__(self):
         super().__init__()
         self.modo = None
-        
+    
     def esCompañero(self):
         return True
     
@@ -21,11 +22,16 @@ class Compañero(Ente):
         return self.estado.estaVivo()
     
     def saMorio(self):
+        init()
         self.estado= Muerto()
-        print(str(self)+' estiró el ala')
+        print(Fore.RED+str(self)+' estiró el ala'+Style.RESET_ALL)
+        
     
     def puedeAction(self, personaje):
         return self.modo.action(self,personaje)
+    
+    def buscarEnemigo(self):
+        return self.juego.buscarBicho()
     
     def quitarVida(self, daño):
         self.vida-= daño
@@ -40,5 +46,4 @@ class Compañero(Ente):
         return self.modo.esBlitz()
     
     def __str__(self):
-        return "Compañero "+str(self.modo)+ " en "+str(self.posicion.num)
-    
+        return "Compañero "+str(self.modo)

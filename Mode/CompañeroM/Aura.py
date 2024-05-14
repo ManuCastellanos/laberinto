@@ -9,8 +9,8 @@ class Aura(ModoCompañero):
 
     def actuar(self, unCompi, personaje):
         if personaje.compi == unCompi:
-            personaje.vidas += 2
-            print("Aura le da 2 de vida a "+str(personaje))
+            personaje.vidas += 1
+            print("Aura le da 1 de vida a "+str(personaje) + " y ahora tiene "+str(personaje.vidas) + " vidas.")
     
     def __str__(self) -> str:
         return "Aura"

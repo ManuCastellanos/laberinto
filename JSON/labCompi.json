@@ -13,8 +13,8 @@
 ],
   
 "compis": [
-    { "modo": "aura", "hab": 1 },
-    { "modo": "blitz", "hab": 2}
+    { "modo": "blitz", "hab": 1 },
+    { "modo": "aura", "hab": 2}
 ]
 }
 
