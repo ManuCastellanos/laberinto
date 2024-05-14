@@ -1,5 +1,5 @@
 from Entes.Ente import Ente 
-import State.Muerto as Muerto
+from State.Muerto import Muerto
 
 class Bicho(Ente):
     # Constructor

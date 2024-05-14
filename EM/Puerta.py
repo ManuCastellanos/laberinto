@@ -33,7 +33,10 @@ class Puerta(ElementoMapa):
     
     def abrir(self,alguien):
         self.abierta = True
-        print("Puerta abierta por", alguien)
+        if(alguien is None):
+            print("Puerta abierta por Dios")
+        else:
+            print("Puerta abierta por", alguien)
 
         for comando in self.comandos:
             if comando.esAbrir():

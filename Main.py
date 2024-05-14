@@ -1,7 +1,7 @@
-
 from colorama import Fore, Style, init
 from Adapter.Adapter import Adapter
 from EM.Container.Laberinto import Laberinto
+from Entes.Personaje import Personaje
 from Game.Juego import Juego
 from LaberintoAFactory import LaberintoAFactory 
 from Builder.Director import Director
@@ -49,12 +49,9 @@ while True:
                         director= Director()
                         director.procesar(archivo)
                         juego= director.getJuego()
-                        juego.iniProta("Imbécil")
-                        print(juego.bichos[0].modo)
                         #juego.laberinto.hijos[0].forma.sur.entrar(juego.personaje)
                         #juego.laberinto.hijos[1].forma.sur.entrar(juego.personaje)
                         
-                        print(juego)
                         # juego.laberinto.hijos[2].forma.sur.entrar(juego.personaje)
                         # juego.laberinto.hijos[3].hijos[0].forma.oeste.entrar(juego.personaje)
                         
@@ -63,18 +60,15 @@ while True:
                         
                         # juego.laberinto.hijos[3].hijos[0].items[0].comandos[0].ejecutar(juego.personaje)
                         # juego.laberinto.hijos[3].hijos[0].items[0].comandos[0].ejecutar(juego.personaje)
-
                         # juego.personaje.inventario.verInventario()
-                        
-                        # juego.personaje.inventario.soltarItem(juego.personaje.inventario.items[0], juego.personaje)
-                        
+                        # juego.personaje.inventario.soltarItem(juego.personaje.inventario.items[0], juego.personaje)                        
+                                                   
                     elif archivo.endswith('.xml'):
                         director= Director()
                         adapter= Adapter(archivo)
                         director.procesar(adapter.get_json())
                         juego= director.getJuego()
-                        juego.iniProta("Imbécil")
-                        print(juego)
+                        
                     else:
                         print("Archivo no válido")
                         
@@ -82,12 +76,79 @@ while True:
                     juego= Juego()
                     af= LaberintoAFactory()
                     juego.fabricarLaberinto4Hab4Bomb4BichosAF(af)
-                    juego.iniProta("Imbécil")
-                    print(juego)
                 
                 elif lab == 3:
                     break
+                
+                activada= False
+                abierta= False
+                
+                #Mi juego siempre va a tener un personaje
+                prota = Personaje(input("Introduce el nombre del personaje: ")) 
+                juego.iniProta(prota)
+                print(juego)
+                
+                while juego.fase.esFinal() == False:
+            
+                        num = input(Fore.MAGENTA+"\n¿Qué quieres hacer?\n"+Fore.LIGHTGREEN_EX+
+                                                  "0."+Fore.LIGHTWHITE_EX+ "Atacar\n"+Fore.LIGHTGREEN_EX+
+                                                  "1." +Fore.LIGHTWHITE_EX+"Activar/Desactivar las Bombas\n" +Fore.LIGHTGREEN_EX +
+                                                  "2." +Fore.LIGHTWHITE_EX+"Abrir/Cerrar las Puertas\n"+Fore.LIGHTGREEN_EX+
+                                                  "3." +Fore.LIGHTWHITE_EX+"Lanzar Hilos\n" + Fore.LIGHTGREEN_EX+
+                                                  "4." +Fore.LIGHTWHITE_EX+"Terminar Hilos\n"+Fore.LIGHTGREEN_EX+
+                                                  "5." +Fore.LIGHTWHITE_EX+"Entrar en tunel\n"+Fore.LIGHTGREEN_EX+
+                                                  "6." +Fore.LIGHTWHITE_EX+"Abrir Puerta "+Fore.LIGHTGREEN_EX+ 
+                                                  "7." +Fore.LIGHTWHITE_EX+"Cerrar Puerta\n"+Fore.LIGHTGREEN_EX+
+                                                  "8." +Fore.LIGHTWHITE_EX+"Mover personaje\n"+Fore.LIGHTGREEN_EX+
+                                                  "9." +Fore.LIGHTWHITE_EX+"Entrar a la cornucopia\n"+Fore.LIGHTGREEN_EX+
+                                                  "10." +Fore.LIGHTWHITE_EX+"¿Quién es mi compañero?\n"+ Fore.LIGHTGREEN_EX+
+                                                  "11." +Fore.LIGHTWHITE_EX+"¿Qué tengo en el inventario?\n"+Fore.LIGHTGREEN_EX+ 
+                                                  "12." +Fore.LIGHTWHITE_EX+"Imprimir laberinto\n"+ Fore.LIGHTGREEN_EX+
+                                                  "13." +Fore.LIGHTWHITE_EX+"Salir\n"+Style.RESET_ALL)
+                        
+                        try:
+                            num= int(num)
+                            if (num== 0):
+                                    juego.personaje.atacar()
 
+                            elif (num== 1):
+                                if activada:
+                                    juego.desactivarBombas()
+                                    activada= False
+                                else:
+                                    juego.activarBombas()
+                                    activada= True
+
+                            elif (num== 2):
+                                if abierta:
+                                    juego.cerrarPuertas()
+                                    abierta= False
+                                else:
+                                    juego.abrirPuertas()
+                                    abierta= True
+
+                            elif (num== 3):
+                                pass
+                            elif (num==4):
+                                pass
+                            elif (num==8):
+                                print("¿A donde quieres mover a ",juego.personaje.nombre,'?')
+                                print("El personaje esta en la habitacion: ",juego.personaje.posicion)
+                                
+                                direccion = input("W. Norte\nS. Sur\nD. Este\nA. Oeste\n")
+                                if direccion == 'W' or direccion == 'w':
+                                    juego.personaje.irAlNorte()
+                                elif direccion == 'S' or direccion == 's':
+                                    juego.personaje.irAlSur()
+                                elif direccion == 'D' or direccion == 'd':
+                                    juego.personaje.irAlEste()
+                                elif direccion == 'A' or direccion == 'a':
+                                     juego.personaje.irAlOeste()
+                                else:
+                                    print("\n\nOpción no válida.\n\n")
+                        except ValueError:
+                            print(Fore.RED + "No es un número válido, intenta de nuevo\n")    
+        
         elif select == 2:
             print("Interfaz Gráfica por implementar")
         

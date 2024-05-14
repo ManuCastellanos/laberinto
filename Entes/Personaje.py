@@ -13,8 +13,8 @@ class Personaje(Ente):
     def esPersonaje(self):
         return True
     
-    def obtenerComandos(self):
-        return self.posicion.obtenerComandos()
+    def obtenerComandos(self, prota):
+        return self.posicion.obtenerComandos(prota)
     
     def cogerItem(self, item):
         self.inventario.agregarItem(item)
@@ -39,4 +39,7 @@ class Personaje(Ente):
         return self.juego.buscarBicho()
     
     def __str__(self):
-        return str(self.nombre) + " en " +  str(self.posicion.num) + " tiene " + str(self.compi)#+ str(self.modo)
+        if self.compi is not None:
+            return str(self.nombre) + " en " +  str(self.posicion.num) + " tiene " + str(self.compi) + " y " + str(self.inventario)
+        else:
+            return str(self.nombre) + " en " +  str(self.posicion.num)

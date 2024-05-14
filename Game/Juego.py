@@ -1,5 +1,7 @@
 import copy
 import threading
+
+from colorama import init
 from EM.Container.Cornucopia import Cornucopia
 from Entes.Bicho import Bicho
 from EM.Container.Habitacion import Habitacion
@@ -9,6 +11,9 @@ from EM.Pare.Pared import Pared
 from EM.Pare.ParedBomba import ParedBomba
 from EM.Puerta import Puerta
 from Entes.Compañero import Compañero
+from Fases.Final import Final
+from Fases.Inical import Inicial
+from Fases.Jugando import Jugando
 from Items.Agua import Agua
 from Items.Comida import Comida
 from Mode.BichosM.Agresivo import Agresivo
@@ -30,6 +35,7 @@ class Juego:
         self.hilos = dict()
         self.prototype = None
         self.personaje= None
+        self.fase= Inicial()
         
     # Factory Method
     
@@ -213,15 +219,15 @@ class Juego:
         result = None
         return False
     
-    def terminarHiloBicho(self, unBicho):
-        for bicho in self.bicho [:]:
+    def terminarHiloBicho(self):
+        for bicho in self.bichos [:]:
            self.terminarHilo(bicho)
     
     def hiloCompi(self, unCompi):
         while unCompi.estaVivo():
             unCompi.actuaC(unCompi,self.personaje) 
     
-    def terminarHiloCompi(self, unCompi):
+    def terminarHiloCompi(self):
         for compi in self.compañeros:
             self.terminarHilo(compi)
             
@@ -236,7 +242,21 @@ class Juego:
     def terminarHilo(self, unEnte):
         unEnte.saMorio()
   
+    def bichoMuerto (self,unBicho):
+        init()
+        self.eliminarBicho(unBicho)
+        if self.allBichosMoridos():
+            if self.personaje.estaVivo():
+                self.finJuego()
+                print("HA GANADO " + str(self.personaje.nombre))
+            self.finJuego()
     
+    def finJuego(self):
+        self.fase= Final()
+        self.terminarHiloBicho()
+        self.terminarHiloCompi()
+        
+        
     ## ********* BUSCAR *********
     
     def buscarPersonaje(self,unBicho):
@@ -265,12 +285,18 @@ class Juego:
         self.prototype.num = self.laberinto.num + 1
         return self.prototype
     
-    def iniProta(self, nombre):
-        self.personaje= Personaje(nombre)
+    def puedeIniProta(self, unProta):
+        self.personaje= unProta
         self.personaje.juego = self
+        self.personaje.vidas = 15
+        self.personaje.poder = 2
         self.personaje.posicion = self.laberinto.obtenerHabitacion(1)
         self.personaje.compi=self.buscarCompiEn(self.personaje.posicion)
-        
+    
+    def iniProta(self, unProta):
+        self.fase.agregarIniProta(unProta, self)
+        self.fase= Jugando()
+    
     #-------------LABERINTOS----------------
             
     def fabricarLaberinto(self):

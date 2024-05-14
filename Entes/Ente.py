@@ -13,7 +13,6 @@ class Ente(ABC):
 
         
     def irA(self, unaOr):
-        print(str(unaOr))
         unaOr.caminar(self)
     
     def irAlNorte(self):
@@ -42,14 +41,11 @@ class Ente(ABC):
     
     def actua(self):
         self.modo.actua(self)
-    
-    def maricon(self, personaje):
-        self.modo.maricon(self, personaje)   
    
     def atacar(self):
         ente = self.buscarEnemigo()
         if ente is not None:
-            ente.loAtacan(self)
+            ente.enteAtacado(self)
         
     def buscarEnemigo(self):
         pass
@@ -57,8 +53,8 @@ class Ente(ABC):
     def buscarVigilante(self):
         pass
     
-    def esAtacadoPor(self,alguien):
-        self.estado.enteLoAtacan(self,alguien)
+    def enteAtacado(self,alguien):
+        self.estado.enteAtacado(self,alguien)
     
     def esHeridoPor(self, alguien):
         self.estado.enteEsHeridoPor(self, alguien)
@@ -69,10 +65,10 @@ class Ente(ABC):
     def loPuedenAtacar(self,alguien):
         print (alguien, "se quiere cargar a", self)
         self.vidas -= int(alguien.poder)
-        print (self, "tiene", self.vidas, "vidas")
         
         if self.vidas <= 0:
             self.vidas= 0
-            self.muerto()
-            print (self, "ha muerto")
-    
+            self.saMorio()
+        
+        else:
+            print (self, "tiene", self.vidas, "vidas")
