@@ -28,7 +28,9 @@
       <habitacion>
         <tipo>habitacion</tipo>
         <num>4</num>
-        <hijos>cornucopia</hijos>
+        <hijos>
+          <hijo>cornucopia</hijo>
+        </hijos>
       </habitacion>
     
     </laberinto>

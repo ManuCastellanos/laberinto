@@ -1,9 +1,9 @@
 {
     "laberinto": [
       { "tipo": "habitacion", "num": 1, "hijos": [{ "tipo": "bomba" }] },
-      { "tipo": "habitacion", "num": 2, "hijos": [{ "tipo": "Cornucopia" }] },
+      { "tipo": "habitacion", "num": 2, "hijos": [{ "tipo": "cornucopia" }] },
       { "tipo": "habitacion", "num": 3, "hijos": [{ "tipo": "bomba"}]},
-      { "tipo": "habitacion", "num": 4, "hijos": [{ "tipo": "Cornucopia"}] }
+      { "tipo": "habitacion", "num": 4, "hijos": [{ "tipo": "cornucopia"}] }
       
     ],
     "puertas": [[1, "Oeste", 2, "Este"],

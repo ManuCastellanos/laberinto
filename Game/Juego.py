@@ -295,7 +295,6 @@ class Juego:
     def buscarCompiEn(self, unaHab):
         for compi in self.compañeros:
             if compi.posicion == unaHab:
-                print( self.personaje.nombre + " tiene a " + compi.__str__())
                 return compi
         return None
     
