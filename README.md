@@ -56,4 +56,4 @@ Patrón que encapsula una petición como un objeto, permitiendo parametrizar a l
 
 
 ## Diagrama de Diseño usando StarUML
-<img src= https://github.com/ManuCastellanos/laberinto/blob/main/LaberintoFinished.png?raw=true >
+<img src="https://github.com/ManuCastellanos/laberinto/blob/main/LaberintoFinished.png?raw=true" />
