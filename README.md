@@ -4,7 +4,7 @@
 - **Versión**: Python 3.11.8
 - **Asistente IA**: [GitHub Copilot](https://copilot.github.com/)
 
-## Patrones de diseño utilizados (11 patrones usados)
+## Patrones de diseño utilizados (16 patrones usados)
 
 ### Factory Method
 El patrón Factory Method proporciona una interfaz para crear objetos, pero permite a las subclases decidir qué clase instanciar. Implementado en el archivo [`Juego.py`](./Game/Juego.py)
@@ -56,4 +56,4 @@ Patrón que encapsula una petición como un objeto, permitiendo parametrizar a l
 
 
 ## Diagrama de Diseño usando StarUML
-<img src=https://github.com/ManuCastellanos/laberinto/blob/main/LaberintoFinished.png?raw=true>
+<img src=https://github.com/ManuCastellanos/laberinto/blob/main/LaberintoFinished.png?raw=true>>
