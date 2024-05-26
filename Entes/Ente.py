@@ -1,4 +1,6 @@
 from abc import ABC, abstractmethod
+
+from colorama import Fore, Style
 from State.Vivo import Vivo
 
 class Ente(ABC):
@@ -63,7 +65,7 @@ class Ente(ABC):
         pass
     
     def loPuedenAtacar(self,alguien):
-        print (alguien, "se quiere cargar a", self)
+        print (Fore.LIGHTCYAN_EX + str(alguien), "se quiere cargar a", str(self)+ Style.RESET_ALL)
         
         if self.compi is not None:
             self.compi.vidas -= int(alguien.poder)
@@ -73,7 +75,7 @@ class Ente(ABC):
                 self.juego.compañeros.remove(self.compi)
                 self.compi= None
             else:
-                print (self.compi, "tiene ", self.compi.vidas, " vidas")
+                print (Fore.LIGHTMAGENTA_EX+ str(self.compi), "tiene ", str(self.compi.vidas), " vidas"+ Style.RESET_ALL)
 
         self.vidas -= int(alguien.poder)
         
@@ -82,4 +84,4 @@ class Ente(ABC):
             self.saMorio()
         
         else:
-            print (self, "tiene", self.vidas, "vidas")
+            print (Fore.LIGHTMAGENTA_EX+str(self), "tiene", str(self.vidas), "vidas"+ Style.RESET_ALL)

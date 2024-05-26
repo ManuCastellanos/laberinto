@@ -17,9 +17,9 @@ class Tunel(Hoja):
                     if tunel.esTunel():
                         tunel.laberinto = alguien.juego.laberinto
             self.laberinto.entrar(alguien)
-            print("/n/n Entrando al laberinto"+str(self.laberinto.num))
+            print("\n\n Entrando al laberinto"+str(self.laberinto.num))
         
-        print ("Saliendo a" + str(self.laberinto.num))
+        print ("Saliendo a laberinto" + str(self.laberinto.num))
         
     def __str__(self):
         if self.laberinto == None:

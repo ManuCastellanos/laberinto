@@ -1,4 +1,6 @@
 from Comandos.Coger import Coger
+from Comandos.Soltar import Soltar
+from Comandos.Usar import Usar
 
 class Inventario():
     UnicaInstancia = None
@@ -22,6 +24,8 @@ class Inventario():
             
     def agregarItem(self, item):
         self.items.append(item)
+        item.agregarComando(Usar(), item)
+        item.agregarComando(Soltar(), item)
         
         if any(comando.esCoger() for comando in item.comandos):
             self.quitarCoger(item)
@@ -34,6 +38,10 @@ class Inventario():
             if comando.esCoger():
                 item.quitarComando(comando)
         
+    def quitarSoltar(self, item):
+        for comando in item.comandos[:]:
+            if comando.esSoltar():
+                item.quitarComando(comando)
                 
     def quitarItem(self, item):
         self.items.remove(item)

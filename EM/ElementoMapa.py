@@ -27,6 +27,9 @@ class ElementoMapa():
     def esTunel(self):
         return False
     
+    def esCornucopia(self):
+        return False
+    
     def agregarComando(self, unComando, receptor):
         self.comandos.append(unComando)
         unComando.receptor = receptor

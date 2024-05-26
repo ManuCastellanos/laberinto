@@ -13,3 +13,10 @@ class Comando():
     
     def esUsar(self):
         return False
+    
+    def esCoger(self):
+        return False
+    
+    def esSoltar(self):
+        return False
+    

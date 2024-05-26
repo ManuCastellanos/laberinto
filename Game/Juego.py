@@ -1,7 +1,7 @@
 import copy
 import threading
 
-from colorama import init
+from colorama import Fore, Style, init
 from Comandos.Abrir import Abrir
 from EM.Container.Cornucopia import Cornucopia
 from Entes.Bicho import Bicho
@@ -250,17 +250,18 @@ class Juego:
         if self.allBichosMoridos():
             if self.personaje.estaVivo():
                 self.finJuego()
-                print("HA GANADO " + str(self.personaje.nombre))
+                print(Fore.LIGHTGREEN_EX+"HA GANADO " + str(self.personaje.nombre)+Style.RESET_ALL)
             else:   
              self.finJuego()
     
     def personajeMuerto(self,unProta):
-        print("TE ACABAN DE MATAR " + str(self.personaje.nombre))
+        init()
+        print(Fore.LIGHTRED_EX+"TE ACABAN DE MATAR " + str(self.personaje.nombre)+Style.RESET_ALL)
         cadena=""
         for bicho in self.bichos:
             cadena+=str(bicho)+"\n"
         
-        print("HAN GANADO LOS BICHOS: \n"+cadena)
+        print(Fore.LIGHTGREEN_EX+"HAN GANADO LOS BICHOS: \n"+cadena+Style.RESET_ALL)
         self.finJuego()
         
     def finJuego(self):

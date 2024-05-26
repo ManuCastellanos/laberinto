@@ -48,20 +48,7 @@ while True:
                     if archivo.endswith('.json'):
                         director= Director()
                         director.procesar(archivo)
-                        juego= director.getJuego()
-                        #juego.laberinto.hijos[0].forma.sur.entrar(juego.personaje)
-                        #juego.laberinto.hijos[1].forma.sur.entrar(juego.personaje)
-                        
-                        # juego.laberinto.hijos[2].forma.sur.entrar(juego.personaje)
-                        # juego.laberinto.hijos[3].hijos[0].forma.oeste.entrar(juego.personaje)
-                        
-                        # print(juego.laberinto.hijos[3].hijos[0].items[0])
-                        # print(juego.laberinto.hijos[3].hijos[0].items[1])
-                        
-                        # juego.laberinto.hijos[3].hijos[0].items[0].comandos[0].ejecutar(juego.personaje)
-                        # juego.laberinto.hijos[3].hijos[0].items[0].comandos[0].ejecutar(juego.personaje)
-                        # juego.personaje.inventario.verInventario()
-                        # juego.personaje.inventario.soltarItem(juego.personaje.inventario.items[0], juego.personaje)                        
+                        juego= director.getJuego()                    
                                                    
                     elif archivo.endswith('.xml'):
                         director= Director()
@@ -81,10 +68,12 @@ while True:
                     break
                 
                 activada= False
+                abierta= False
                 abierta1= False
                 abierta2= False
                 abierta3= False
                 abierta4= False
+                
                 #Mi juego siempre va a tener un personaje
                 prota = Personaje(input("Introduce el nombre del personaje: ")) 
                 juego.iniProta(prota)
@@ -158,7 +147,15 @@ while True:
                                 print("Se acabó la fiesta de los hilos")
                                 
                             elif(num==5):
-                                pass
+                                hayTunel = False
+                                for tunel in juego.personaje.posicion.hijos:
+                                    if tunel.esTunel():
+                                        hayTunel = True
+                                        tunel.entrar(juego.personaje)
+                                        print("Entrando en tunel")
+                                        break;
+                                    if hayTunel:
+                                        break;
                             
                             elif(num==6):
                                 if abierta1 == False or abierta2 == False or abierta3 == False or abierta4 == False:
@@ -250,6 +247,92 @@ while True:
                                      juego.personaje.irAlOeste()
                                 else:
                                     print(Fore.RED +"\n\nOpción no válida.\n\n")
+                            elif (num==9):
+                                hayCornucopia = False
+                                
+                                for hijo in juego.personaje.posicion.hijos:
+                                    
+                                    if hijo.esCornucopia():
+                                        hayCornucopia = True
+                                        hijo.entrar(juego.personaje)
+                                        print("Entrando en cornucopia")
+                                        while juego.personaje.posicion == hijo:
+                                                coger = []
+                                                print("¿Qué quieres hacer en la cornucopia ",juego.personaje.nombre,'?')
+                                                
+                                                accion = input("1. Coger\n2. Salir\n")
+                                                accion = int(accion)
+                                                
+                                                if accion == 1:
+                                                    contPara = 0
+                                                    print("Hay "+ str(len(hijo.items)) +" paracaidas en la cornucopia:")
+                                                    
+                                                    for paracaidas in hijo.items:
+                                                        
+                                                        contPara += 1
+                                                        print(str(contPara)+". "+str(paracaidas)+" (Puedes cogerlo)")
+                                                        coger.append(True)
+                                                        
+                                                    obj= input("¿Qué paracaidas quieres coger? (Introduce el número)\n")
+                                                    obj= int(obj)
+                                                    print("Has seleccionado: ", obj, "coger:", str(coger))
+                                                    if coger[obj-1] <= len(coger):
+                                                        
+                                                        if obj>=0 and obj<=len(coger):
+                                                            hijo.cogerItem(juego.personaje, hijo.items[obj-1])
+
+                                                    if len(hijo.items) == 0:
+                                                        print("No hay más paracaidas en la cornucopia")
+                                                        break
+                                                    
+                                                    else:
+                                                        print("Puedes seguir cogiendo paracaidas")
+                                                        
+                                                elif accion == 2:
+                                                    hijo.salir(juego.personaje)
+                                                    print("Saliendo de la cornucopia")
+                                                    break
+                                                
+                                if hayCornucopia is False:
+                                    print("No hay cornucopia en la habitación")
+                                    break;
+                            
+                            elif (num==10):
+                                if juego.personaje.compi is not None:
+                                    print(juego.personaje.compi.__str__()+" es tu amigui")
+                                else:
+                                    print("No tienes compañero")
+                            
+                            elif (num==11):
+                                itemSelect=None
+                                
+                                print("Tienes los siguientes paracaidas: \n")
+                                for i, item in enumerate(juego.personaje.inventario.items):
+                                    print(str(i+1)+". "+str(item))
+                                
+                                comand= input("¿Quieres seleccionar algún paracaidas?\n")
+                                comand= int(comand)
+                                itemSelect= juego.personaje.inventario.items[comand-1]
+                                print("Has seleccionado: ", itemSelect)
+                                
+                                print(itemSelect.obtenerComandos(juego.personaje))
+                                
+                                comandos = itemSelect.obtenerComandos(juego.personaje)
+                                for i, comand in enumerate(comandos):
+                                    print(str(i+1)+". "+str(comand))
+                                
+                                accion= input("¿Qué quieres hacer con el paracaidas?\n")
+                                accion= int(accion)
+                                
+                                if accion>0 and accion<=len(comandos):
+                                    comandos[accion-1].ejecutar(juego.personaje)
+                            
+                            elif (num==12):
+                                print(juego)
+                            
+                            elif (num==13):
+                                break
+                            
                         except ValueError:
                             print(Fore.RED + "No es un número válido, intenta de nuevo\n"+Style.RESET_ALL)    
         
