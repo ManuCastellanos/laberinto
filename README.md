@@ -55,5 +55,5 @@ Patrón que especifica el tipo de objetos a crear utilizando una instancia proto
 Patrón que encapsula una petición como un objeto, permitiendo parametrizar a los clientes con diferentes peticiones y soportar operaciones deshacer. Implementado en [Comandos](./Comandos).
 
 
-## Diagrama de Clases
-<img src=>
+## Diagrama de Diseño usando StarUML
+<img src=https://github.com/ManuCastellanos/laberinto/blob/main/LaberintoFinished.png>
