@@ -34,12 +34,26 @@ El patrón Singleton asegura que una clase solo tenga una instancia y proporcion
 El patrón Builder separa la construcción de un objeto complejo de su representación para que el mismo proceso de construcción pueda crear diferentes representaciones. Implementado en los archivos [`Director.py`](./Builder/Director.py) y [`LaberintoBuilder.py`](./Builder/LaberintoBuilder.py). Se pueden ver los archivos para crear laberintos en la carpeta [JSON](./JSON/).
 
 ### Proxy
-El patrón Proxy proporciona un sustituto o representante de otro objeto para controlar el acceso a él. Esto es útil cuando la creación de un objeto es costosa en términos de tiempo o recursos y quieres retrasar esta creación hasta que sea realmente necesario. Implementado en el archivo [`Proxy.py`](./path/to/Proxy.py).
+El patrón Proxy proporciona un sustituto o representante de otro objeto para controlar el acceso a él. Esto es útil cuando la creación de un objeto es costosa en términos de tiempo o recursos y quieres retrasar esta creación hasta que sea realmente necesario. Implementado en el archivo [`Tunel.py`](./EM/Hoj/Tunel.py).
 
 ### Adapter
 El patrón Adapter convierte la interfaz de una clase en otra interfaz que los clientes esperan. Permite que las clases trabajen juntas que de otra manera no podrían debido a interfaces incompatibles. Implementado en el archivo [`Adapter.py`](Adapter\Adapter.py).
 
-### Mediator
-
 ### State
+El patrón de diseño State permite a un objeto alterar su comportamiento cuando su estado interno cambia. Define una serie de clases que representan los diferentes estados posibles de un objeto y proporcionauna interfaz común para cambiar entre estos estados. Implementado en: [`State.py`](State\Estado.py).
 
+### Bridge
+Patrón que desacopla una abstracción de su implementación de modo que las dos puedan variar de forma independiente. Implementado en [`Bridge`](Bridge\Forma.py) y [`Cuadrado`](Bridge\Cuadrado.py).
+ 
+### Mediator
+Patrón que define un objeto que encapsula la interacción entre un conjunto de objetos. Promueve un acoplamiento débil al evitar que los objetos tengan referencia al resto de objetos explícita. Implementado en [`Juego.py`](./Game/Juego.py), [`Ente.py`](./Entes/Ente.py).
+
+### Prototype
+Patrón que especifica el tipo de objetos a crear utilizando una instancia prototípica, y los crea copiando este prototipo.  Implementado en [`Juego.py`](./Game/Juego.py)
+
+### Command
+Patrón que encapsula una petición como un objeto, permitiendo parametrizar a los clientes con diferentes peticiones y soportar operaciones deshacer. Implementado en [Comandos](./Comandos).
+
+
+## Diagrama de Clases
+<img src=>
