@@ -19,7 +19,7 @@ class Agua(Item):
         
         for comando in self.comandos:
             if comando.esUsar():
-                comando.quitarUsar(comando)
+                self.quitarUsar(comando)
     
     def quitarUsar(self, comando):
         self.quitarComando(comando)

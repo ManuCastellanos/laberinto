@@ -155,9 +155,9 @@ while True:
                                         hayTunel = True
                                         tunel.entrar(juego.personaje)
                                         print("Entrando en tunel")
-                                        break;
+                                        break
                                     if hayTunel:
-                                        break;
+                                        break
                             
                             elif(num==6):
                                 if abierta1 == False or abierta2 == False or abierta3 == False or abierta4 == False:
@@ -297,7 +297,7 @@ while True:
                                                 
                                 if hayCornucopia is False:
                                     print("No hay cornucopia en la habitación")
-                                    break;
+                                    break
                             
                             elif (num==10):
                                 if juego.personaje.compi is not None:
