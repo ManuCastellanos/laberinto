@@ -117,12 +117,14 @@ while True:
                                     abierta2= False
                                     abierta3= False
                                     abierta4= False
+                                    abierta= False
                                 else:
                                     juego.abrirPuertas()
                                     abierta1= True
                                     abierta2= True
                                     abierta3= True
                                     abierta4= True
+                                    abierta= True
                                     
                             elif (num== 3):
                                 while True:
